@@ -9,7 +9,7 @@
 #include "Controle_Casa_Torre.h"
 #include "Controle_Bomba_Casa.h"
 #include "Gerencia_Bomba_Casa.h"
-#include "Ordens_Drimel_System_Casa_Torre.h"
+#include "Ordens_Casa_Torre.h"
 
 #include "Estados_Sistema_Eco_Hidro.h"
 
@@ -34,6 +34,8 @@
 
     Controle_Bomba_Casa_Inicializa();
 
+    Ordens_Casa_Torre_Inicializa();
+
 } 
  
 //====================================================================================  
@@ -51,5 +53,7 @@
     Gerencia_Casa_Torre_Atualiza();
 
     Gerencia_Bomba_Casa_Atualiza();
+
+    Ordens_Casa_Torre_Atualiza();
  
 } 

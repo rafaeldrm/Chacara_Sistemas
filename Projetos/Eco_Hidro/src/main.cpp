@@ -13,7 +13,6 @@
 #include "Sistema_Reservatorio.h"
 #include "Sistema_Protecao_Bomba_Casa.h"
 #include "Mediador_Sistema.h"
-#include "Notificacao_LoRa_Envio.h"
 #include "Sistema_LoRa.h"
 #include "Sistema_Voltagem.h"
 #include "Sistema_Luz_Estacionamento.h"
@@ -59,8 +58,6 @@ void setup()
 
   //  PORTAO_BOOT();
 
-   NOTIFICACAO_LORA_ENVIO_BOOT();
-
     MEDIADOR_BOOT();
  
  //e mais outras coisas que forem necessárias para o setup do sistema
@@ -93,8 +90,6 @@ void loop()
    LUZ_ACESSO_RESERVATORIO_LOOP();
 
   //PORTAO_LOOP();
-
-   NOTIFICACAO_LORA_ENVIO_LOOP();
 
     MEDIADOR_LOOP();
 

@@ -23,6 +23,8 @@
     Leitura_Boias_Inicializa();
 
     Tempo_Boias_Inicializa();
+
+    Notificacao_Boias_Inicializa();
     
     debugOk("Sistema Boias Iniciado.");
 } 

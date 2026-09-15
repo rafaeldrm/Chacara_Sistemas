@@ -36,23 +36,38 @@ void Ordens_Casa_Torre_Atualiza()
 
     switch (ORDENS_DRIMEL_SYSTEM::CASA_TORRE::atual())
     {
+
+        case ORDENS_DRIMEL_SYSTEM::CASA_TORRE::ORDEM::NENHUM:
+            // Nenhuma ação necessária para a ordem NENHUM
+            break;
+        
+        //============================================================
+
         case ORDENS_DRIMEL_SYSTEM::CASA_TORRE::ORDEM::CICLO_COMPLETO:
             Ordens_Casa_Torre_Ciclo_Completo_Abastecimento();
             break;
+
+        //============================================================
 
         case ORDENS_DRIMEL_SYSTEM::CASA_TORRE::ORDEM::MEIO_CICLO:
             Ordens_Casa_Torre_Meio_Ciclo_Abastecimento();
             break;
 
+        //============================================================
+
         case ORDENS_DRIMEL_SYSTEM::CASA_TORRE::ORDEM::DESLIGA:
             Ordens_Casa_Torre_Desliga_Bomba();
             break;
 
+        //============================================================
+
         default:
-            // Nenhuma ação necessária para outras ordens
+           ORDENS_DRIMEL_SYSTEM::CASA_TORRE::definir(ORDENS_DRIMEL_SYSTEM::CASA_TORRE::ORDEM::NENHUM);
             break;
     }
 }
+
+
 
 //====================================================================================
 //                  LORA :: ORDEM DRIMEL_SYSTEM CICLO COMPLETO DE ABASTECIMENTO CASA / TORRE

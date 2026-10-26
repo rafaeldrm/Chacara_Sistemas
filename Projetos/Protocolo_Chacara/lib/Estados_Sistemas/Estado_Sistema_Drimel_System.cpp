@@ -19,6 +19,9 @@ struct EstadosSistemaDrimelSystem
     TELA::MENU::OPCAO telaMenu;
     TELA::MANUTENCAO::ETAPAS telaManutencao;
     ECO_HIDRO::CAIXA_ENTRADA::SITUACAO ecoHidroCaixaEntrada;
+    EVENTO::RESERVATORIO::MENSAGEM eventoReservatorio;
+    EVENTO::SOLAR_24V::MENSAGEM eventoSolar24v;
+    EVENTO::PORTAO::MENSAGEM eventoPortao;
 
 };
 
@@ -32,6 +35,9 @@ static EstadosSistemaDrimelSystem estado =
     TELA::MENU::OPCAO::NORMAL,
     TELA::MANUTENCAO::ETAPAS::NENHUM,
     ECO_HIDRO::CAIXA_ENTRADA::SITUACAO::DESCONHECIDO,
+    EVENTO::RESERVATORIO::MENSAGEM::NENHUM,
+    EVENTO::SOLAR_24V::MENSAGEM::NENHUM,
+    EVENTO::PORTAO::MENSAGEM::NENHUM,
 
 };
 
@@ -243,13 +249,103 @@ namespace TELA {
     }
 }
 
+//====================================================================================
+//                   EVENTOS
+//====================================================================================
+
+ namespace EVENTO {
+        namespace RESERVATORIO
+        {
+
+             void definir(MENSAGEM novo)
+        {
+            if (estado.eventoReservatorio == novo) return;
+            estado.eventoReservatorio = novo;
+            debugVariavel("EVENTO reservatorio : ", texto(novo), NENHUM, VERDE, AMARELO);
+        }
+
+        MENSAGEM atual()
+        {
+            return estado.eventoReservatorio;
+        }
+
+        const __FlashStringHelper* texto(MENSAGEM s)
+        {
+            switch(s)
+            {
+                case MENSAGEM::NENHUM:                                                   return F("NENHUM");
+                case MENSAGEM::BOMBA_LIGADA:                                             return F("BOMBA_LIGADA");
+                case MENSAGEM::BOMBA_DESLIGADA:                                          return F("BOMBA_DESLIGADA");
+                case MENSAGEM::CAIXA_CASA_MEDIA:                                         return F("CAIXA_CASA_MEDIA");
+                case MENSAGEM::CAIXA_ENTRADA_CLORO:                                      return F("CAIXA_ENTRADA_CLORO");
+                case MENSAGEM::ENERGIA_BAIXA:                                            return F("ENERGIA_BAIXA");
+
+                default:                return F("DESCONHECIDO");
+            }
+        }
+    }
+
+        namespace PORTAO
+        {
+
+             void definir(MENSAGEM novo)
+        {
+            if (estado.eventoPortao == novo) return;
+            estado.eventoPortao = novo;
+            debugVariavel("EVENTO portao : ", texto(novo), NENHUM, VERDE, AMARELO);
+        }
+
+        MENSAGEM atual()
+        {
+            return estado.eventoPortao;
+        }
+
+        const __FlashStringHelper* texto(MENSAGEM s)
+        {
+            switch(s)
+            {
+                case MENSAGEM::NENHUM:                                                    return F("NENHUM");
+                case MENSAGEM::PORTAO_ABERTO:                                             return F("PORTAO_ABERTO");
+                case MENSAGEM::PORTAO_FECHADO:                                            return F("PORTAO_FECHADO");
+                case MENSAGEM::CHUVA_DETECTADA:                                           return F("CHUVA_DETECTADA");
+                case MENSAGEM::VENTO_FORTE:                                               return F("VENTO_FORTE");
+
+                default:                return F("DESCONHECIDO");
+            }
+        }
+    }
+        namespace SOLAR_24V
+        {
 
 
+            
+             void definir(MENSAGEM novo)
+        {
+            if (estado.eventoSolar24v == novo) return;
+            estado.eventoSolar24v = novo;
+            debugVariavel("EVENTO solar24v : ", texto(novo), NENHUM, VERDE, AMARELO);
+        }
 
+        MENSAGEM atual()
+        {
+            return estado.eventoSolar24v;
+        }
 
+        const __FlashStringHelper* texto(MENSAGEM s)
+        {
+            switch(s)
+            {
+                case MENSAGEM::NENHUM:                                                    return F("NENHUM");
+                case MENSAGEM::MAQUINA_ROUPA_ACIONADA:                                    return F("MAQUINA_ROUPA_ACIONADA");
+                case MENSAGEM::FONTE_USINA_LIGADA:                                        return F("FONTE_USINA_LIGADA");
+                case MENSAGEM::LEITURA_VOLTAGEM:                                           return F("LEITURA_VOLTAGEM");
 
+                default:                return F("DESCONHECIDO");
+            }
+        }
+    }
 
-
+ }
 
 
 //====================================================================================

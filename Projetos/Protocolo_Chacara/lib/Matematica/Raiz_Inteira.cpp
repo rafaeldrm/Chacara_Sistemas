@@ -7,17 +7,20 @@
 //====================================================================================
 //                   RAIZ INTEIRA
 //====================================================================================
+// Calcula a raiz quadrada inteira (arredonda para baixo).
+//
+// ENTRADA: uint32_t (0 a 4.294.967.295)
+// SAÍDA:   uint16_t (0 a 65.535)
+//
+// SEGURANÇA: o resultado sempre cabe em uint16_t para qualquer
+//            entrada válida (raiz de UINT32_MAX é 65.535).
+//            Não use valores fora do range de uint32_t.
 
-// Calcula a raiz quadrada inteira de um número (arredonda para baixo).
 // Não usa float nem a função sqrt(). Mais leve e rápido no Arduino.
 // Exemplo: Raiz_Inteira(25) retorna 5 | Raiz_Inteira(26) retorna 5
 
 uint16_t Raiz_Inteira(uint32_t numero)
 {
-
-// Calcula a raiz quadrada inteira de um número (arredonda para baixo).
-// Não usa float nem a função sqrt(). Mais leve e rápido no Arduino.
-// Exemplo: Raiz_Inteira(25) retorna 5 | Raiz_Inteira(26) retorna 5
 
     uint32_t raiz = 0;
     uint32_t bit  = 1UL << 30;          // maior bit de potência de 4 que cabe em 32 bits

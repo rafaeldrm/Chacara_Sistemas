@@ -175,31 +175,62 @@ namespace ECO_HIDRO
 //                   EVENTOS
 //====================================================================================
 
-   namespace EVENTO {
-       enum class RESERVATORIO : uint8_t {
+   namespace EVENTO 
+   {
+        namespace RESERVATORIO
+        {
+             enum class MENSAGEM : uint8_t 
+             {
+                NENHUM,
+                BOMBA_LIGADA,
+                BOMBA_DESLIGADA,
+                CAIXA_CASA_MEDIA,
+                CAIXA_ENTRADA_CLORO,
+                ENERGIA_BAIXA
+            };
 
-    BOMBA_LIGADA,
-    BOMBA_DESLIGADA,
-    CAIXA_CASA_MEDIA,
-    CAIXA_ENTRADA_CLORO,
-    ENERGIA_BAIXA
+void definir(MENSAGEM novo);
+    MENSAGEM atual();
+    const __FlashStringHelper* texto(MENSAGEM s);
 
-};
+        }
+
+        namespace PORTAO
+        {
+
+            enum class MENSAGEM : uint8_t 
+            {
+                NENHUM,
+                PORTAO_ABERTO,
+                PORTAO_FECHADO,
+                CHUVA_DETECTADA,
+                VENTO_FORTE,
+
+            };
+
+void definir(MENSAGEM novo);
+    MENSAGEM atual();
+    const __FlashStringHelper* texto(MENSAGEM p);
+
+        }
+
+        namespace SOLAR_24V
+        {
+
+            enum class MENSAGEM : uint8_t 
+            {
+                NENHUM, 
+                MAQUINA_ROUPA_ACIONADA,
+                MAQUINA_ROUPA_DESLIGADA,
+                FONTE_USINA_LIGADA,
+                LEITURA_VOLTAGEM
+
+            };
 
 
-    enum class PORTAO : uint8_t {
-        PORTAO_ABERTO,
-        PORTAO_FECHADO,
-        CHUVA_DETECTADA,
-        VENTO_FORTE,
+void definir(MENSAGEM novo);
+    MENSAGEM atual();
+    const __FlashStringHelper* texto(MENSAGEM s);
 
-};
-
-enum class SOLAR_24V : uint8_t {
-          MAQUINA_ROUPA_ACIONADA,
-          MAQUINA_ROUPA_DESLIGADA,
-          FONTE_USINA_LIGADA,
-          LEITURA_VOLTAGEM
-
-};
-   };
+        }
+}

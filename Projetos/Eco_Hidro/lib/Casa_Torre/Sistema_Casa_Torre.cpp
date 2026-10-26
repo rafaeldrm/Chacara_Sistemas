@@ -9,9 +9,7 @@
 #include "Controle_Casa_Torre.h"
 #include "Controle_Bomba_Casa.h"
 #include "Gerencia_Bomba_Casa.h"
-#include "Ordens_Casa_Torre.h"
-
-#include "Estados_Sistema_Eco_Hidro.h"
+#include "Notificacao_Casa_Torre.h"
 
 //====================================================================================  
 //                   VARIÁVEIS INTERNAS  
@@ -25,7 +23,9 @@
  
  void CASA_TORRE_BOOT()
 { 
- 
+    debugSetupArquivo();
+    debugSetupDivisao(COR::AMARELO, "SISTEMA CASA TORRE INICIALIZANDO", COR::MAGENTA, "=", 45);
+
     Gerencia_Casa_Torre_Inicializa();
  
     Controle_Casa_Torre_Inicializa();
@@ -34,8 +34,7 @@
 
     Controle_Bomba_Casa_Inicializa();
 
-    Ordens_Casa_Torre_Inicializa();
-
+    Notificacao_Casa_Torre_Inicializa();
 } 
  
 //====================================================================================  
@@ -43,17 +42,12 @@
 //====================================================================================  
  
  void CASA_TORRE_LOOP()
-{ 
- 
-    if (SISTEMA_ECO_HIDRO::atual() == SISTEMA_ECO_HIDRO::MODO::BLOQUEIO) 
-    {
-        return; //se for bloqueio do sistema logo nunca acessará essa parte do if.)
-    }
+{
 
     Gerencia_Casa_Torre_Atualiza();
 
     Gerencia_Bomba_Casa_Atualiza();
 
-    Ordens_Casa_Torre_Atualiza();
+    Notificacao_Casa_Torre_Bomba_Acao();
  
 } 

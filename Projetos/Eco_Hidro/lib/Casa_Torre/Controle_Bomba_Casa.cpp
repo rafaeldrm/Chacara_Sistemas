@@ -20,9 +20,7 @@
  
  void Controle_Bomba_Casa_Inicializa() 
 { 
- 
- 
- 
+        debugSetupDivisao(COR::AMARELO, "CONTROLE BOMBA CASA INICIALIZANDO", COR::MAGENTA, "=", 45);       
 } 
  
 //====================================================================================  
@@ -57,6 +55,6 @@ void Controle_Bomba_Casa_Ligando_Bomba()
 
         RELE_BOMBA_CASA.Desligar(); //@@ Modulo_Reles.cpp
 
-        BOMBA_CASA::definir(BOMBA_CASA::ESTAGIOS::REPOUSO);  
+        BOMBA_CASA::definir(BOMBA_CASA::ESTAGIOS::REPOUSO);
 
 }

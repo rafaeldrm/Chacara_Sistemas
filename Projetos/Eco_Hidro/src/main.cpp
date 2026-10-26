@@ -17,6 +17,7 @@
 #include "Sistema_Voltagem.h"
 #include "Sistema_Luz_Estacionamento.h"
 #include "Sistema_Luz_Acesso_Reservatorio.h" 
+#include "Sistema_Unidade_Potencia.h"
 
 //====================================================================================
 //                   VARIAVEL EXTERNA (SCRIPT)
@@ -25,7 +26,8 @@
 //Contador automático de UPLOADS para o Arduino
 //o script incrementa +1 no valor toda vez que fizer o upload do projeto para o arduino, compilação normal não ocorre contagem
 //é tipo um hodometro de quantos uploads já foram feitos para aquele arduino específico
-static uint16_t BUILD_NUM = 10; //por script em python automático no plataformio (/scripts/contador_upload.py)
+//por script em python automático no plataformio (/scripts/contador_upload.py)
+static uint16_t HODOMETRO_BOOTLOADER = 94;  //número é atualizado automaticamente a cada upload, esse valor representa quantos bootloader o arduino recebeu.
 
 //====================================================================================
 //                   SETUP
@@ -44,24 +46,26 @@ void setup()
    
     BOIAS_BOOT();
  
-   VOLTAGEM_BOOT();
+    VOLTAGEM_BOOT();
  
     CASA_TORRE_BOOT();
 
-    PROTECAO_BOMBA_CASA_BOOT();
+// PROTECAO_BOMBA_CASA_BOOT();
  
     RESERVATORIO_BOOT();
  
-    LUZ_ESTACIONAMENTO_BOOT();
+   LUZ_ESTACIONAMENTO_BOOT();
 
     LUZ_ACESSO_RESERVATORIO_BOOT();
 
   //  PORTAO_BOOT();
 
     MEDIADOR_BOOT();
+
+    UNIDADE_POTENCIA_BOOT();
  
  //e mais outras coisas que forem necessárias para o setup do sistema
-   debugVariavel("Contador Upload", BUILD_NUM, NEGRITO, VERDE, AMARELO);
+   debugVariavel("Hodômetro de Bootloader : ", HODOMETRO_BOOTLOADER, NEGRITO, VERDE, AMARELO | LINHA);
    debugAviso("Finalizado o BOOT");
 
 }
@@ -73,7 +77,7 @@ void setup()
 void loop() 
 {
 
-   LORA_LOOP();
+  LORA_LOOP();
 
    BOIAS_LOOP();
 
@@ -83,7 +87,7 @@ void loop()
 
    RESERVATORIO_LOOP();
 
-   PROTECAO_BOMBA_CASA_LOOP();
+//   PROTECAO_BOMBA_CASA_LOOP();
 
   LUZ_ESTACIONAMENTO_LOOP();
 
@@ -92,6 +96,8 @@ void loop()
   //PORTAO_LOOP();
 
     MEDIADOR_LOOP();
+
+    UNIDADE_POTENCIA_LOOP();
 
   } 
 

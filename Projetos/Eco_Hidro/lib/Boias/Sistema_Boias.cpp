@@ -16,17 +16,20 @@
  
  void BOIAS_BOOT()
 { 
-    debugSetupDivisao(TEXTO_AMARELO,  "SISTEMA BOIAS", TEXTO_MAGENTA, "=", 120);
-    
+    debugSetupArquivo();
+    debugSetupDivisao(COR::AMARELO, "SISTEMA BOIAS", COR::MAGENTA, "=", 45);
+        
     Driver_Boias_Inicializa();
     
     Leitura_Boias_Inicializa();
+
+    Leitura_Boias_Atualiza(); //cria o primeiro mapa das boias
 
     Tempo_Boias_Inicializa();
 
     Notificacao_Boias_Inicializa();
     
-    debugOk("Sistema Boias Iniciado.");
+    debugOk("Sistema Boias Concluído!!!.");
 } 
  
 //====================================================================================  
@@ -36,11 +39,13 @@
 void BOIAS_LOOP()
 {
     if (Tempo_Boias_Processa()) {
+        debugLoopTexto("BOIAS_LOOP, rodando funções internas", LINHA);
 
        Leitura_Boias_Atualiza();
 
-       Leitura_Boias_Mapa_Completo();
-
+       Leitura_Boias_Visual_Binario(Leitura_Boias_Mapa_Completo());
+       
        Notificacao_Boias_Atualiza();
+       
     }
 }

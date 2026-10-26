@@ -3,8 +3,12 @@
 #pragma once
 #include <Arduino.h>
 
+//-------------------------- DADOS ------------------------------------------//
+
 //-------------------------- FUNÇÕES PÚBLICAS -------------------------------//
 
- void UNIDADE_POTENCIA_BOOT();
+void UNIDADE_POTENCIA_BOOT();
 
- void UNIDADE_POTENCIA_LOOP();
+void UNIDADE_POTENCIA_LOOP();
+
+//-------------------------- ACESSO AOS DADOS -------------------------------//

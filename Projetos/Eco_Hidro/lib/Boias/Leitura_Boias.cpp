@@ -13,7 +13,6 @@
 //====================================================================================
 
 static uint16_t mapaAtual = 0;
-static uint16_t mapeamentoBoias = 0;
 
 //====================================================================================
 //                   SETUP
@@ -21,9 +20,9 @@ static uint16_t mapeamentoBoias = 0;
 
 void Leitura_Boias_Inicializa()
 { 
-    debugSetupTexto("Inicializando Leitura das Boias", NEGRITO | SUBLINHADO | AZUL | LINHA);
+    debugSetupDivisao(COR::AMARELO, "LEITURA BÓIAS INICIALIZANDO", COR::MAGENTA, "=", 45);
+    
     mapaAtual = 0;
-    mapeamentoBoias = 0;
 }
 
 //====================================================================================
@@ -41,7 +40,7 @@ void Leitura_Boias_Atualiza()
 
 uint16_t Leitura_Boias_Montar_Mapa_Boias()
 {
-    mapeamentoBoias = 0;
+    uint16_t mapeamentoBoias = 0;
     for(uint16_t i = 0; i < REGISTRO_BOIAS::TOTAL_BOIAS; i++)
     {
         if (Driver_Boias_Ler((REGISTRO_BOIAS::BOIA_BIT)i))
@@ -68,6 +67,21 @@ bool Leitura_Boias_Esta_Ativa(REGISTRO_BOIAS::BOIA_BIT boia)
 
 uint16_t Leitura_Boias_Mapa_Completo()
 {
-    debugVariavel("Boias Ordem ", mapaAtual, NEGRITO, VERDE, AMARELO);
+
     return mapaAtual;
 }
+
+//====================================================================================
+//                   Leitura Visual das Boias em Binário
+//====================================================================================
+
+void Leitura_Boias_Visual_Binario(uint16_t mapa)
+ { 
+    char binario[17]; 
+    for (int8_t i = 15; i >= 0; i--) 
+    { 
+        binario[15 - i] = (mapa & (uint16_t(1) << i)) ? '1' : '0';
+     } 
+     binario[16] = '\0'; 
+     debugVariavel( "Bóias posição binária : ", binario, NEGRITO, VERDE, AMARELO ); 
+    }

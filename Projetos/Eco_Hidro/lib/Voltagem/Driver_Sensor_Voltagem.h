@@ -2,7 +2,9 @@
  
 #pragma once 
 #include <Arduino.h> 
- 
+
+ //-------------------------- DADOS ------------------------------------------//
+
  //-------------------------- FUNÇÕES PÚBLICAS -------------------------------// 
  
  void Driver_Sensor_Voltagem_Inicializa();

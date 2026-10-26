@@ -2,10 +2,11 @@
  
 #pragma once 
 #include <Arduino.h> 
+
+//-------------------------- DADOS ------------------------------------------//
+
+//-------------------------- FUNÇÕES PÚBLICAS -------------------------------// 
  
- //-------------------------- FUNÇÕES PÚBLICAS -------------------------------// 
+void LUZ_ESTACIONAMENTO_BOOT();
  
- void LUZ_ESTACIONAMENTO_BOOT();
- 
- void LUZ_ESTACIONAMENTO_LOOP(); 
- 
+void LUZ_ESTACIONAMENTO_LOOP(); 

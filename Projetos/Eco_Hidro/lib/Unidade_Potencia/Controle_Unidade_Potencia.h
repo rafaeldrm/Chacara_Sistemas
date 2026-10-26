@@ -3,6 +3,8 @@
 #pragma once
 #include <Arduino.h>
 
+//-------------------------- DADOS ------------------------------------------//
+
 //-------------------------- FUNÇÕES PÚBLICAS -------------------------------//
 
  void Controle_Unidade_Potencia_Inicializa();

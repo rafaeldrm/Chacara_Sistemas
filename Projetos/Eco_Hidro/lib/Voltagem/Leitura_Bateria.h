@@ -1,9 +1,11 @@
 //-------------------------- DEPENDÊNCIAS ----------------------------------// 
  
 #pragma once 
-#include <Arduino.h> 
+#include <Arduino.h>
+
+//-------------------------- DADOS ------------------------------------------//
  
- //-------------------------- FUNÇÕES PÚBLICAS -------------------------------// 
+//-------------------------- FUNÇÕES PÚBLICAS -------------------------------// 
  
 void Leitura_Bateria_Inicializa();
  
@@ -15,9 +17,8 @@ void Leitura_Bateria_Iniciar_Media();
 
  //-------------------------- ACESSO AOS DADOS ---------------------------------------//
  
- uint16_t Leitura_Bateria_Entrega();
+uint16_t Leitura_Bateria_Entrega();
 
- bool Leitura_Bateria_Liberado();
+bool Leitura_Bateria_Liberado();
 
- bool Leitura_Bateria_Finalizada();
- 
+bool Leitura_Bateria_Finalizada();

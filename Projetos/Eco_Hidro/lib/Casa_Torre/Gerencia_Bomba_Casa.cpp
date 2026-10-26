@@ -18,11 +18,10 @@
 //                   SETUP  
 //====================================================================================  
  
- void Gerencia_Bomba_Casa_Inicializa() 
-{ 
-
- 
-} 
+void Gerencia_Bomba_Casa_Inicializa()
+{
+        debugSetupDivisao(COR::AMARELO, "GERÊNCIA BOMBA CASA INICIALIZANDO", COR::MAGENTA, "=", 45);
+}
  
 //====================================================================================  
 //                   LOOP  
@@ -31,7 +30,8 @@
  void Gerencia_Bomba_Casa_Atualiza() 
 { 
 
-    switch (BOMBA_CASA::atual()) {
+    switch (BOMBA_CASA::atual())
+    {
 
     //========================================================
     case BOMBA_CASA::ESTAGIOS::REPOUSO:

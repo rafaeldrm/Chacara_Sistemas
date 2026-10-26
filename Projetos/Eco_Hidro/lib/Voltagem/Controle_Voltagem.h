@@ -3,6 +3,8 @@
 #pragma once
 #include <Arduino.h>
 
+ //-------------------------- DADOS ------------------------------------------//
+
 //-------------------------- FUNÇÕES PÚBLICAS -------------------------------//
 
  void Controle_Voltagem_Inicializa();

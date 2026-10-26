@@ -22,7 +22,8 @@ static CRONOMETRO::Temporizador boiasLeitura;
  
 void Tempo_Boias_Inicializa() 
 { 
-    debugSetupTexto ("Inicializando Tempo de Verificação das Boias", NEGRITO | SUBLINHADO | AZUL | LINHA);
+    debugSetupDivisao(COR::AMARELO, "TEMPO BOIAS INICIALIZANDO", COR::MAGENTA, "=", 45);
+      
     boiasLeitura.Cronometro_Iniciar();
 } 
 

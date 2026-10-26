@@ -42,9 +42,9 @@ static constexpr uint16_t TEMPO_AMOSTRA = TEMPO::SEGUNDOS(1);
  
  void Leitura_Bateria_Inicializa() 
 { 
- 
- tempoLeitura.Cronometro_Iniciar();
-
+        debugSetupDivisao(COR::AMARELO, "DRIVER SENSOR VOLTAGEM INICIALIZANDO", COR::MAGENTA, "=", 45);
+        
+        tempoLeitura.Cronometro_Iniciar();
 } 
  
 //====================================================================================  
@@ -53,11 +53,9 @@ static constexpr uint16_t TEMPO_AMOSTRA = TEMPO::SEGUNDOS(1);
  
 void Leitura_Bateria_Atualiza()
 {
-
     leituraADC = Driver_Sensor_Voltagem_Entrega();
 
     voltagemConvertida = (leituraADC * 250UL) / 1023UL;
-
 }
 
 //====================================================================================
@@ -93,35 +91,28 @@ void Leitura_Bateria_Processa_Media()
 
     if (tempoLeitura.Cronometro_Ciclo_Continuo(TEMPO_AMOSTRA))
     {
+        Leitura_Bateria_Atualiza();
 
-    Leitura_Bateria_Atualiza();
+        somaMediaLeituras -= bufferLeituras[indice];
 
-    somaMediaLeituras -= bufferLeituras[indice];
+        bufferLeituras[indice] = voltagemConvertida;
 
-    bufferLeituras[indice] = voltagemConvertida;
+        somaMediaLeituras += voltagemConvertida;
 
-    somaMediaLeituras += voltagemConvertida;
+        indice++;
 
-   
+        if (indice >= NUMERO_LEITURAS)
+        {
+            indice = 0;
 
-    indice++;
+            leituraFinalizada = true; //libera acesso para a camada sistema voltagem para funcionar gerencia/controle
 
-    if (indice >= NUMERO_LEITURAS)
-    {
+            inicioLeituraMedia = false; //bloqueia a liberação para a camada sistema voltagem.
+        }
 
-        indice = 0;
-
-        leituraFinalizada = true; //libera acesso para a camada sistema voltagem para funcionar gerencia/controle
-        inicioLeituraMedia = false; //bloqueia a liberação para a camada sistema voltagem.
-
+        voltagemMedia = somaMediaLeituras / NUMERO_LEITURAS;
     }
-
-    voltagemMedia = somaMediaLeituras / NUMERO_LEITURAS;
-
-    }
-
 }
-
 
 //====================================================================================
 //                   ENTREGA DO RESULTADO
@@ -129,9 +120,7 @@ void Leitura_Bateria_Processa_Media()
 
 uint16_t Leitura_Bateria_Entrega()
 {
-
-    return voltagemMedia;
-    
+    return voltagemMedia; 
 }
 
 //====================================================================================
@@ -144,8 +133,9 @@ bool Leitura_Bateria_Finalizada()
     if (leituraFinalizada)
     {
         leituraFinalizada = false;
+
         return true;
     }
-
+    
     return false;
 }

@@ -19,9 +19,10 @@ static constexpr uint8_t botaoPortaoLuzEstacionamento = pino(ARDUINO_CONEXAO::BO
  
  void Modulo_Botao_Inicializa() 
 { 
- 
- pinMode (botaoPortaoLuzEstacionamento, INPUT_PULLUP);
- 
+        debugSetupDivisao(COR::AMARELO, "MÓDULO BOTÃO INICIALIZANDO", COR::MAGENTA, "=", 45);
+        
+        pinMode (botaoPortaoLuzEstacionamento, INPUT_PULLUP);
+ debugVariavel("Botão Aciona Luz Estacionamento : ", botaoPortaoLuzEstacionamento, NEGRITO, VERDE, AMARELO);
 } 
  
 //====================================================================================  

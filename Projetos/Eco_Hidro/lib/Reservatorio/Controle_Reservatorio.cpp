@@ -16,12 +16,12 @@
 //                   VARIÁVEIS INTERNAS  
 //====================================================================================  
 
-static constexpr uint32_t TEMPO_ENCHIMENTO_EXTRA_RESERVATORIO = TEMPO::HORAS(1); // 1 hora, mas pode ser ajustado depois dependendo do tempo que demora pra encher o reservatório (ou seja, o tempo que demora pra passar um pouco do excedente da máxima do reservatório 1 pra
+static constexpr uint32_t TEMPO_ENCHIMENTO_EXTRA_RESERVATORIO = TEMPO::MINUTOS(2); // 1 hora, mas pode ser ajustado depois dependendo do tempo que demora pra encher o reservatório (ou seja, o tempo que demora pra passar um pouco do excedente da máxima do reservatório 1 pra
 
  static CRONOMETRO::Temporizador enchimentoExcedente;
 
- static bool reservatorio2Maxima = false;
- static bool reservatorio1Minima = false;
+ static bool reservatorio2MaximaCheia = false;
+ static bool reservatorio1MinimaVazia = false;
  
 //====================================================================================
 //                   ATUALIZA BOIAS
@@ -30,8 +30,8 @@ static constexpr uint32_t TEMPO_ENCHIMENTO_EXTRA_RESERVATORIO = TEMPO::HORAS(1);
 static void Controle_Reservatorio_Atualiza_Boias() 
 { 
 
-   reservatorio2Maxima = Leitura_Boias_Esta_Ativa(REGISTRO_BOIAS::RESERVATORIO_2_MAXIMA);
-   reservatorio1Minima = !Leitura_Boias_Esta_Ativa(REGISTRO_BOIAS::RESERVATORIO_1_MINIMA);
+   reservatorio2MaximaCheia = Leitura_Boias_Esta_Ativa(REGISTRO_BOIAS::RESERVATORIO_2_MAXIMA);
+   reservatorio1MinimaVazia = !Leitura_Boias_Esta_Ativa(REGISTRO_BOIAS::RESERVATORIO_1_MINIMA);
 
 }
 
@@ -41,9 +41,7 @@ static void Controle_Reservatorio_Atualiza_Boias()
  
  void Controle_Reservatorio_Inicializa() 
 { 
- 
-
- 
+        debugSetupDivisao(COR::AMARELO, "CONTROLE RESERVATÓRIO INICIALIZANDO", COR::MAGENTA, "=", 45); 
 } 
  
 //====================================================================================  
@@ -55,7 +53,7 @@ void Controle_Reservatorio_Liberado()
 
   Controle_Reservatorio_Atualiza_Boias();
 
-            if (reservatorio1Minima || reservatorio2Maxima) {
+            if (reservatorio1MinimaVazia || reservatorio2MaximaCheia) {
                     
                 enchimentoExcedente.Cronometro_Iniciar();
 

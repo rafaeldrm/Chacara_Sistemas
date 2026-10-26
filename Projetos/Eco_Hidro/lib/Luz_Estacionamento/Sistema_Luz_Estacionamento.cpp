@@ -12,22 +12,21 @@
 //====================================================================================  
 //                   VARIÁVEIS INTERNAS  
 //====================================================================================  
- 
- 
- 
+
 //====================================================================================  
 //                   SETUP  
 //====================================================================================  
  
  void LUZ_ESTACIONAMENTO_BOOT() 
 { 
- 
-Leitura_Botao_Inicializa();
+        debugSetupArquivo();
+        debugSetupDivisao(COR::AMARELO, "SISTEMA LUZ ESTACIONAMENTO INICIALIZANDO", COR::MAGENTA, "=", 45);
+        
+    Leitura_Botao_Inicializa();
 
-Controle_Luz_Estacionamento_Inicializa();
+    Controle_Luz_Estacionamento_Inicializa();
 
-//Gerencia_Luz_Estacionamento_Inicializa();
- 
+    Gerencia_Luz_Estacionamento_Inicializa();
 } 
  
 //====================================================================================  

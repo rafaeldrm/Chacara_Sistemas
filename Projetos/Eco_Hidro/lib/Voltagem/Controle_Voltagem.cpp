@@ -27,8 +27,7 @@ static uint8_t monitoraVoltagem = 0;
 
 void Controle_Voltagem_Inicializa()
 {
-
-
+        debugSetupDivisao(COR::AMARELO, "CONTROLE VOLTAGEM INICIALIZANDO", COR::MAGENTA, "=", 45);
 }
 
 //====================================================================================
@@ -52,10 +51,10 @@ void Controle_Voltagem_Normal()
     {
         VOLTAGEM::definir(VOLTAGEM::LEITURA::IDEAL);
     }
-    else if (monitoraVoltagem <= VOLTAGEM_CRITICO) 
-    {
-        VOLTAGEM::definir(VOLTAGEM::LEITURA::CRITICO);
-    }
+        else if (monitoraVoltagem <= VOLTAGEM_CRITICO) 
+        {
+            VOLTAGEM::definir(VOLTAGEM::LEITURA::CRITICO);
+        }
 }
 
 //====================================================================================
@@ -70,10 +69,10 @@ void Controle_Voltagem_Ideal()
     {
         VOLTAGEM::definir(VOLTAGEM::LEITURA::CHEIA);
     }
-    else if (monitoraVoltagem <= VOLTAGEM_NORMAL) 
-    {
-        VOLTAGEM::definir(VOLTAGEM::LEITURA::NORMAL);
-    }
+        else if (monitoraVoltagem <= VOLTAGEM_NORMAL) 
+        {
+            VOLTAGEM::definir(VOLTAGEM::LEITURA::NORMAL);
+        }
 }
 
 //====================================================================================
@@ -105,11 +104,11 @@ void Controle_Voltagem_Mantendo_Carga()
         // Subiu de novo → volta para CHEIA
         VOLTAGEM::definir(VOLTAGEM::LEITURA::CHEIA);
     }
-    else if (monitoraVoltagem <= VOLTAGEM_CARGA_CONSUMIDA)
-    {
-        // Desceu o suficiente → consumo realizado
-        VOLTAGEM::definir(VOLTAGEM::LEITURA::CARGA_CONSUMIDA);
-    }
+        else if (monitoraVoltagem <= VOLTAGEM_CARGA_CONSUMIDA)
+        {
+            // Desceu o suficiente → consumo realizado
+            VOLTAGEM::definir(VOLTAGEM::LEITURA::CARGA_CONSUMIDA);
+        }
 }
 
 //====================================================================================
@@ -125,11 +124,11 @@ void Controle_Voltagem_Carga_Consumida()
         // Subiu de novo para a zona de float → volta a manter carga
         VOLTAGEM::definir(VOLTAGEM::LEITURA::MANTENDO_CARGA);
     }
-    else if (monitoraVoltagem <= VOLTAGEM_IDEAL)
-    {
-        // Caiu bastante → volta para IDEAL
-        VOLTAGEM::definir(VOLTAGEM::LEITURA::IDEAL);
-    }
+        else if (monitoraVoltagem <= VOLTAGEM_IDEAL)
+        {
+            // Caiu bastante → volta para IDEAL
+            VOLTAGEM::definir(VOLTAGEM::LEITURA::IDEAL);
+        }
 }
 
 //====================================================================================

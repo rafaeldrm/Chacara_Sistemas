@@ -15,25 +15,24 @@
 //                   VARIÁVEIS INTERNAS  
 //====================================================================================  
  
-
- 
 //====================================================================================  
 //                   SETUP  
 //====================================================================================  
  
- void VOLTAGEM_BOOT() 
+void VOLTAGEM_BOOT() 
 { 
-    
-//    Driver_Sensor_Voltagem_Inicializa();
+    debugSetupArquivo();
+    debugSetupDivisao(COR::AMARELO, "SISTEMA VOLTAGEM INICIALIZANDO", COR::MAGENTA, "=", 45);
+
+    Driver_Sensor_Voltagem_Inicializa();
 
     Leitura_Bateria_Inicializa();
 
-//    Gerencia_Voltagem_Inicializa();
+    Gerencia_Voltagem_Inicializa();
 
-//    Controle_Voltagem_Inicializa();
+    Controle_Voltagem_Inicializa();
 
     Tempo_Voltagem_Inicializa();
- 
 } 
  
 //====================================================================================  
@@ -44,23 +43,17 @@ void VOLTAGEM_LOOP()
 {
     if (Tempo_Voltagem_Processa()) //libera a cada tempo em tempo (1 minuto)
     {
-
-            Leitura_Bateria_Iniciar_Media(); //ativa como verdadeiro a flag para a camada Leitura poder ter passe livre.
-
+        Leitura_Bateria_Iniciar_Media();
+        //ativa como verdadeiro a flag para a camada Leitura poder ter passe livre.
     }
 
     if (Leitura_Bateria_Liberado())
     {
-
-            Leitura_Bateria_Processa_Media();
-
+        Leitura_Bateria_Processa_Media();
     }
 
     if (Leitura_Bateria_Finalizada())
     {
-
-            Gerencia_Voltagem_Atualiza();
-
+        Gerencia_Voltagem_Atualiza();
     }
-
 }

@@ -4,40 +4,58 @@
 
 #include <LoRa.h>
 #include "LoRa_Transporte.h"
-#include "Driver_LoRa.h"
-#include "Diagnostico_LoRa.h"
 #include "DEBUG_MODE.h"
+
+#include "Driver_LoRa.h"
+//#include "Diagnostico_LoRa.h"
 
 //====================================================================================
 //                   VARIÁVEIS INTERNAS
 //====================================================================================
 
-static uint8_t ultimoHash = 0;
+//====================================================================================
+//                   SETUP
+//====================================================================================
+
+void LoRa_Transporte_Inicializa()
+{
+        debugSetupDivisao(COR::AMARELO, "LORA TRANSPORTE INICIALIZANDO", COR::MAGENTA, "=", 45);
+}
 
 //====================================================================================
 //                   ENVIA PACOTE DE MENSAGENS
 //====================================================================================
 
-void LoRa_Enviar_Pacote(const LORA::Pacote& pacote)
+bool LoRa_Enviar_Pacote(const LORA::Pacote& pacote)
 {
-    if (!Driver_LoRa_Online()) return;
+    if (!Driver_LoRa_Online())
+    {
+        debugErro("LoRa >>> TENTATIVA DE ENVIO COM RÁDIO OFFLINE");
+        return false;
+    }
+
+
+
+    debugAviso("LoRa >>> Preparando para enviar pacote...");
 
     LoRa.beginPacket();
-    LoRa.write((uint8_t*)&pacote, sizeof(LORA::Pacote));
+    LoRa.write((const uint8_t*)&pacote, sizeof(LORA::Pacote));
+    const int status = LoRa.endPacket();
 
-    int status = LoRa.endPacket();
 
-    LoRa_Diagnostico_RegistrarEnvio(status == 1);
 
-    if (status == 1)
+    if (status != 1)
     {
-        debugOk("LoRa >>> PACOTE ENVIADO");
-        LORA::PrintPacote(pacote);
+        debugVariavel("LoRa >>> FALHA NO ENVIO DO PACOTE status: ", status, NENHUM, AMARELO, VERDE);
+        return false;
     }
-    else
-    {
-        debugErro("LoRa >>> FALHA ENVIO");
-    }
+
+
+
+    debugOk("LoRa >>> PACOTE ENVIADO COM SUCESSO");
+    LORA::PrintPacote(pacote);
+
+    return true;
 }
 
 //====================================================================================
@@ -46,44 +64,45 @@ void LoRa_Enviar_Pacote(const LORA::Pacote& pacote)
 
 bool LoRa_Receber_Pacote(LORA::Pacote& pacote)
 {
-    if (!Driver_LoRa_Online()) return false;
-
-    int size = LoRa.parsePacket();
-
-    if (size == sizeof(LORA::Pacote))
+    if (!Driver_LoRa_Online())
     {
-        LoRa.readBytes((uint8_t*)&pacote, sizeof(LORA::Pacote));
-
-        if (!LORA::ValidarPacote(pacote))
-        {
-            LoRa_Diagnostico_RegistrarRecepcao(false);
-            debugErro("LoRa <<< HASH INVALIDO");
-
-            while (LoRa.available()) LoRa.read();
-            return false;
-        }
-
-        // 🔥 FILTRO DE DUPLICADO
-        if (pacote.hash == ultimoHash)
-        {
-            debugAviso("LoRa <<< PACOTE REPETIDO IGNORADO");
-            return false;
-        }
-
-        ultimoHash = pacote.hash;
-
-        LoRa_Diagnostico_RegistrarRecepcao(true);
-
-        debugOk("LoRa <<< PACOTE RECEBIDO");
-        LORA::PrintPacote(pacote);
-        return true;
+        debugErro("LoRa <<< TENTATIVA DE RECEPÇÃO COM RÁDIO OFFLINE");
+        return false;
     }
 
-    if (size > 0)
+
+
+    const int size = LoRa.parsePacket();
+
+    if (size == 0)
+        return false;   // nada no ar: silêncio, para não encher o log
+
+
+
+    debugVariavel("LoRa <<< Pacote detectado! Tamanho: ", size, NENHUM, AMARELO, VERDE);
+
+    if (size != (int)sizeof(LORA::Pacote))
     {
-        debugErro("LoRa <<< TAMANHO INVALIDO");
+        debugVariavel("LoRa <<< TAMANHO DE PACOTE INVÁLIDO!", size, NENHUM, AMARELO, VERDE);
         while (LoRa.available()) LoRa.read();
+        return false;
     }
 
-    return false;
+
+
+    const int bytesLidos = LoRa.readBytes((uint8_t*)&pacote, sizeof(LORA::Pacote));
+
+    if (bytesLidos != (int)sizeof(LORA::Pacote))
+    {
+        debugVariavel("LoRa <<< LEITURA INCOMPLETA! Lidos: ", bytesLidos, NENHUM, AMARELO, VERDE);
+        while (LoRa.available()) LoRa.read();
+        return false;
+    }
+
+
+
+    debugOk("LoRa <<< PACOTE RECEBIDO (ainda não autenticado)");
+    LORA::PrintPacote(pacote);
+
+    return true;
 }

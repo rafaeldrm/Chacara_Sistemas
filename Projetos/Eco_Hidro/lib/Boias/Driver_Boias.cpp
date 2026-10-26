@@ -39,11 +39,11 @@ static constexpr uint8_t pinosBoias[REGISTRO_BOIAS::TOTAL_BOIAS] = {
 
 void Driver_Boias_Inicializa() {
     
-    debugSetupTexto("Inicializando Driver Boias", NEGRITO | SUBLINHADO | AZUL | LINHA);
-
+    debugSetupDivisao(COR::AMARELO, "DRIVER BÓIAS INICIALIZANDO", COR::MAGENTA, "=", 45);
+    
     for (uint8_t i = 0; i < REGISTRO_BOIAS::TOTAL_BOIAS; i++) {
         pinMode(pinosBoias[i], INPUT_PULLUP);
-        debugVariavel("PINOS:", pinosBoias[i], NEGRITO, VERDE, AMARELO);
+        debugVariavel("|| PINOS das Bóias :", pinosBoias[i], NEGRITO, VERDE, AMARELO);
        
     }
 }

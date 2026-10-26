@@ -15,7 +15,7 @@
 //                   VARIÁVEIS INTERNAS
 //====================================================================================
 
-static constexpr uint32_t TEMPO_LUZ_LIGADA = TEMPO::MINUTOS(15);
+static constexpr uint32_t TEMPO_LUZ_LIGADA = TEMPO::MINUTOS(1);
 
 static CRONOMETRO::Temporizador tempoLuzAcessoReservatorio;
 
@@ -25,10 +25,9 @@ static CRONOMETRO::Temporizador tempoLuzAcessoReservatorio;
 
 void Controle_Luz_Acesso_Reservatorio_Inicializa()
 {
-
-    Controle_Luz_Acesso_Reservatorio_Temporizado();
-    tempoLuzAcessoReservatorio.Cronometro_Iniciar();
-
+        debugSetupDivisao(COR::AMARELO, "CONTROLE LUZ ACESSO RESERVATÓRIO INICIALIZANDO", COR::MAGENTA, "=", 45);
+    
+        tempoLuzAcessoReservatorio.Cronometro_Iniciar();
 }
 
 //====================================================================================
@@ -40,6 +39,7 @@ void Controle_Luz_Acesso_Reservatorio_Desligando()
 
     RELE_LUZ_ACESSO_RESERVATORIO.Desligar();
     LUZ_ACESSO::definir(LUZ_ACESSO::SITUACAO::DESLIGADO);
+    debugLoopTexto(" : RELE LUZ ACESSO RESERVATORIO ", NEGRITO | LINHA);
 
 }
 
@@ -55,7 +55,8 @@ void Controle_Luz_Acesso_Reservatorio_Temporizado()
     if (tempoLuzAcessoReservatorio.Cronometro_Dispara_Uma_Vez(TEMPO_LUZ_LIGADA))
     {
         tempoLuzAcessoReservatorio.Cronometro_Iniciar();
-        Controle_Luz_Acesso_Reservatorio_Desligando();
+        LUZ_ACESSO::definir(LUZ_ACESSO::SITUACAO::DESLIGANDO);
+        debugLoopTexto(" : RELE LUZ ACESSO RESERVATORIO ", NEGRITO | LINHA);
 
     }
 
@@ -69,6 +70,7 @@ void Controle_Luz_Acesso_Reservatorio_Forcado()
 {
 
     RELE_LUZ_ACESSO_RESERVATORIO.Ligar();
+    debugLoopTexto(" : RELE LUZ ACESSO RESERVATORIO ", NEGRITO | LINHA);
 
 }
 
@@ -80,5 +82,6 @@ void Controle_Luz_Acesso_Reservatorio_Consumindo()
 {
 
     RELE_LUZ_ACESSO_RESERVATORIO.Ligar();
+    debugLoopTexto(" : RELE LUZ ACESSO RESERVATORIO ", NEGRITO | LINHA);
 
 }

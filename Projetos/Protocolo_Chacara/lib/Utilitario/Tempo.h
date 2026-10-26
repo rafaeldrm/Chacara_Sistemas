@@ -6,6 +6,12 @@
 
 //-------------------------- FUNÇÕES PÚBLICAS =------------------------------//
 
+//===============================================================================================================
+//                   FORMATO DE USO EXEMPLOS:
+//       static constexpr uint32_t TEMPO_CONTADOR = TEMPO::HORAS(5) + TEMPO::MINUTOS(10) + TEMPO::SEGUNDOS(40);
+//       static constexpr uint32_t TEMPO_TESTE = TEMPO::MINUTOS(25);
+//================================================================================================================
+
 
 namespace TEMPO 
 {

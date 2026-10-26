@@ -25,7 +25,7 @@
 
 void Driver_DHT11_Inicializa() 
 {
-
+        debugSetupDivisao(COR::AMARELO, "DRIVER DHT11 INICIALIZANDO", COR::MAGENTA, "=", 45);
 }
 
 //====================================================================================

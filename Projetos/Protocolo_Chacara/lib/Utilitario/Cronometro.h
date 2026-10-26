@@ -39,8 +39,20 @@ namespace CRONOMETRO
             return _ativo;
         }
 
+        //====================================================================================
+        //                   REINICIAR CRONOMETRO
+        //====================================================================================
+        
+        void Cronometro_Reiniciar() 
+        { 
+            Cronometro_Iniciar(); 
+        }
+        
         //========================================================================
         //              TEMPO DECORRIDO (Dispara uma só vez e para)
+        //  TEMPO DECORRIDO (Dispara uma só vez e para)
+        // NOTA: após disparar, o timer fica inativo. Chame Iniciar() novamente
+        //       para reativá-lo.
         //========================================================================
         bool Cronometro_Dispara_Uma_Vez(uint32_t tempo)
         {
@@ -68,8 +80,9 @@ namespace CRONOMETRO
 
             if ((atual - _inicio) >= tempo)
             {
-                // Ajuste incremental para evitar acúmulo de pequenos atrasos (drift)
-                _inicio += tempo; 
+               // Catch-up (atual): _inicio += tempo;
+                //Skip (desejado): _inicio = atual;
+                _inicio = atual;   // <-- reseta pro AGORA (skip)
                 return true;
             }
             return false;

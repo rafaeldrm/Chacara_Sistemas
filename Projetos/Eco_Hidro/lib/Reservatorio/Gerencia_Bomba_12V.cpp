@@ -20,8 +20,7 @@
  
  void Gerencia_Bomba_12V_Inicializa() 
 { 
- 
- 
+        debugSetupDivisao(COR::AMARELO, "GERÊNCIA BOMBA 12V INICIALIZANDO", COR::MAGENTA, "=", 45);
 } 
  
 //====================================================================================  

@@ -12,19 +12,18 @@
 //                   VARIÁVEIS INTERNAS
 //====================================================================================
 
-
-
 //====================================================================================
 //                   SETUP
 //====================================================================================
 
 void UNIDADE_POTENCIA_BOOT()
 {
-
+		debugSetupArquivo();
+		debugSetupDivisao(COR::AMARELO, "SISTEMA UNIDADE POTENCIA INICIALIZANDO", COR::MAGENTA, "=", 45);
+	
 	Gerencia_Unidade_Potencia_Inicializa();
 
 	Controle_Unidade_Potencia_Inicializa();
-
 }
 
 //====================================================================================
@@ -33,7 +32,5 @@ void UNIDADE_POTENCIA_BOOT()
 
 void UNIDADE_POTENCIA_LOOP()
 {
-
     Gerencia_Unidade_Potencia_Atualiza();
-
 }

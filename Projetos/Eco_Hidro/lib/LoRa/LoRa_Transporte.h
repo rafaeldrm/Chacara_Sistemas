@@ -2,15 +2,15 @@
 
 #pragma once
 #include <Arduino.h>
+
 #include "Protocolo_Chacara.h"
 
-//-------------------------- FUNÇÕES PÚBLICAS -------------------------------//
+ //-------------------------- DADOS ------------------------------------------//
 
-// Envia a struct inteira de 4 bytes de uma vez só
-void LoRa_Enviar_Pacote(const LORA::Pacote& pacote);
+ //-------------------------- FUNÇÕES PÚBLICAS -------------------------------//
 
-//-------------------------- ACESSO AOS DADOS -------------------------------//
+ void LoRa_Transporte_Inicializa();
 
-// Tenta ler um pacote do rádio. Retorna true se recebeu algo válido.
+bool LoRa_Enviar_Pacote(const LORA::Pacote& pacote);
+
 bool LoRa_Receber_Pacote(LORA::Pacote& pacote);
-

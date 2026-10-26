@@ -17,11 +17,10 @@
 //                   SETUP  
 //====================================================================================  
  
- void Gerencia_Casa_Torre_Inicializa() 
-{ 
- 
- 
-} 
+void Gerencia_Casa_Torre_Inicializa()
+{
+        debugSetupDivisao(COR::AMARELO, "GERÊNCIA CASA TORRE INICIALIZANDO", COR::MAGENTA, "=", 45);
+}
  
 //====================================================================================  
 //                   LOOP  

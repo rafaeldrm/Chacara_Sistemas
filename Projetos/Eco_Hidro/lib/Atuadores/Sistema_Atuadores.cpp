@@ -7,6 +7,7 @@
 
 #include "Modulo_Reles.h"
 #include "Modulo_Botao.h"
+#include "Leitura_Botao.h"
 
 //====================================================================================
 //                   VARIÁVEIS INTERNAS
@@ -21,9 +22,14 @@
 void ATUADORES_BOOT()
 {
 
+    debugSetupArquivo();
+    debugSetupDivisao(COR::AMARELO,  "SISTEMA ATUADORES INICIALIZANDO", COR::MAGENTA, "=", 45);
+    
     Modulo_Reles_Inicializa();
 
     Modulo_Botao_Inicializa();
+
+    Leitura_Botao_Inicializa();
 
 }
 

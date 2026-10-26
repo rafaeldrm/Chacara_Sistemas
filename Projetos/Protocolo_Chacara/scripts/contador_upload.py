@@ -10,14 +10,14 @@ else:
     with open(arquivo, "r", encoding="utf-8") as f:
         conteudo = f.read()
 
-    match = re.search(r"(BUILD_NUM\s*=\s*)(\d+)", conteudo)
+    match = re.search(r"(HODOMETRO_BOOTLOADER\s*=\s*)(\d+)", conteudo)
 
     if match:
         numero_atual = int(match.group(2))
         novo_numero = numero_atual + 1
 
         novo_conteudo = re.sub(
-            r"(BUILD_NUM\s*=\s*)\d+",
+            r"(HODOMETRO_BOOTLOADER\s*=\s*)\d+",
             f"\\g<1>{novo_numero}",
             conteudo
         )
@@ -27,4 +27,4 @@ else:
 
         print(f"[UPLOAD] Incrementado: {numero_atual} -> {novo_numero}")
     else:
-        print("[UPLOAD] BUILD_NUM não encontrado!")
+        print("[UPLOAD] HODOMETRO_BOOTLOADER não encontrado!")

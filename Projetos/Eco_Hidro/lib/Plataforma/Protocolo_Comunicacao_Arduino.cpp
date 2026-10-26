@@ -8,6 +8,9 @@
 #include <SPI.h>
 #include <Wire.h>
 
+//====================================================================================
+//                   VARIÁVEIS INTERNAS
+//====================================================================================
 
 //====================================================================================
 //                   SETUP
@@ -20,14 +23,13 @@ void COMUNICACAO_BOOT()
         Serial.begin(115200);
 
         debugSetupArquivo();
-        debugSetupDivisao(TEXTO_AMARELO,  "SERIAL UART (TX / RX) ", TEXTO_MAGENTA, "=", 120);
-        debugOk("Comunicação Serial Iniciado");
+        debugSetupDivisao(COR::AMARELO, "SERIAL UART (TX / RX) ", COR::MAGENTA, "=", 45);
+        debugOk("Comunicação Serial Iniciada");
         debugSetupTexto("Baud de 115200 selecionado para melhor performance e estabilidade.", LINHA);
 
 //-------------------------- I²C BEGIN ---------------------------------------//
 
-    debugSetupDivisao(TEXTO_AMARELO,  "I2C (SDA / SCL)", TEXTO_MAGENTA, "=", 120);
-
+    debugSetupDivisao(COR::AMARELO, "I2C (SDA / SCL)", COR::MAGENTA, "=", 45);    
     Wire.begin();
     // Define o I²C em 400 kHz.
     // Usado para melhor desempenho com dispositivos compatíveis,
@@ -39,11 +41,8 @@ void COMUNICACAO_BOOT()
 
 //-------------------------- SPI BEGIN ---------------------------------------//
 
-//    debugSetupDivisao(TEXTO_AMARELO,  "SPI (MOSI / MISO / SS / SCK)", TEXTO_MAGENTA, "=", 120);
-
-//    SPI.begin();
-
- //   debugOk("SPI Comunicação Iniciado.");
- //   debugSetupDivisao(TEXTO_AMARELO,  "COMUNICAÇÃO CONCLUÍDA!!!", TEXTO_MAGENTA, "=", 120);
-
+    debugSetupDivisao(COR::AMARELO, "SPI (MOSI / MISO / SS / SCK)", COR::MAGENTA, "=", 45); 
+    SPI.begin();
+    
+     debugOk("SPI Comunicação Iniciada.");
 }

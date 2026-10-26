@@ -5,37 +5,108 @@
 #include "Envio_Eventos_LoRa.h"
 #include "DEBUG_MODE.h"
 
-#include "Tempo.h"
-#include "Cronometro.h"
-
+#include "LoRa_Transporte.h"
 #include "Endereco_LoRa.h"
-#include "Gerenciador_Mensagens.h"      // LoRa_Receber_Pacote
-#include "Recebimento_Ordens_LoRa.h"
-#include "Protocolo_Chacara.h"
+#include "Driver_LoRa.h"
 
 //====================================================================================
 //                   VARIÁVEIS INTERNAS
 //====================================================================================
 
-enum class ESTADO_ENVIO : uint8_t
+struct EnvioEventosLoRa
 {
-    IDLE = 0,
-    AGUARDANDO_ENVIO,
-    AGUARDANDO_RESPOSTA
+
+    LORA::ENVIO_EVENTOS envioEventosLoRa;
+
 };
 
-static ESTADO_ENVIO estado = ESTADO_ENVIO::IDLE;
+static EnvioEventosLoRa estadoLoRa =
+{
+    LORA::ENVIO_EVENTOS::NENHUM
+};
 
-static uint8_t  codigoPendente   = 0;
-static uint16_t valorPendente    = 0;
-static uint8_t  tentativas       = 0;
 
-static bool     ultimoSucesso    = false;
 
-static constexpr uint8_t  MAX_TENTATIVAS = 3;
-static constexpr uint32_t INTERVALO_MS   = TEMPO::SEGUNDOS(3);
+// Envio "cego": cada mensagem sai em 3 cópias iguais, com pausa (e sorteio) entre elas
+static constexpr uint8_t  COPIAS_POR_MENSAGEM = 3;
+static constexpr uint32_t INTERVALO_COPIAS_MS = 400;
+static constexpr uint32_t JITTER_COPIAS_MS    = 300;
 
-static CRONOMETRO::Temporizador timerResposta;
+// BOOT: pedido repetido até o Drimel responder
+static constexpr uint32_t INTERVALO_BOOT_MS   = 4000;
+static constexpr uint32_t JITTER_BOOT_MS      = 2000;
+
+
+
+// Fila pequena: as mensagens já entram assinadas, na ordem em que foram pedidas
+static constexpr uint8_t FILA_TAMANHO = 4;
+
+struct ItemFila
+{
+    LORA::Pacote pacote;
+    uint8_t restantes;
+};
+
+static ItemFila fila[FILA_TAMANHO];
+static uint8_t filaInicio = 0;
+static uint8_t filaTotal = 0;
+
+static uint32_t proximoPassoMs = 0;
+
+//====================================================================================
+//                   FSM do LORA
+//====================================================================================
+
+namespace LORA
+{
+    void definir(ENVIO_EVENTOS novo)
+    {
+        if (estadoLoRa.envioEventosLoRa == novo) return;
+        estadoLoRa.envioEventosLoRa = novo;
+        debugVariavel("ENVIO_EVENTOS envioEventosLoRa : ", texto(novo), NENHUM, VERDE, AMARELO);
+    }
+
+
+
+    ENVIO_EVENTOS atualEnvio()
+    {
+         return estadoLoRa.envioEventosLoRa;
+    }
+
+
+
+    const __FlashStringHelper* texto(ENVIO_EVENTOS a)
+    {
+        switch(a)
+        {
+            case ENVIO_EVENTOS::NENHUM:                                   return F("NENHUM");
+            case ENVIO_EVENTOS::BOOT_PEDINDO:                             return F("BOOT_PEDINDO");
+            case ENVIO_EVENTOS::BOOT_AGUARDA_RESPOSTA:                    return F("BOOT_AGUARDA_RESPOSTA");
+            case ENVIO_EVENTOS::OPERACIONAL:                              return F("OPERACIONAL");
+
+            default:                return F("DESCONHECIDO");
+        }
+    }
+}
+
+//====================================================================================
+//                   AUXILIARES
+//====================================================================================
+
+// Seguro contra a volta do millis() (a cada ~49 dias)
+static bool Passou(uint32_t alvo)
+{
+    return (int32_t)(millis() - alvo) >= 0;
+}
+
+
+
+// Sorteio de 0 a "maximo" ms. Evita que vários sistemas religados juntos (queda de
+// energia) falem exatamente ao mesmo tempo.
+static uint32_t Sorteio(uint32_t maximo)
+{
+    return Driver_LoRa_Aleatorio32() % (maximo + 1);
+}
 
 //====================================================================================
 //                   SETUP
@@ -43,112 +114,110 @@ static CRONOMETRO::Temporizador timerResposta;
 
 void Envio_Eventos_LoRa_Inicializa()
 {
-    estado         = ESTADO_ENVIO::IDLE;
-    tentativas     = 0;
-    ultimoSucesso  = false;
-    codigoPendente = 0;
-    valorPendente  = 0;
+    debugSetupDivisao(COR::AMARELO, "ENVIO EVENTOS LORA INICIALIZANDO", COR::MAGENTA, "=", 45);
 
-    debugSetupTexto("Inicializando Envio de Eventos LoRa", NEGRITO | SUBLINHADO | AZUL | LINHA);
+    filaInicio = 0;
+    filaTotal = 0;
+
+    // O primeiro pedido de BOOT sai depois de um pequeno sorteio
+    proximoPassoMs = millis() + Sorteio(JITTER_BOOT_MS);
+
+    LORA::definir(LORA::ENVIO_EVENTOS::BOOT_AGUARDA_RESPOSTA);
 }
 
 //====================================================================================
-//                   SOLICITAR ENVIO (não bloqueia)
+//                   PEDE O ENVIO DE UM EVENTO
 //====================================================================================
 
-bool Envio_Eventos_LoRa_Solicitar(uint8_t codigo, uint16_t valor)
+bool LoRa_Enviar_Evento(uint8_t codigo, uint16_t valor)
 {
-    if (estado != ESTADO_ENVIO::IDLE)
+    if (filaTotal >= FILA_TAMANHO)
     {
-        debugAviso("Envio_Eventos_LoRa: ocupado, solicitação ignorada");
+        debugErro("Envio_Eventos: fila cheia, evento descartado");
         return false;
     }
 
-    codigoPendente = codigo;
-    valorPendente  = valor;
-    tentativas     = 0;
-    ultimoSucesso  = false;
 
-    estado = ESTADO_ENVIO::AGUARDANDO_ENVIO;
 
-    debugVariavel("Envio_Eventos_LoRa: solicitação aceita, codigo", codigo, NEGRITO, VERDE, AMARELO);
+    ItemFila& item = fila[(filaInicio + filaTotal) % FILA_TAMANHO];
+
+    if (!Endereco_LoRa_Montar(codigo, valor, item.pacote))
+        return false;   // ainda sem sessão (BOOT pendente)
+
+    item.restantes = COPIAS_POR_MENSAGEM;
+    ++filaTotal;
+
     return true;
 }
 
 //====================================================================================
-//                   LOOP (chamar no LORA_LOOP)
+//                   ENVIA A FILA (UMA CÓPIA POR VEZ)
+//====================================================================================
+
+static void EnviarFila()
+{
+    if (filaTotal == 0 || !Passou(proximoPassoMs))
+        return;
+
+
+
+    ItemFila& item = fila[filaInicio];
+
+    LoRa_Enviar_Pacote(item.pacote);
+
+    if (--item.restantes == 0)
+    {
+        filaInicio = (filaInicio + 1) % FILA_TAMANHO;
+        --filaTotal;
+    }
+
+
+
+    proximoPassoMs = millis() + INTERVALO_COPIAS_MS + Sorteio(JITTER_COPIAS_MS);
+}
+
+//====================================================================================
+//                   LOOP
 //====================================================================================
 
 void Envio_Eventos_LoRa_Atualiza()
 {
-    switch (estado)
+    switch (LORA::atualEnvio())
     {
-        //----------------------------------------------------------
-        case ESTADO_ENVIO::IDLE:
-            // Nada a fazer
+        case LORA::ENVIO_EVENTOS::BOOT_PEDINDO:
+
+            Endereco_LoRa_PedirBoot();
+
+            proximoPassoMs = millis() + INTERVALO_BOOT_MS + Sorteio(JITTER_BOOT_MS);
+
+            LORA::definir(LORA::ENVIO_EVENTOS::BOOT_AGUARDA_RESPOSTA);
             break;
 
-        //----------------------------------------------------------
-        case ESTADO_ENVIO::AGUARDANDO_ENVIO:
-        {
-            Endereco_LoRa_Mensagem(codigoPendente, valorPendente);
-            tentativas++;
 
-            timerResposta.Cronometro_Iniciar();
-            estado = ESTADO_ENVIO::AGUARDANDO_RESPOSTA;
 
-            debugVariavel("Envio_Eventos_LoRa: tentativa", tentativas, NEGRITO, CIANO, AMARELO);
-            break;
-        }
+        case LORA::ENVIO_EVENTOS::BOOT_AGUARDA_RESPOSTA:
 
-        //----------------------------------------------------------
-        case ESTADO_ENVIO::AGUARDANDO_RESPOSTA:
-        {
-            // Verifica se chegou alguma ordem válida do Drimel
-            LORA::Pacote pacote;
-            if (LoRa_Receber_Pacote(pacote))
+            if (Endereco_LoRa_Operacional())
             {
-                if (Recebimento_Ordens_LoRa(pacote))
-                {
-                    // Consideramos sucesso (recebeu ordem válida)
-                    ultimoSucesso = true;
-                    estado = ESTADO_ENVIO::IDLE;
-                    debugOk("Envio_Eventos_LoRa: sucesso (ordem recebida)");
-                    return;
-                }
+                proximoPassoMs = millis();
+                LORA::definir(LORA::ENVIO_EVENTOS::OPERACIONAL);
             }
-
-            // Timeout da janela de 3 segundos?
-            if (timerResposta.Cronometro_Ciclo_Continuo(INTERVALO_MS))
+            else if (Passou(proximoPassoMs))
             {
-                if (tentativas >= MAX_TENTATIVAS)
-                {
-                    // Esgotou as tentativas
-                    ultimoSucesso = false;
-                    estado = ESTADO_ENVIO::IDLE;
-                    debugErro("Envio_Eventos_LoRa: falhou após 3 tentativas");
-                }
-                else
-                {
-                    // Ainda tem tentativa → volta para enviar de novo
-                    estado = ESTADO_ENVIO::AGUARDANDO_ENVIO;
-                }
+                LORA::definir(LORA::ENVIO_EVENTOS::BOOT_PEDINDO);
             }
             break;
-        }
+
+
+
+        case LORA::ENVIO_EVENTOS::OPERACIONAL:
+
+            EnviarFila();
+            break;
+
+
+
+        default:
+            break;
     }
-}
-
-//====================================================================================
-//                   CONSULTAS
-//====================================================================================
-
-bool Envio_Eventos_LoRa_Ocupado()
-{
-    return estado != ESTADO_ENVIO::IDLE;
-}
-
-bool Envio_Eventos_LoRa_Ultimo_Sucesso()
-{
-    return ultimoSucesso;
 }

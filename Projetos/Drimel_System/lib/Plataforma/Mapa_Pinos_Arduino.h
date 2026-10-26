@@ -56,12 +56,11 @@ enum class SD_CARD : uint8_t
 //                   LoRa
 //===========================================================
 
- enum class LORA : uint8_t
+enum class LORA : uint8_t
   {
-        DIO0_LORA                      = 2,
-        RESET_LORA                     = 3,
-        CS_LORA                        = 5
-
+    DIO0_LORA                      = 2,
+    RESET_LORA                     = 3,
+    CS_LORA                        = 5
 };
 
 // ============================================================
@@ -70,8 +69,9 @@ enum class SD_CARD : uint8_t
 
 enum class DFPLAYER : uint8_t
 {
-    DF_PLAYER_RX_3 = 15,
-    DF_PLAYER_TX_3 = 14
+    //TX 1               =  18,
+    //RX 1               =  19,,
+    BUSY_EM_REPRODUCAO   =  11
 };
 
 
@@ -81,10 +81,9 @@ enum class DFPLAYER : uint8_t
 
 enum class ESP12_E_WI_FI : uint8_t
 {
-    ESP12_E_RX_1 = 19,
-    ESP12_E_TX_1 = 18,
-
-    ESP12_E_ENABLE = 12
+   //TX 2           =  16,
+   //RX 2           =  17,
+    ESP12_E_ATIVA   = 12
 };
 
 
@@ -94,10 +93,9 @@ enum class ESP12_E_WI_FI : uint8_t
 
 enum class ESP32_S3 : uint8_t
 {
-    ESP32_S3_RX_2 = 17,
-    ESP32_S3_TX_2 = 16,
-
-    ESP32_S3_ENABLE = 15
+   //TX 3           =  14,
+   //RX 3           =  15,
+    ESP32_S3_ATIVA  = 15
 };
 
 // ============================================================

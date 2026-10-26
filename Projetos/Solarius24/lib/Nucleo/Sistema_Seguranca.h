@@ -1,6 +1,6 @@
 #pragma once
 #include <Arduino.h> //biblioteca Arduino para C++
-#include "Estado_Globais.h"
+#include "Estados_Sistema_Solarius24.h"
 
 uint16_t Diagnostico_RamLivre();
 
@@ -14,7 +14,7 @@ void Watchdog_Sistema_Atualiza();
 
 void EEPROM_Inicializa();
 
-void Salvar_Estagio_Calamidade_EEPROM(ESTADO::BATERIA::SITUACAO estagio);
+void Salvar_Estagio_Calamidade_EEPROM(BATERIA::SITUACAO estagio);
 
 
 

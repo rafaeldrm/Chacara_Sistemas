@@ -20,9 +20,7 @@
  
  void Gerencia_Reservatorio_Inicializa() 
 { 
- 
-
- 
+        debugSetupDivisao(COR::AMARELO, "GERÊNCIA RESERVATÓRIO INICIALIZANDO", COR::MAGENTA, "=", 45); 
 } 
  
 //====================================================================================  

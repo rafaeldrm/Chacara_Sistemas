@@ -9,7 +9,6 @@
 #include "Cronometro.h"
 
 #include "Estados_Sistema_Eco_Hidro.h"
-#include "Boias_ID.h"
 #include "Leitura_Boias.h"
  
 //====================================================================================  
@@ -17,12 +16,21 @@
 //====================================================================================  
  
 // tempo de descida da água Torre -> Casa
-static constexpr uint32_t TEMPO_GRAVIDADE = TEMPO::HORAS(2) + TEMPO::MINUTOS(45); //(2UL * 60UL * 60UL * 1000UL) + (45UL * 60UL * 1000UL); // 2h45min //@@ Tempo.h
+static constexpr uint32_t TEMPO_GRAVIDADE_TRANSFERENCIA_TORRE_CASA = TEMPO::HORAS(2) + TEMPO::MINUTOS(45); //(2UL * 60UL * 60UL * 1000UL) + (45UL * 60UL * 1000UL); // 2h45min //@@ Tempo.h
 
 static CRONOMETRO::Temporizador transferenciaTorreCasa; //@@ Cronometro.h
 
 static bool casaMinimaVazia = false;
 static bool torreMaximaCheia = false;
+
+//====================================================================================  
+//                   SETUP  
+//====================================================================================  
+ 
+void Controle_Casa_Torre_Inicializa()
+{
+        debugSetupDivisao(COR::AMARELO, "CONTROLE CASA TORRE INICIALIZANDO", COR::MAGENTA, "=", 45);
+}
 
 //====================================================================================
 //                   FUNÇÃO ATUALIZA BOIAS
@@ -34,16 +42,6 @@ static void Controle_Casa_Torre_Atualiza_Boias()
     casaMinimaVazia = !Leitura_Boias_Esta_Ativa(REGISTRO_BOIAS::CASA_MINIMA);   //@@ Leitura_Boias.cpp
     torreMaximaCheia = Leitura_Boias_Esta_Ativa(REGISTRO_BOIAS::TORRE_MAXIMA);  //@@ Leitura_Boias.cpp
 
-}
- 
-//====================================================================================  
-//                   SETUP  
-//====================================================================================  
- 
- void Controle_Casa_Torre_Inicializa() 
-{ 
- 
- 
 }
  
 //====================================================================================  
@@ -86,7 +84,7 @@ void Controle_Casa_Torre_Primeiro_Ciclo_Enchimento_Caixa()
 void Controle_Casa_Torre_Aguardando_Transferencia_Gravidade()
 {
 
-     if (transferenciaTorreCasa.Cronometro_Dispara_Uma_Vez(TEMPO_GRAVIDADE))
+     if (transferenciaTorreCasa.Cronometro_Dispara_Uma_Vez(TEMPO_GRAVIDADE_TRANSFERENCIA_TORRE_CASA))
         {
             CASA_TORRE::definir(CASA_TORRE::ETAPAS::SEGUNDO_CICLO_ENCHIMENTO_CAIXA);
         }

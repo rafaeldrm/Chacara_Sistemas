@@ -29,11 +29,11 @@ void setup()
     EEPROM_Inicializa(); //Utilidades\Memoria_Watchdog_EEPROM.h
     // 4. LoRa
     // 5. LoRa BOOT Aviso
-    SISTEMA_BATERIAS_BOOT();
-    SISTEMA_CARGA_URGENCIA_BOOT();
-    SISTEMA_REDE_BOOT(); //Sistema\Sistema_Rede.h
-    SISTEMA_VOLTAGEM_BOOT(); //Sistema\Sistema_Voltagem.h
-    SISTEMA_CLIMATIZACAO_BOOT(); //Sistema\Sistema_Climatizacao.h
+    BATERIAS_BOOT();
+    CARGA_URGENCIA_BOOT();
+    REDE_BOOT(); //Sistema\Sistema_Rede.h
+    VOLTAGEM_BOOT(); //Sistema\Sistema_Voltagem.h
+    CLIMATIZACAO_BOOT(); //Sistema\Sistema_Climatizacao.h
    
 }
 
@@ -50,16 +50,16 @@ void loop()
 
     //========= SISTEMA ENERGIA ==================//
 
-    SISTEMA_BATERIAS_LOOP(); //Sistema\Sistema_Baterias.h
-    SISTEMA_CARGA_URGENCIA_LOOP();
-    SISTEMA_VOLTAGEM_LOOP(); //  Sistema\Sistema_Voltagem.h  
-    SISTEMA_REDE_LOOP();     //  Sistema\Sistema_Rede.h
+    BATERIAS_LOOP(); //Sistema\Sistema_Baterias.h
+    CARGA_URGENCIA_LOOP();
+    VOLTAGEM_LOOP(); //  Sistema\Sistema_Voltagem.h  
+    REDE_LOOP();     //  Sistema\Sistema_Rede.h
 
     //=========== COORDENADOR ======================//
     
     Mediador_Sistema_Loop(); //Nucleo\Mediador_Sistema.h
 
-    SISTEMA_CLIMATIZACAO_LOOP(); //Sistema\Sistema_Rede.h
+    CLIMATIZACAO_LOOP(); //Sistema\Sistema_Climatizacao.h
     //SISTEMA_TELEMETRIA_MAQUINA_LAVAR_ROUPAS_LOOP();
      //SISTEMA_OLED_LOOP();
     //SISTEMA_LORA_LOOP();

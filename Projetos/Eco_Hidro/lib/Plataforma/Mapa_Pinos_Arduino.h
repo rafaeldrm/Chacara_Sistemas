@@ -3,6 +3,9 @@
 #pragma once
 #include <Arduino.h>
 
+
+// PINOS 50, 51 e 52 RESERVADOS AO SPI
+
 //-------------------------- PINOS ARDUINO ---------------------------------------//
 
 namespace ARDUINO_CONEXAO {

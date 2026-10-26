@@ -3,13 +3,17 @@
 #pragma once
 #include <Arduino.h>
 
-#include "Boias_ID.h"
+#include "Contrato_Boias_Chacara.h"
 
-//-------------------------- FUNÇÕES PÚBLICAS -------------------------------//
+ //-------------------------- DADOS ------------------------------------------//
+
+ //-------------------------- FUNÇÕES PÚBLICAS -------------------------------//
 
 void Leitura_Boias_Inicializa();
 
 void Leitura_Boias_Atualiza();
+
+void Leitura_Boias_Visual_Binario(uint16_t mapa);
 
 //-------------------------- ACESSO AOS DADOS -------------------------------//
 
@@ -20,3 +24,4 @@ bool Leitura_Boias_Esta_Ativa(REGISTRO_BOIAS::BOIA_BIT boia);
 
 // Retorna mapa já estabilizado
 uint16_t Leitura_Boias_Mapa_Completo();
+

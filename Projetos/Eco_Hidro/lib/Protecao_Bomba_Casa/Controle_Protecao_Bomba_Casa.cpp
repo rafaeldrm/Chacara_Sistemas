@@ -29,7 +29,6 @@ static CRONOMETRO::Temporizador antitransbordamento;
 static uint8_t falhas = 0;
 
 static bool estoqueMinimaVazia = false;
-static bool torreMaximaCheia   = false;
 
 //====================================================================================  
 //                   SETUP  
@@ -37,9 +36,8 @@ static bool torreMaximaCheia   = false;
  
 void Controle_Protecao_Bomba_Casa_Inicializa()
 {
-
-
-} 
+        debugSetupDivisao(COR::AMARELO, "CONTROLE PROTEÇÃO BOMBA INICIALIZANDO", COR::MAGENTA, "=", 45);
+}
  
 //====================================================================================  
 //                   LOOP  
@@ -139,18 +137,4 @@ void Controle_Protecao_Bomba_Casa_Anti_Succao_Ar_Sistema()
         BOMBA_CASA::definir(BOMBA_CASA::ESTAGIOS::DESLIGANDO_BOMBA);
         return;
     }
-}
-//====================================================================================
-//                   CAIXA TORRE - REDUNDÂNCIA DE PROTEÇÃO
-//====================================================================================
-
-void Controle_Protecao_Bomba_Casa_Redundancia_Torre_Desligamento()
-{
-    torreMaximaCheia   = Leitura_Boias_Esta_Ativa(REGISTRO_BOIAS::TORRE_MAXIMA);
-    // TORRE cheia (redundância, já temos isso em Casa_Torre.cpp)
-    if (torreMaximaCheia) {
-        DESLIGAMENTO_BOMBA::definir(DESLIGAMENTO_BOMBA::MOTIVO::TORRE_MAXIMA);
-        BOMBA_CASA::definir(BOMBA_CASA::ESTAGIOS::DESLIGANDO_BOMBA);
-        return;
-    }    
 }

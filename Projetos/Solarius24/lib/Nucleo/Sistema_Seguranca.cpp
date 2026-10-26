@@ -2,7 +2,7 @@
 #include <avr/wdt.h> //Biblioteca Watchdog (Segurança contra travamentos do microcontrolador)
 #include <EEPROM.h>  //Biblioteca da EEPROM
 #include "DEBUG_MODE.h" //Biblioteca de ativamento e desativamento de mensagens e delays para leitura de testes
-#include "Estado_Globais.h"
+#include "Estados_Sistema_Solarius24.h"
 #include "Controle_Baterias.h"
 
 //====================================================================================
@@ -110,14 +110,14 @@ void Watchdog_Sistema_Atualiza() {
 //                   (EEPROM)  FUNÇÃO QUE VERIFICA QUAL ESTÁGIO DE CALAMIDADE ESTÁ
 //====================================================================================
 
-bool Estado_Bateria_DevePersistir(ESTADO::BATERIA::SITUACAO estado)
+bool Estado_Bateria_DevePersistir(BATERIA::SITUACAO estado)
 {
     switch (estado)
     {
-        case ESTADO::BATERIA::SITUACAO::CALAMIDADE_INICIO:
-        case ESTADO::BATERIA::SITUACAO::CALAMIDADE_DISJUNTOR_DESLIGADO:
-        case ESTADO::BATERIA::SITUACAO::CALAMIDADE_COMPLETO:
-        case ESTADO::BATERIA::SITUACAO::TENTATIVA_RECUPERACAO:
+        case BATERIA::SITUACAO::CALAMIDADE_INICIO:
+        case BATERIA::SITUACAO::CALAMIDADE_DISJUNTOR_DESLIGADO:
+        case BATERIA::SITUACAO::CALAMIDADE_COMPLETO:
+        case BATERIA::SITUACAO::TENTATIVA_RECUPERACAO:
             return true;
 
         default:
@@ -132,37 +132,35 @@ bool Estado_Bateria_DevePersistir(ESTADO::BATERIA::SITUACAO estado)
 void EEPROM_Inicializa()
 {
     debugSetupArquivo();
-    debugSetupDivisao(TEXTO_AMARELO, "EEPROM CARREGANDO", TEXTO_VERDE, "=", 120);
+    debugSetupDivisao(COR::AMARELO, "GERÊNCIA BOMBA CASA INICIALIZANDO", COR::MAGENTA, "=", 45);
 
     uint8_t valorLido = EEPROM.read(ENDERECO_ESTADO_SISTEMA);
 
     // Proteção contra lixo na EEPROM
-    if (valorLido > static_cast<uint8_t>(ESTADO::BATERIA::SITUACAO::TENTATIVA_RECUPERACAO))
+    if (valorLido > static_cast<uint8_t>(BATERIA::SITUACAO::TENTATIVA_RECUPERACAO))
     {
         debugAviso("EEPROM inválida! Ignorando valor...");
         return;
     }
 
-    ESTADO::BATERIA::SITUACAO estadoRecuperado =
-        (ESTADO::BATERIA::SITUACAO)valorLido;
+    BATERIA::SITUACAO estadoRecuperado =
+        (BATERIA::SITUACAO)valorLido;
 
     // Só aplica se for calamidade
     if (Estado_Bateria_DevePersistir(estadoRecuperado))
     {
-        ESTADO::BATERIA::definir(estadoRecuperado);
+        BATERIA::definir(estadoRecuperado);
 
         debugAviso("Sistema reiniciado em estado crítico!");
         debugVariavel("ESTADO RECUPERADO :: ",
-                      ESTADO::BATERIA::texto(estadoRecuperado),
+                      BATERIA::texto(estadoRecuperado),
                       NEGRITO, VERDE, AMARELO);
     }
 
-    if (estadoRecuperado == ESTADO::BATERIA::SITUACAO::CALAMIDADE_COMPLETO)
+    if (estadoRecuperado == BATERIA::SITUACAO::CALAMIDADE_COMPLETO)
 {
-    Controle_Baterias_Ativar_Modo_Calamidade();
+  //  Controle_Baterias_Ativar_Modo_Calamidade();
 }
-
-    debugSetupDivisao(TEXTO_AMARELO, "EEPROM CARREGADO", TEXTO_MAGENTA, "=", 120);
 }
 
 //====================================================================================
@@ -170,16 +168,16 @@ void EEPROM_Inicializa()
 //====================================================================================
 
 // Use o Enum do Estado_Sistema.h
-void Salvar_Estagio_Calamidade_EEPROM(ESTADO::BATERIA::SITUACAO estagio)
+void Salvar_Estagio_Calamidade_EEPROM(BATERIA::SITUACAO estagio)
 {
-    static ESTADO::BATERIA::SITUACAO ultimoGravado = ESTADO::BATERIA::SITUACAO::NORMAL;
+    static BATERIA::SITUACAO ultimoGravado = BATERIA::SITUACAO::NORMAL;
 
     // ignora OBSERVA
-    if (estagio == ESTADO::BATERIA::SITUACAO::OBSERVA)
+    if (estagio == BATERIA::SITUACAO::OBSERVA)
         return;
 
     // NORMAL só salva se for mudança real (limpeza pós-recuperação)
-    if (estagio == ESTADO::BATERIA::SITUACAO::NORMAL)
+    if (estagio == BATERIA::SITUACAO::NORMAL)
     {
         EEPROM.update(ENDERECO_ESTADO_SISTEMA, static_cast<uint8_t>(estagio));
         ultimoGravado = estagio;
@@ -198,8 +196,6 @@ void Salvar_Estagio_Calamidade_EEPROM(ESTADO::BATERIA::SITUACAO estagio)
         ultimoGravado = estagio;
 
         debugAviso("EEPROM: Estado crítico salvo!");
-        debugVariavel("ESTADO :: ",
-                      ESTADO::BATERIA::texto(estagio),
-                      NEGRITO, VERDE, LARANJA);
+        debugVariavel("ESTADO :: ", BATERIA::texto(estagio), NEGRITO, VERDE, LARANJA);
     }
 }

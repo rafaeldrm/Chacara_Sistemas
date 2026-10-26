@@ -21,7 +21,7 @@ static uint16_t leituraBruta = 0;
  
  void Driver_Sensor_Voltagem_Inicializa() 
 { 
-    //Configurações iniciais para o sensor de voltagem, se necessário. No caso de um sensor analógico, geralmente não é necessário configurar nada específico.
+        debugSetupDivisao(COR::AMARELO, "DRIVER SENSOR VOLTAGEM INICIALIZANDO", COR::MAGENTA, "=", 45);
 } 
  
 //====================================================================================  

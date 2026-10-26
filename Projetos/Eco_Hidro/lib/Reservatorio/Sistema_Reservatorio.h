@@ -3,8 +3,10 @@
 #pragma once 
 #include <Arduino.h> 
  
- //-------------------------- FUNÇÕES PÚBLICAS -------------------------------// 
+//-------------------------- DADOS ------------------------------------------//
+
+//-------------------------- FUNÇÕES PÚBLICAS -------------------------------// 
  
- void RESERVATORIO_BOOT();
+void RESERVATORIO_BOOT();
  
- void RESERVATORIO_LOOP(); 
+void RESERVATORIO_LOOP(); 

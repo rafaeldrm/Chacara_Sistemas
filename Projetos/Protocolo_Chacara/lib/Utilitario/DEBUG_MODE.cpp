@@ -1,116 +1,84 @@
+//====================================================================================
+//                   DEPENDÊNCIAS
+//====================================================================================
+
 #include "DEBUG_MODE.h"
 
+/*
+OBSERVAÇÃO ============================================================
+.Por ser Arquivo Universal logo é natural ter possíveis funções que um ou outro sistema utilize, e
+outros sistema nem chegue a utilizar, como o modo RunTime que é preferência até o momento para o Sistema Reservatório
+Pode Ser Adicionados mais outras formas de leitura e monitoramento dependendo de como o Sistema precise ser interpretado
+*/
 
 //====================================================================================
-//                   TEXTO
+//                   VARIÁVEL/INTRODUÇÃO
 //====================================================================================
+#if DEBUG_ON && DEBUG_BOOT
 
-#if DEBUG_ON
+static const char* DATA = __DATE__;  // Data da compilação
+static const char* HORA = __TIME__;  // Hora da compilação
 
-void debugTexto(
-    const __FlashStringHelper* mensagem,
-    uint16_t operacao
-)
-{
-    //----------------------------------------------------------------------------
-    // ESTILOS
-    //----------------------------------------------------------------------------
-
-    if (operacao & NEGRITO)
-        Serial.print(F("\033[1m"));
-
-    if (operacao & ITALICO)
-        Serial.print(F("\033[3m"));
-
-    if (operacao & SUBLINHADO)
-        Serial.print(F("\033[4m"));
-
-
-    //----------------------------------------------------------------------------
-    // COR
-    //----------------------------------------------------------------------------
-
-    if (operacao & VERMELHO)
-        Serial.print(F("\033[31m"));
-
-    else if (operacao & VERDE)
-        Serial.print(F("\033[32m"));
-
-    else if (operacao & AMARELO)
-        Serial.print(F("\033[33m"));
-
-    else if (operacao & AZUL)
-        Serial.print(F("\033[34m"));
-
-    else if (operacao & MAGENTA)
-        Serial.print(F("\033[35m"));
-
-    else if (operacao & CIANO)
-        Serial.print(F("\033[36m"));
-
-    else if (operacao & VERDE_NEON)
-        Serial.print(F("\033[38;5;46m"));
-
-    else if (operacao & LARANJA)
-        Serial.print(F("\033[38;5;208m"));
-
-    else if (operacao & ROXO)
-        Serial.print(F("\033[38;5;129m"));
-
-
-    //----------------------------------------------------------------------------
-    // MENSAGEM
-    //----------------------------------------------------------------------------
-
-    Serial.print(mensagem);
-
-
-    //----------------------------------------------------------------------------
-    // RESET
-    //----------------------------------------------------------------------------
-
-    if (operacao != NENHUM)
-        Serial.print(F("\033[0m"));
-
-
-    //----------------------------------------------------------------------------
-    // QUEBRA DE LINHA
-    //----------------------------------------------------------------------------
-
-    if (operacao & LINHA)
-        Serial.println();
-}
-
-
-//====================================================================================
-//                   TEXTO DIGITANDO
-//====================================================================================
-
-void debugTextoDigitando(
-    const __FlashStringHelper* mensagem
-)
-{
-    const char* ponteiro = (const char*)mensagem;
-
-    while (pgm_read_byte(ponteiro))
-    {
-        Serial.print((char)pgm_read_byte(ponteiro));
-
-        delay(25);
-
-        ponteiro++;
-    }
-}
-
-#endif
-
-
+#endif  //DEBUG_BOOT
 //====================================================================================
 //                   INICIALIZAÇÃO
 //====================================================================================
 
 void DEBUG_MODE()
 {
-    // Futuramente:
-    // inicialização do sistema de debug
+    #if DEBUG_ON
+   #if DEBUG_BOOT
+
+        debugSetupArquivo();
+
+        DEBUG_SISTEMA_INTRO();
+
+    #endif //DEBUG_BOOT
+
+    #endif //DEBUG_ON
+
 }
+
+//====================================================================================
+//                   CRONOMETRO PARA MILLIS CASO PRECISE MONITORAR
+//====================================================================================
+#if DEBUG_ON
+#if DEBUG_SYSTEM
+
+void debugCronometro(uint32_t ms)
+{
+    uint16_t totalSeg = ms / 1000;          // Converte milissegundos do millis() para segundos inteiros
+    uint8_t segundos = totalSeg % 60;       // O resto da divisão por 60 isola os segundos do minuto atual
+    uint8_t minutos = (totalSeg / 60) % 60; // Divide por 60 para minutos e isola o resto para ignorar as horas
+    uint8_t horas = totalSeg / 3600;        // 3600 (60min * 60seg) extrai a quantidade total de horas decorridas
+    Serial.print(F("["));
+    if (horas < 10)
+        Serial.print(F("0"));
+    Serial.print(horas);
+    Serial.print(F(":"));
+    if (minutos < 10)
+        Serial.print(F("0"));
+    Serial.print(minutos);
+    Serial.print(F(":"));
+    if (segundos < 10)
+        Serial.print(F("0"));
+    Serial.print(segundos);
+    Serial.print(F("] "));
+}
+
+#endif //DEBUG_SYSTEM
+
+//====================================================================================
+//                   INTRODUCÃO DE BOOT do SISTEMA
+//====================================================================================
+//BOOT nome Sistema Reservatório em ASCII
+//SITE  para CRIAÇÃO ::  https://patorjk.com/software/taag
+#if DEBUG_BOOT
+
+void DEBUG_SISTEMA_INTRO(){  
+    debugVariavel("COMPILADO EM : ", DATA, NEGRITO, VERDE, AMARELO);
+    debugVariavel("ÀS : ", HORA, NEGRITO, VERDE, AMARELO);
+}
+
+#endif //DEBUG_BOOT  
+#endif //DEBUG_ON

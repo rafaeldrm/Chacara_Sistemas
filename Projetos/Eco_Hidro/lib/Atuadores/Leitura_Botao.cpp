@@ -21,8 +21,7 @@ static bool cliqueBotaoDetectado = false;
  
  void Leitura_Botao_Inicializa() 
 { 
- 
- 
+        debugSetupDivisao(COR::AMARELO, "LEITURA BOTÃO INICIALIZANDO", COR::MAGENTA, "=", 45);
 } 
  
 //====================================================================================

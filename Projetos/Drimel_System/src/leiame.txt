@@ -1,0 +1,220 @@
+
+====================================================================================
+                   SISTEMA RESIDENCIAL (IA)
+====================================================================================
+
+    Criador: Rafael Drimel
+    Data: Fevereiro 2026
+
+    Versão atual do Sistema : 1.0 (EM CONSTRUÇÃO)
+
+
+    =================================================================================
+
+    Versão 1.0 (Em Construção)
+    -LM2596S (12V)
+    -MP1584 (5V)
+    -MP1584 (3.3V)
+
+    -Amplificador PAM8403
+    -2 alto falantes 3W 4ohms
+
+    -HC4050 (comunicador entre módulos e Due)
+
+    -Arduino Due R3 Atmel SAM3X8E ARM
+
+    -TFT 4.0 ST7789 ILI9488 480*320 (Display com Touch) + SD Card Leitor (+8GB)
+    -DFPlayer Mini (micro SD de 8gb)
+    -DS3231 (RTC) +  AT24C32 (capacidade de armazenamento 32K "EEPROM")
+	-Módulo Memória Fram (feram / F-ram) I2c Mb85rc256v (8 KB de memória e usa um clock de até 20 MHz.)
+	- Módulo Memória Flash 16mb Cjmcu-2516 (Caso seja necessário comprar)
+    -LoRa sx 1278
+    -ESP 12-E (Wi-FI)
+
+    //futuramente o Detector de Voz (V3)
+    //provável que entre mais algum módulo ou sensor
+
+
+
+PROJETO (SISTEMA RESIDENCIAL)
+
+o intuito desse sistema é monitorar e até controlar (ordenar) algumas ações em outros sistemas.
+
+a ideia é criar uma Inteligência Artifical (IA), nada a nível Neural Gigante,
+até porque é um microcontrolador de 84MHz e 96kb de RAM.
+Mas se souber construir bem dá pra fazer uma IA de Robusta e muito bem arquitetado.
+
+------------------- Memórias de Armazenamentos -------------------------------------------
+
+primeiros passos antes da IA é gerenciamento de Memórias
+tenho a RAM do Due (memórias rápidas e voláteis, temporárias)
+tenho o SD do Display (Backup, Logs, e até leituras de arquivos tipo agendas, ou outras coisas que posso inventar)
+tenho o EEPROM do DS3231 de 32kb para informações importantes e que não sejam de escritas constantes.
+tenho a FRAM do módulo Mb85rc256v de 8kb pra salvar informações importantes rápidamente.
+posso ter também a Flash de 6mb externa pra poder fazer treinamentos, de logs diários.
+
+Sobre a RAM é questão e logística, primeiro proteção de até preenchimento de uns 75% a 80% máximo e depois disso é despejo de memória
+no SD do Display, ou na flash externa. usar algum método pro DUE monitorar a própria RAM.
+a segunda opção é sempre de madrugada 1 da manhã fazer o despejo de memória no SD ou na flash externa.
+
+a EEPROM que vem junto com o módulo DS3231, ainda não tenho ideia do que poderá ser salvo (estado do sistema talvez), deixarei pra ver isso durante a consrução do sistema
+SD card o tamanho é o céu, pode ter 4, 8, ou 16, ou até 128gb não importa.
+
+sobre Logs que o arduino Due ficará pegando dos sistemas por enquanto temos só (Portão, Reservatório e Solar24V)
+cada sistema um registro único e separado, ou seja 3 Logs até o momento, talvez criar uma struct para cada sistema. e ir estocando informações
+até chegar em 70, a 80% claro, que quando o sistema estiver finalizado, pode reduzir ou aumentar a capacidade limite aceitável. (sempre deixando uma boa margem de espaço)
+
+------------------------ Ações (Ordens) do Residencial aos demais sistemas --------------------------
+
+Até o momento o Residencial, vai aprender comigo e também com o tempo,
+provável eu faça Estados do Sistema de Aprendizado, Teste, Decisão, Autonomia
+
+a ideia é toda a madrugada depois de ter feito backup no SD ou na flash externa, se precisar puxar informações do SD ou da memória Flash externa ou até da FRAM e ficar simulando a madrugada toda
+tomadas de decisões (estilo jogo de vídeo game), e criar um log de perguntas e respostas no display no dia seguinte pra eu confirmar se 
+o que a IA decidiu ou dúvidas enfim, é certo, errado ou qualquer outra consideração. isso fará ela ganhar confiança sobre tomar a ação.
+
+-----------------------SISTEMA RESERVATóRIO -------------------------------------------------------
+
+até o momento é Ordens em cima do Sistema Reservatório (Ligar a Bomba d' água e ou Desligar a Bomba D' água)
+a decisão dela forçar o acionamento ou forçar o desligamento da bomba d' água é por conta de antecipação da 
+abertura do portão eletronico no qual compartilha o mesmo Inversor de 4000W 12V do Sistema Solar 12V,
+ao contrário do outro Sistema Solar 24V que tem controle de carga, fonte usina, esse outro sistema solar 12V é simples e não tem carga auxiliar.
+o único monitoramento é pelo divisor de tensão (sensor de voltagem 0 - 25V) que o Reservatório monitora.
+mas Resumindo o Portão Depende do Reservatório e ambos não podem acionar ao mesmo tempo o Inversor.
+e também precisa de um breve tempo entre um funcionamento ao outro, por conta do descarregamento da bateria de 150Ah 12V
+
+então o que o Residencial vai fazer. Vai receber o log de status completo do Reservatório,
+tem um sensor tipo bóia um pouco antes do sensor nível mínimo da caixa d' água da casa pro Arduino Due tomar a decisão de ligar ou não a bomba d' água
+segundo fator, agenda, talvez eu possa criar por telegram ou whatsaap, os horários que sairei da chácara durante a semana.
+assim o Arduino Due sabe que naqueles dias e naquele horário irei sair ou seja ou ele antecipa a bomba d' água ou aguarda primeiro eu sair e ae ele tomar a decisão de ligar a bomba ou não
+
+Tem o terceiro fator, eu sigo a regra de usar a máquina de lavar roupas sempre em dias específico e isso já deixarei implementado no código
+todas as Segundas, Terças ( Eu : Rafael ), Quintas e Sextas ( Mãe : Dulce ).
+
+Quarto Fator, minha mãe sempre tem dias específicos que ela sempre sai de casa com os horários de retorno.
+
+Quinto Fator, a máquina de lavar roupas tem o sensor SCT013 do sistema solar 24V no qual vai dizer quantas vezes teve lavagem de roupas no dia.
+
+Sexto Fator, o Sistema do Portão (terá uma pequena estação metereológica), isso pode ajudar o Sistema Residencial saber se o Sol está forte, se vai chover, assim pode tomar decisão de ligar a bomba ou não
+
+Último Fator, se ninguém for sair de casa, o Residencial nunca poderá cancelar a bomba d' água de funcionar, mesmo com voltagem baixa 12.0V (normal bater 11.7V enquanto está funcionando, quando é desligado a voltagem sobe pra 12.5V, 12.6V)
+assim como o portão também chega às vezes em 11.5V ae quando desliga retorna pra 12.5V, 12.6V
+
+
+Sistema Reservatório, tem o relé das luzes da chácara, mas ele não faz ação alguma, quem faz é o Sistema Residencial.
+sobre o acendimento das luzes é mais ação humana, com lógica "engessada", o Residencial provável que tenha botões ou apenas o touch do display, ou comando por voz.
+Se eu pedir pra ligar temporizado, a luz ficará temporizada, se eu pedir pra apenas ligar, a luz ficará acesa. (mas aqui tem condições, voltagem até 12.3V e ou meia noite desligamento)
+(bom considerando a mesma função de acendimento forçado e desligamento forçado, em modo Férias (quando ninguém estiver na chácara), o Residencial terá uma lógica de acendimento das luzes
+aleatóriamente durante as noites. tempos curtos, médios, longos, enfim variados. uma noite pra outra.
+
+-----------------------------SISTEMA SOLAR 24V -------------------------------------------------------
+
+a única ação que o Sistema Residencial pode ordenar ao Sistema Solar 24V é de ligar a fonte usina.
+
+mas a condição é prevendo temporal ou tempo ruim (Vento Forte, Nublado, possível Chuva...)
+a ideia é antecipar apagão por conta de ventos, chuvas que aqui a rede cai por conta dessas situações.
+
+O Residencial nunca poderá tomar decisão de desligar fonte usina e ou interferir em qualquer outra situação do Sistema Solar 24V.
+
+o Fator de saber se o tempo está ruim (nublado, chuva, vento forte)
+será através de informações vindas do Sistema Portão (Sistema Metereológico).
+
+----------------------------ALTERANDO ESTADOS DOS SISTEMAS -------------------------------------------
+
+Em modo Festa (o Residencial pode intervir no Portão, deixando o portão aberto constante, até a minha ordem)
+em modo Férias, o Portão ficar travado, só sai por vontade do Residencial.
+modo Bloqueio o reservatório pode ficar travado sendo impedido de tomar decisões de por exemplo ligar a bomba d' água.
+
+-----------------------Demais Sistemas que ainda nem existem (em Construção em ideias) ----------------------------------------
+
+em um futuro talvez próximo Sistema de Irrigação com arduino Uno, ou Nano
+
+
+================================== SOBRE A IA (RESIDENCIAL DUE) ====================================================
+
+tenho intenção de criar personalidades (duas totais), sendo 1 pra mim, e outra pra minha mãe
+
+Personalidade : Kamylla (pra mim)
+Personalidade : Spyro (pra minha mãe)
+
+Sistema de Voz estilo TTS Voice (usarei o DFPLayer pra isso)
+a personalidade não será muito diferente entre uma a outra, o que vai mudar mais é a voz. (talvez a forma de falar)
+
+================================= Sobre a lógica da IA ==============================================
+
+como é um sistema Residencial, e ainda é um projeto que infelizmente nunca ficará finalizado kkkkkk
+porque sempre surgirá algo de bom em adicionar no sistema, enquanto tiver memória Flash, vamos injetando códigos ehehehehe
+
+mas não quero que o sistema Residencial faça apenas 1 ação ou outra, para um "investimento" de programação, precisa ter mais funções
+e é por isso que deixarei em aberto o crescimento e ampliação do sistema e é por isso que preciso criar uma arquitetura expansível
+sem quebrar o resto dos arquivos de programas, sem precisar ficar refatorando os arquivos.
+
+============================== Funções adicionais (Expansíveis) ==================================================
+
+----------------------Aplicação de Cloro na água da caixa da entrada ------------------------------- 
+
+bom quero funções "engessadas" ou não, sobre a IA me avisar que preciso adicionar cloro na água do reservatório de tempo em tempo.
+como faria? simples tem sensores em todas as caixas de reservatório da entrada da chácara.
+chegou no mínimo, me avisa pra colocar cloro, eu boto, e aviso que foi adicionado, e ae espera a caixa da entrada encher.
+motivo? é bom ela poder me avisar se eu já coloquei o cloro ou não, apenas perguntando a ela.
+ 
+--------------------- Troca de Filtro d' água----------------------
+
+outra função interessante, me avisar quando preciso trocar os Filtro PP, Plissada, Carvão Ativado.
+como faria? toda vez que a bomba é ligada é enviado uma mensagem lora pro Residencial.
+nisso o Residencial considera que foi 500 litros de água adicionada.
+quando a bomba religar novamente é adicionado mais 500 litros.
+
+agora outra regra, bomba cancelada ou bomba forçada
+existem duas formas, ou millis o Residencial conta. e quando chegar mensagem lora dizendo que a bombda já foi desligada.
+ele pode calcular quanto litros entrou (33litros/minuto).
+ou ir numa conta "simples"se foi cancelado consiere 250litros
+se foi forçado ao ligamento 250 litros. e pronto
+vai somando salvando no SD, e ae quando chegar ou nada data 6meses ou 30.000 litros consumidos
+me avisa para trocar.
+
+------------------------------- Anotação/Relatório---------------------------------
+
+Compressor de Ar
+
+tenho um compressor de ar, que eu toda vez que uso, após o uso eu anoto na planilha o dia e quantas vezes usei.
+sempre deixo encher no máximo (5 minutos)
+seria muito bom se a IA anotesse o meu uso do Compressor de Ar, e também a data, e me avisar quando fosse necessário a troca de óleo e também tempo das manutenções preventivas de acordo com o tempo de uso
+
+Pendurar Roupas / Guardar Roupas
+
+com os sensores clima/tempo, com o SCT013 e também com a micro chave (switch) que vou instalar na tampa da máquina
+o Residencial avisa pra retirar a roupa da máquina, assim como também pode prever quando a roupa estará seca no varal, pra ser recolhido e guardado 
+
+algumas ideias malucas podem surgir e parar aqui eheheheh
+
+
+---------------------------Se estiver faltando alguma lógica importante adicionarei aqui --------------
+
+
+
+================================= OBSERVAÇÕES =============================================
+
+Display praticamente sempre estará em off (ligará somente se eu for até lá e apertar um botão ou pedir por comando)
+mostrará somente bem minimalista se couber tudo as informações dos sistemas. (talvez eu coloque só o que é mais importante pra mim)
+ou uma opção que eu escolha o sistema que quero visualizar.
+nada de imagens, layouts complexo, no máximo linhas de divisão e apenas palavra com valor.
+
+o Display será usado mais pra eu decidir a resposta pra bonificar ou punir ou ser neutro ou mais opções caso seja necessário, com as perguntas da IA.
+
+o Display servirá pra configurações, (menu).
+
+mas se eu mexer no Display provável que seja uma vez ou outra por semana e olha lá.
+(e não quero que me responda de imediato, mensagens Lora são mais importantes que o Display, execuções.
+então pode ser feito talvez uma fila ou apenar quando "entrar na vez" do display.
+
+Talvez criar humor, não sei para a IA, ficar mais respondona em todas as ações, ou mais silenciosa.
+(ideias apenas, talvez implemente ou talvez não)
+
+assim como também deixar ela muda de madrugada independente do ocorrido (aqui futuramente talvez se eu tiver algum módulo ou sensor ou até algo de muita importância pra ela me avisar)
+
+fora isso ela passará a madrugada inteira "brincando" de simular decisões, e na manhã seguinte, um log de perguntas no display pra eu responder.
+
+
+
+Otmização de RAM (LOGS) quero deixar o mais enxuto possível a nível máquina no qual o Arduino consiga interpretar facilmente.

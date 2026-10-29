@@ -8,6 +8,8 @@
 #include "DEBUG_MODE.h"
 #include "Mapa_Pinos_Arduino.h"
 
+#include "Tempo.h"
+
 //====================================================================================
 //                   VARIÁVEIS INTERNAS
 //====================================================================================
@@ -19,6 +21,8 @@ namespace
     static constexpr uint8_t PINO_BUSY_EM_REPRODUCAO =
         pino(ARDUINO_CONEXAO::DFPLAYER::BUSY_EM_REPRODUCAO);
 }
+
+static constexpr uint32_t TEMPO_ESPERA_BUSY = TEMPO::MILLISSEGUNDOS(500);
 
 //====================================================================================
 //                   SETUP
@@ -36,7 +40,7 @@ bool Driver_DFPlayerMini_Inicializa()
 
     pinMode(PINO_BUSY_EM_REPRODUCAO, INPUT);
 
-    DF_PlayerMini.setTimeOut(500);
+    DF_PlayerMini.setTimeOut(TEMPO_ESPERA_BUSY);
 
     if (!DF_PlayerMini.begin(Serial1, true, true))
     {

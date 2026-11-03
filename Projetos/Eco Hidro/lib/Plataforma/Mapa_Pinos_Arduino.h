@@ -16,33 +16,33 @@ namespace ARDUINO_CONEXAO {
 
     enum class BOIA : uint8_t {
 
-        CASA_MINIMO                = 23,   // Sensor Nível Mínimo Casa (Caixa de 500 litros)
-        CASA_MEDIO                 = 25,   // Sensor Nível quase médio da Caixa casa ("IA") (Sistema Residencial)
+        CASA_MINIMA                = 23,   // Sensor Nível Mínimo Casa (Caixa de 500 litros)
+        CASA_MEDIA                 = 25,   // Sensor Nível quase médio da Caixa casa ("IA") (Sistema Residencial)
 
 //========================== TORRE ==================================================
 
-        TORRE_MAXIMO               = 27,   // Sensor Nível Máximo Torre (Caixa 500 litros)
+        TORRE_MAXIMA               = 27,   // Sensor Nível Máximo Torre (Caixa 500 litros)
 
 // =================BOIAS RESERVATÓRIO 1 (5000 litros) ==============================
 
-        RESERVA1_MAXIMO            = 29,  //Sensor Nível Máxima 5.000 litros
-        RESERVA1_MEDIO             = 31,  //Sensor Nível Média 2.500 +/-
-        RESERVA1_MINIMO            = 33, // Sensor Nível Mínima 1.000 +/-
+        RESERVATORIO1_MAXIMA            = 29,  //Sensor Nível Máxima 5.000 litros
+        RESERVATORIO1_MEDIA             = 31,  //Sensor Nível Média 2.500 +/-
+        RESERVATORIO1_MINIMA            = 33, // Sensor Nível Mínima 1.000 +/-
 
 // =================BOIAS RESERVATÓRIO 2 (5000 litros) ==============================
 
-        RESERVA2_MAXIMO            = 35,   //Sensor em 5.000 litros
-        RESERVA2_MINIMO            = 37,   //Sensor em mais ou menos em 1.000 litros
+        RESERVATORIO2_MAXIMA            = 35,   //Sensor em 5.000 litros
+        RESERVATORIO2_MINIMA            = 37,   //Sensor em mais ou menos em 1.000 litros
 
 // =================BOIAS ENTRADA  (2000 litros) ====================================
 
-        ENTRADA_MAXIMO             = 39,   //Sensor em 2.000 litros
-        ENTRADA_MINIMO             = 41,   //Sensor na altura da saída (altura da boca saída)
+        ENTRADA_MAXIMA             = 39,   //Sensor em 2.000 litros
+        ENTRADA_MINIMA             = 41,   //Sensor na altura da saída (altura da boca saída)
 
 // =================BOIAS ESTOQUE  (500 litros) ====================================
 
-        ESTOQUE_MAXIMO             = 43,   //Sensor em 510 litros (Aviso Emergencial de Transbordamento)
-        ESTOQUE_MINIMO             = 45   //sensor em +/- 150 litros
+        ESTOQUE_MAXIMA             = 43,   //Sensor em 510 litros (Aviso Emergencial de Transbordamento)
+        ESTOQUE_MINIMA             = 45   //sensor em +/- 150 litros
 
 //=============================== RESERVADOS ============================================
   

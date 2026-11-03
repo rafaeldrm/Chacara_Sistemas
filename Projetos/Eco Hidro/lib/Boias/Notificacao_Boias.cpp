@@ -16,10 +16,12 @@
 //                   VARIÁVEIS INTERNAS
 //====================================================================================
 
-static bool casaMediaAnterior       = false;
-static bool caixaEstoqueAnterior    = false;
-//static bool entradaMinimaAnterior   = false;
-//static bool entradaMaximaAnterior   = false;
+static bool casaMediaVaziaAnterior       = false;
+static bool caixaEstoqueCheioAnterior    = false;
+//static bool entradaMinimaVaziaAnterior   = false;
+//static bool entradaMaximaCheiaAnterior   = false;
+
+static bool casaMediaVaziaAvisada = false;   // true = Drimel já foi avisado desta situação
 
 //====================================================================================
 //                   SETUP
@@ -37,18 +39,33 @@ void Notificacao_Boias_Inicializa()
 
 static void Notificacao_Boias_Envio_Antecipa_Analise_Bomba_Casa()
 {
-    bool boiaCasaMedia = !Leitura_Boias_Esta_Ativa(REGISTRO_BOIAS::BOIA_BIT::CASA_MEDIA);
+    const bool casaMediaVazia = !Leitura_Boias_Esta_Ativa(REGISTRO_BOIAS::BOIA_BIT::CASA_MEDIA);
 
-    debugVariavel("Notificacao CASA_MEDIA estadoAtual: ", boiaCasaMedia, NEGRITO, AMARELO, VERDE);
+    //--------------------------------------------------------
+    // ENCHEU DE NOVO: libera um novo aviso no futuro
+    //--------------------------------------------------------
 
-    if (!TRAVA_BOLEANA::MudouEstado(boiaCasaMedia, casaMediaAnterior))
+    if (!casaMediaVazia)
+    {
+        casaMediaVaziaAvisada = false;
+        return;
+    }
+
+    //--------------------------------------------------------
+    // JÁ AVISOU ESTA SITUAÇÃO: não repete
+    //--------------------------------------------------------
+
+    if (casaMediaVaziaAvisada)
         return;
 
-    if (boiaCasaMedia)
-    {
-        debugVariavel("Enviando Mensagem Lora, BOIA MEDIA CASA", boiaCasaMedia, NEGRITO, AMARELO, VERDE);
+    //--------------------------------------------------------
+    // TENTA AVISAR: só marca como avisada se entrou na fila
+    //--------------------------------------------------------
 
-        LoRa_Enviar_Evento((uint8_t)LORA::ECO_HIDRO::CODIGO::NOTIFICACAO_MAPA_BOIAS_COMPLETO, Leitura_Boias_Mapa_Completo());
+    if (LoRa_Enviar_Evento((uint8_t)LORA::ECO_HIDRO::CODIGO::NOTIFICACAO_MAPA_BOIAS_COMPLETO,
+                           Leitura_Boias_Mapa_Completo()))
+    {
+        casaMediaVaziaAvisada = true;
     }
 }
 
@@ -59,9 +76,9 @@ static void Notificacao_Boias_Envio_Antecipa_Analise_Bomba_Casa()
 
 static void Notificacao_Boias_Envio_Transbordamento_Caixa_Estoque()
 {
-    bool estadoAtual = !Leitura_Boias_Esta_Ativa(REGISTRO_BOIAS::BOIA_BIT::ESTOQUE_MAXIMA);
+    bool boiaEstoqueMaximaCheia = !Leitura_Boias_Esta_Ativa(REGISTRO_BOIAS::BOIA_BIT::ESTOQUE_MAXIMA);
 
-    if (!TRAVA_BOLEANA::MudouEstado(estadoAtual, caixaEstoqueAnterior))
+    if (!TRAVA_BOLEANA::MudouEstado(boiaEstoqueMaximaCheia, caixaEstoqueCheioAnterior))
         return;
 
     LoRa_Enviar_Evento((uint8_t)LORA::ECO_HIDRO::CODIGO::NOTIFICACAO_MAPA_BOIAS_COMPLETO, Leitura_Boias_Mapa_Completo());
@@ -74,9 +91,9 @@ static void Notificacao_Boias_Envio_Transbordamento_Caixa_Estoque()
 /*
 static void Notificacao_Boias_Envio_Adiciona_Cloro_Caixa_Entrada()
 {
-    bool estadoAtual = !Leitura_Boias_Esta_Ativa(REGISTRO_BOIAS::BOIA_BIT::ENTRADA_MINIMA);
+    bool boiaEntradaMinimaVazia = !Leitura_Boias_Esta_Ativa(REGISTRO_BOIAS::BOIA_BIT::ENTRADA_MINIMA);
 
-    if (!TRAVA_BOLEANA::MudouEstado(estadoAtual, entradaMinimaAnterior))
+    if (!TRAVA_BOLEANA::MudouEstado(boiaEntradaMinimaVazia, entradaMinimaVaziaAnterior))
         return;
 
     LoRa_Enviar_Evento((uint8_t)LORA::ECO_HIDRO::CODIGO::NOTIFICACAO_MAPA_BOIAS_COMPLETO, Leitura_Boias_Mapa_Completo());
@@ -89,9 +106,9 @@ static void Notificacao_Boias_Envio_Adiciona_Cloro_Caixa_Entrada()
 
 static void Notificacao_Boias_Envio_Liberar_Transferencia_Caixa_Entrada_Reservatorio()
 {
-    bool estadoAtual = !Leitura_Boias_Esta_Ativa(REGISTRO_BOIAS::BOIA_BIT::ENTRADA_MAXIMA);
+    bool boiaEntradaMaximaCheia = !Leitura_Boias_Esta_Ativa(REGISTRO_BOIAS::BOIA_BIT::ENTRADA_MAXIMA);
 
-    if (!TRAVA_BOLEANA::MudouEstado(estadoAtual, entradaMaximaAnterior))
+    if (!TRAVA_BOLEANA::MudouEstado(boiaEntradaMaximaCheia, entradaMaximaCheiaAnterior))
         return;
 
     LoRa_Enviar_Evento((uint8_t)LORA::ECO_HIDRO::CODIGO::NOTIFICACAO_MAPA_BOIAS_COMPLETO, Leitura_Boias_Mapa_Completo());

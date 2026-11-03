@@ -35,10 +35,9 @@ static uint16_t HODOMETRO_BOOTLOADER = 94;  //número é atualizado automaticame
 
 void setup()
  {
+    COMUNICACAO_BOOT();
 
     DEBUG_MODE();
-
-    COMUNICACAO_BOOT();
     
     ATUADORES_BOOT();
 

@@ -37,7 +37,7 @@ namespace LORA
         
             constexpr uint8_t CHAVE_DO_SISTEMA[TAMANHO_CHAVE_LORA] =
             {
-                //senha....
+                //chave do sistema
             };
         }
 

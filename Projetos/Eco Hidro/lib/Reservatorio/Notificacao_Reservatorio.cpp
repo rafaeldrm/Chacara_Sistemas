@@ -33,8 +33,8 @@ void Notificacao_Reservatorio_Inicializa()
 void Notificacao_Reservatorio_Bomba_Acao()
 {
     const bool bombaOperando =
-        BOMBA_CASA::atual() ==
-        BOMBA_CASA::ESTAGIOS::BOMBA_LIGADA;
+        BOMBA_12V::atual() ==
+        BOMBA_12V::ESTAGIOS::BOMBA_LIGADA;
 
     if (!TRAVA_BOLEANA::MudouEstado(
             bombaOperando,
@@ -46,7 +46,7 @@ void Notificacao_Reservatorio_Bomba_Acao()
     debugVariavel("Enviando Mennsagem LoRa Situacao Bomba :", bombaOperando, NEGRITO, LARANJA, AMARELO | LINHA);
 
     LoRa_Enviar_Evento(
-        (uint8_t)LORA::ECO_HIDRO::CODIGO::NOTIFICACAO_STATUS_BOMBA_CASA,
+        (uint8_t)LORA::ECO_HIDRO::CODIGO::NOTIFICACAO_STATUS_BOMBA_RESERVATORIO,
         bombaOperando ? 1 : 0
     );
 }

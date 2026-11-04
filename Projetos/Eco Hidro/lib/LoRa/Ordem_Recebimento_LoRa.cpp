@@ -31,6 +31,9 @@ static constexpr uint32_t JANELA_COPIAS_MS = 2500;
 void Ordem_Recebimento_Lora_Inicializa()
 {
         debugSetupDivisao(COR::AMARELO, "ORDEM RECEBIMENTO LORA INICIALIZANDO", COR::MAGENTA, "=", 45);
+        ORDENS_DRIMEL_SYSTEM::CASA_TORRE::definir(ORDENS_DRIMEL_SYSTEM::CASA_TORRE::ORDEM::NENHUM);
+        ORDENS_DRIMEL_SYSTEM::LUZ_ACESSO::definir(ORDENS_DRIMEL_SYSTEM::LUZ_ACESSO::ORDEM::NENHUM);
+        ORDENS_DRIMEL_SYSTEM::LUZ_ESTACIONAMENTO::definir(ORDENS_DRIMEL_SYSTEM::LUZ_ESTACIONAMENTO::ORDEM::NENHUM);
 }
 
 //====================================================================================

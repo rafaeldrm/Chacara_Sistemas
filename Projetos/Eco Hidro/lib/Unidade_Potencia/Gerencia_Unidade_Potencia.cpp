@@ -19,6 +19,7 @@
 void Gerencia_Unidade_Potencia_Inicializa()
 {
     debugSetupDivisao(COR::AMARELO, "GERENCIA UNIDADE POTENCIA INICIALIZANDO", COR::MAGENTA, "=", 45);
+    UNIDADE_POTENCIA::definir(UNIDADE_POTENCIA::ESTAGIOS::REPOUSO);
 }
 
 //====================================================================================

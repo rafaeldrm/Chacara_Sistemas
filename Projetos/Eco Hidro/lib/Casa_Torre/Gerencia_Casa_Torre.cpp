@@ -20,6 +20,7 @@
 void Gerencia_Casa_Torre_Inicializa()
 {
         debugSetupDivisao(COR::AMARELO, "GERÊNCIA CASA TORRE INICIALIZANDO", COR::MAGENTA, "=", 45);
+        CASA_TORRE::definir(CASA_TORRE::ETAPAS::NORMAL);
 }
  
 //====================================================================================  

@@ -19,6 +19,7 @@
  void Gerencia_Voltagem_Inicializa() 
 { 
         debugSetupDivisao(COR::AMARELO, "GERÊNCIA VOLTAGEM INICIALIZANDO", COR::MAGENTA, "=", 45);
+        VOLTAGEM::definir(VOLTAGEM::LEITURA::NORMAL);
 } 
  
 //====================================================================================  

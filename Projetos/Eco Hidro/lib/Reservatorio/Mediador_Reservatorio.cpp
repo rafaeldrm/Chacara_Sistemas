@@ -12,11 +12,6 @@
 //                   VARIÁVEIS INTERNAS
 //====================================================================================
 
-// Enquanto o sistema de Voltagem estiver em off (bateria sempre lendo 0 V),
-// exigir bateria CHEIA trava a transferência para sempre.
-// Quando a Voltagem estiver madura: troque para true.
-static constexpr bool EXIGE_BATERIA_CHEIA = false;
-
 //====================================================================================
 //                   SETUP
 //====================================================================================
@@ -41,19 +36,11 @@ static void Mediador_Reservatorio_Transferencia_Entre_Reservatorios()
 
 // -------------------
 
-    const bool bateriaOk =
-        !EXIGE_BATERIA_CHEIA || bateria == VOLTAGEM::LEITURA::CHEIA;
-
-    const bool potenciaLivre =
-        potencia == POTENCIA::SELECIONADO::REPOUSO; // espera a Casa_Torre terminar e o inversor apagar
-
-// -------------------
-
     if (casaTorre == CASA_TORRE::ETAPAS::FINALIZADO
     && reservatorio == RESERVATORIO::TRANSFERENCIA::NORMAL
     && bomba12V == BOMBA_12V::ESTAGIOS::REPOUSO //trava segurança evita acesso repentino nesse if.
-    && potenciaLivre
-    && bateriaOk
+    && potencia == POTENCIA::SELECIONADO::REPOUSO
+    && bateria == VOLTAGEM::LEITURA::CHEIA
     && sistemaModo != SISTEMA_ECO_HIDRO::MODO::BLOQUEIO)   //se for bloqueio do sistema logo nunca acessará essa parte do if.
     {
         RESERVATORIO::definir(RESERVATORIO::TRANSFERENCIA::LIBERADO);
@@ -69,14 +56,29 @@ static void Mediador_Reservatorio_Transferencia_Entre_Reservatorios()
 
 static void Mediador_Reservatorio_Transferencia_Finalizada()
 {
-    const auto reservatorio = RESERVATORIO::atual();
+    if (RESERVATORIO::atual() != RESERVATORIO::TRANSFERENCIA::FINALIZADO)
+        return;
 
-    if (reservatorio == RESERVATORIO::TRANSFERENCIA::FINALIZADO)
+    const auto bomba12V = BOMBA_12V::atual();
+
+    // Só manda desligar uma vez: se já está parada ou desligando, não mexe.
+    if (bomba12V != BOMBA_12V::ESTAGIOS::REPOUSO
+    &&  bomba12V != BOMBA_12V::ESTAGIOS::DESLIGANDO_BOMBA)
     {
-        // Só desliga A BOMBA. O inversor e a fila (POTENCIA) são do Mediador_Unidade_Potencia.
         BOMBA_12V::definir(BOMBA_12V::ESTAGIOS::DESLIGANDO_BOMBA);
+    }
+}
+
+//====================================================================================
+//                   RESERVATÓRIO ESQUECE O FINALIZADO QUANDO A CASA TORRE RECOMEÇA
+//====================================================================================
+
+static void Mediador_Reservatorio_Libera_Para_Novo_Ciclo()
+{
+    if (RESERVATORIO::atual() == RESERVATORIO::TRANSFERENCIA::FINALIZADO
+    &&  CASA_TORRE::atual() != CASA_TORRE::ETAPAS::FINALIZADO)
+    {
         RESERVATORIO::definir(RESERVATORIO::TRANSFERENCIA::NORMAL);
-        CASA_TORRE::definir(CASA_TORRE::ETAPAS::NORMAL);
     }
 }
 
@@ -89,4 +91,6 @@ void Mediador_Reservatorio_Atualiza()
     Mediador_Reservatorio_Transferencia_Entre_Reservatorios();
 
     Mediador_Reservatorio_Transferencia_Finalizada();
+
+    Mediador_Reservatorio_Libera_Para_Novo_Ciclo();   // sempre depois do desliga
 }

@@ -21,6 +21,7 @@
 void Gerencia_Luz_Estacionamento_Inicializa()
 {
         debugSetupDivisao(COR::AMARELO, "GERÊNCIA INICIALIZANDO", COR::MAGENTA, "=", 45);
+        LUZ_ESTACIONAMENTO::definir(LUZ_ESTACIONAMENTO::SITUACAO::DESLIGADO);
 }
 
 //====================================================================================

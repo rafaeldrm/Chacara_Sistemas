@@ -2,7 +2,7 @@
 //                   DEPENDÊNCIAS
 //====================================================================================
 
-#include "Notificacao_Casa_Torre.h"
+#include "Notificacao_Reservatorio.h"
 #include "DEBUG_MODE.h"
 
 #include "Mudou_Estado.h"
@@ -32,21 +32,21 @@ void Notificacao_Reservatorio_Inicializa()
 
 void Notificacao_Reservatorio_Bomba_Acao()
 {
-    const bool bombaOperando =
+    const bool bombaReservatorioOperando =
         BOMBA_12V::atual() ==
         BOMBA_12V::ESTAGIOS::BOMBA_LIGADA;
 
     if (!TRAVA_BOLEANA::MudouEstado(
-            bombaOperando,
+            bombaReservatorioOperando,
             bombaReservatorioAnterior))
     {
         return;
     }
 
-    debugVariavel("Enviando Mennsagem LoRa Situacao Bomba :", bombaOperando, NEGRITO, LARANJA, AMARELO | LINHA);
+    debugVariavel("Enviando Mensagem LoRa Situacao Bomba Reservatorio :", bombaReservatorioOperando, NEGRITO, LARANJA, AMARELO | LINHA);
 
     LoRa_Enviar_Evento(
         (uint8_t)LORA::ECO_HIDRO::CODIGO::NOTIFICACAO_STATUS_BOMBA_RESERVATORIO,
-        bombaOperando ? 1 : 0
+        bombaReservatorioOperando ? 1 : 0
     );
 }

@@ -37,6 +37,7 @@ static bool estoqueMinimaVazia = false;
 void Controle_Protecao_Bomba_Casa_Inicializa()
 {
         debugSetupDivisao(COR::AMARELO, "CONTROLE PROTEÇÃO BOMBA INICIALIZANDO", COR::MAGENTA, "=", 45);
+    
 }
  
 //====================================================================================  

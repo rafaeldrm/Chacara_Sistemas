@@ -42,7 +42,7 @@ static constexpr uint16_t TEMPO_AMOSTRA = TEMPO::SEGUNDOS(1);
  
  void Leitura_Bateria_Inicializa() 
 { 
-        debugSetupDivisao(COR::AMARELO, "DRIVER SENSOR VOLTAGEM INICIALIZANDO", COR::MAGENTA, "=", 45);
+        debugSetupDivisao(COR::AMARELO, "LEITURA SENSOR VOLTAGEM INICIALIZANDO", COR::MAGENTA, "=", 45);
         
         tempoLeitura.Cronometro_Iniciar();
 } 
@@ -53,6 +53,8 @@ static constexpr uint16_t TEMPO_AMOSTRA = TEMPO::SEGUNDOS(1);
  
 void Leitura_Bateria_Atualiza()
 {
+    Driver_Sensor_Voltagem_Atualiza();
+
     leituraADC = Driver_Sensor_Voltagem_Entrega();
 
     voltagemConvertida = (leituraADC * 250UL) / 1023UL;
@@ -71,6 +73,9 @@ void Leitura_Bateria_Iniciar_Media()
     indice = 0;
 
     somaMediaLeituras = 0;
+
+    for (uint8_t i = 0; i < NUMERO_LEITURAS; i++)   // limpa as amostras da janela anterior
+        bufferLeituras[i] = 0;
 }
 
 //====================================================================================

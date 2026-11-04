@@ -38,26 +38,9 @@ void MEDIADOR_BOOT()
     //  ESTADOS INICIAIS
     //--------------------------------------------------------------------------------
 
-    CASA_TORRE::definir(CASA_TORRE::ETAPAS::NORMAL);
-    BOMBA_CASA::definir(BOMBA_CASA::ESTAGIOS::REPOUSO);
-    RESERVATORIO::definir(RESERVATORIO::TRANSFERENCIA::NORMAL);
-    BOMBA_12V::definir(BOMBA_12V::ESTAGIOS::REPOUSO);
     SISTEMA_ECO_HIDRO::definir(SISTEMA_ECO_HIDRO::MODO::NORMAL);
-    LUZ_ESTACIONAMENTO::definir(LUZ_ESTACIONAMENTO::SITUACAO::DESLIGADO);
-    LUZ_ACESSO::definir(LUZ_ACESSO::SITUACAO::TEMPORIZADO);
-    VOLTAGEM::definir(VOLTAGEM::LEITURA::NORMAL);
-    DESLIGAMENTO_BOMBA::definir(DESLIGAMENTO_BOMBA::MOTIVO::NENHUM);
-    PORTAO_ELETRONICO::definir(PORTAO_ELETRONICO::ESTAGIOS::REPOUSO);
-    UNIDADE_POTENCIA::definir(UNIDADE_POTENCIA::ESTAGIOS::REPOUSO);
     POTENCIA::definir(POTENCIA::SELECIONADO::REPOUSO);
-
-    //--------------------------------------------------------------------------------
-    //  EVENTOS LoRa
-    //--------------------------------------------------------------------------------
-
-    ORDENS_DRIMEL_SYSTEM::CASA_TORRE::definir(ORDENS_DRIMEL_SYSTEM::CASA_TORRE::ORDEM::NENHUM);
-    ORDENS_DRIMEL_SYSTEM::LUZ_ACESSO::definir(ORDENS_DRIMEL_SYSTEM::LUZ_ACESSO::ORDEM::NENHUM);
-    ORDENS_DRIMEL_SYSTEM::LUZ_ESTACIONAMENTO::definir(ORDENS_DRIMEL_SYSTEM::LUZ_ESTACIONAMENTO::ORDEM::NENHUM);
+    DESLIGAMENTO_BOMBA::definir(DESLIGAMENTO_BOMBA::MOTIVO::NENHUM);
 }
 
 //====================================================================================

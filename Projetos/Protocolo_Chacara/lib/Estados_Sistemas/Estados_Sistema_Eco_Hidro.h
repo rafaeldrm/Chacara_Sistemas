@@ -146,7 +146,8 @@ enum class SITUACAO : uint8_t
        DESLIGANDO,                     
        TEMPORIZADO,                        
        FORCADO,   
-       CONSUMINDO,   
+       CONSUMINDO,
+       ACIONADO,  
    
  };                        
                         
@@ -172,7 +173,8 @@ enum class SITUACAO : uint8_t
        DESLIGANDO,                   
        TEMPORIZADO,   
        FORCADO,   
-       CONSUMINDO,   
+       CONSUMINDO,
+       ACIONADO,   
  };                    
                     
     void definir(SITUACAO novo);                    
@@ -198,7 +200,8 @@ enum class LEITURA : uint8_t
        CHEIA,   
        MANTENDO_CARGA,   
        CARGA_CONSUMIDA,                   
-       CRITICO,                      
+       CRITICO,
+       CHEIO_PRIORIDADE_RESERVATORIO,                      
  };                      
                       
     void definir(LEITURA novo);                      

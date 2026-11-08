@@ -67,7 +67,14 @@ void Gerencia_Luz_Estacionamento_Atualiza()
         Controle_Luz_Estacionamento_Consumindo();
 
     break;
-    
+
+    //========================================================
+    case LUZ_ESTACIONAMENTO::SITUACAO::ACIONADO:
+
+        Controle_Luz_Estacionamento_Acionado();
+
+    break;
+
     }
 
 }

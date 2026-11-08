@@ -83,12 +83,11 @@ void Controle_Voltagem_Cheia()
 {
     Controle_Voltagem_Atualiza();
 
-    // Só desce para MANTENDO_CARGA quando cair abaixo de 14.3 V
-    if (monitoraVoltagem <= VOLTAGEM_MANTENDO_CARGA)
+    // Saída por queda de tensão é do Controle. Saída "para as luzes" é do Mediador.
+    if (monitoraVoltagem < VOLTAGEM_CHEIA)   // ← valor a definir
     {
-        VOLTAGEM::definir(VOLTAGEM::LEITURA::MANTENDO_CARGA);
+        VOLTAGEM::definir(VOLTAGEM::LEITURA::IDEAL);
     }
-    // Se continuar >= 14.4 V, permanece em CHEIA (não faz nada)
 }
 
 //====================================================================================
@@ -121,7 +120,7 @@ void Controle_Voltagem_Carga_Consumida()
 
     if (monitoraVoltagem >= VOLTAGEM_MANTENDO_CARGA)
     {
-        // Subiu de novo para a zona de float → volta a manter carga
+        // Subiu de novo para a zona de flutuação → volta a manter carga
         VOLTAGEM::definir(VOLTAGEM::LEITURA::MANTENDO_CARGA);
     }
         else if (monitoraVoltagem <= VOLTAGEM_IDEAL)

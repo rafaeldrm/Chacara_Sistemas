@@ -31,19 +31,6 @@ void Controle_Luz_Acesso_Reservatorio_Inicializa()
 }
 
 //====================================================================================
-//                   LUZ DESLIGANDO
-//====================================================================================
-
-void Controle_Luz_Acesso_Reservatorio_Desligando()
-{
-
-    RELE_LUZ_ACESSO_RESERVATORIO.Desligar();
-    LUZ_ACESSO::definir(LUZ_ACESSO::SITUACAO::DESLIGADO);
-    debugLoopTexto(" : RELE LUZ ACESSO RESERVATORIO ", NEGRITO | LINHA);
-
-}
-
-//====================================================================================
 //                   LUZ COM TEMPORIZAÇÃO AUTOMÁTICA
 //====================================================================================
 
@@ -70,6 +57,29 @@ void Controle_Luz_Acesso_Reservatorio_Forcado()
 {
 
     RELE_LUZ_ACESSO_RESERVATORIO.Ligar();
+    debugLoopTexto(" : RELE LUZ ACESSO RESERVATORIO ", NEGRITO | LINHA);
+
+}
+
+//====================================================================================
+//                   LUZ ACIONADO
+//====================================================================================
+
+void Controle_Luz_Acesso_Reservatorio_Acionado()
+{
+
+    RELE_LUZ_ACESSO_RESERVATORIO.Ligar();
+}
+
+//====================================================================================
+//                   LUZ DESLIGANDO
+//====================================================================================
+
+void Controle_Luz_Acesso_Reservatorio_Desligando()
+{
+
+    RELE_LUZ_ACESSO_RESERVATORIO.Desligar();
+    LUZ_ACESSO::definir(LUZ_ACESSO::SITUACAO::DESLIGADO);
     debugLoopTexto(" : RELE LUZ ACESSO RESERVATORIO ", NEGRITO | LINHA);
 
 }

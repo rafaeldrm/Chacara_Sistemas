@@ -68,7 +68,12 @@ void Gerencia_Luz_Acesso_Reservatorio_Atualiza()
 
     break;
 
-    
+    case LUZ_ACESSO::SITUACAO::ACIONADO:
+
+        Controle_Luz_Acesso_Reservatorio_Acionado();
+
+    break;
+
     }
 
 }

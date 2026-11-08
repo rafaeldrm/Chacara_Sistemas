@@ -13,7 +13,7 @@ void Controle_Luz_Acesso_Reservatorio_Temporizado();
 
 void Controle_Luz_Acesso_Reservatorio_Forcado();
 
-void Controle_Luz_Acesso_Reservatorio_Desligado();
+void Controle_Luz_Acesso_Reservatorio_Acionado();
 
 void Controle_Luz_Acesso_Reservatorio_Desligando();
 

@@ -266,7 +266,8 @@ namespace LUZ_ESTACIONAMENTO
             case SITUACAO::DESLIGANDO:                                return F("DESLIGANDO");                     
             case SITUACAO::TEMPORIZADO:                               return F("TEMPORIZADO");                        
             case SITUACAO::FORCADO:                                   return F("FORCADO");   
-            case SITUACAO::CONSUMINDO:                                return F("CONSUMINDO");                        
+            case SITUACAO::CONSUMINDO:                                return F("CONSUMINDO");
+            case SITUACAO::ACIONADO:                                  return F("ACIONADO");                        
                         
             default:                return F("DESCONHECIDO");                        
         }                        
@@ -303,7 +304,8 @@ namespace LUZ_ACESSO
             case SITUACAO::DESLIGANDO:                                return F("DESLIGANDO");                 
             case SITUACAO::TEMPORIZADO:                               return F("TEMPORIZADO");   
             case SITUACAO::FORCADO:                                   return F("FORCADO");   
-            case SITUACAO::CONSUMINDO:                                return F("CONSUMINDO");              
+            case SITUACAO::CONSUMINDO:                                return F("CONSUMINDO");
+            case SITUACAO::ACIONADO:                                  return F("ACIONADO");              
                     
             default:                return F("DESCONHECIDO");                    
         }                    
@@ -341,7 +343,8 @@ namespace VOLTAGEM
             case LEITURA::CHEIA:                                      return F("CHEIA");   
             case LEITURA::MANTENDO_CARGA:                             return F("MANTENDO_CARGA");    
             case LEITURA::CARGA_CONSUMIDA:                            return F("CARGA_CONSUMIDA");                     
-            case LEITURA::CRITICO:                                    return F("CRITICO");                      
+            case LEITURA::CRITICO:                                    return F("CRITICO"); 
+            case LEITURA::CHEIO_PRIORIDADE_RESERVATORIO:              return F("CHEIO_PRIORIDADE_RESERVATORIO");                     
                       
             default:                return F("DESCONHECIDO");                      
         }                      

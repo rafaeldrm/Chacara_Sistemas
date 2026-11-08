@@ -16,7 +16,6 @@ foreach ($nome in 'ECO_HIDRO','SOLARIUS24','GATE_DRIMEL','RESERVA') {
     "$nome :"
     "    " + (($b | ForEach-Object { '0x{0:X2}' -f $_ }) -join ', ')
 }
-
 */
 
 //====================================================================================
@@ -37,7 +36,7 @@ namespace LORA
         
             constexpr uint8_t CHAVE_DO_SISTEMA[TAMANHO_CHAVE_LORA] =
             {
-                //chave_secreta _eco Hidro
+               //chave secreta
             };
         }
 

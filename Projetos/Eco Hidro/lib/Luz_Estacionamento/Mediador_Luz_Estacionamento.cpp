@@ -6,7 +6,6 @@
 #include "DEBUG_MODE.h"
 
 #include "Estados_Sistema_Eco_Hidro.h"
-#include "Estados_Eventos_Eco_Hidro.h"
 
 //====================================================================================
 //                   VARIÁVEIS INTERNAS
@@ -16,42 +15,50 @@
 //                   SETUP
 //====================================================================================
 
-void Mediador_Luz_Estacionamento_Inicializa()
+void Mediador_Luz_Acesso_Reservatorio_Inicializa()
 {
-        debugSetupDivisao(COR::AMARELO, "MEDIADOR LUZ ESTACIONAMENTO INICIALIZANDO", COR::MAGENTA, "=", 45);
+        debugSetupDivisao(COR::AMARELO, "MEDIADOR LUZ ACESSO RESERVATORIO INICIALIZANDO", COR::MAGENTA, "=", 45);
 }
 
-
 //====================================================================================
-//                   COORDENA EFEITO FLUTUAÇÃO BATERIA (SISTEMA SOLAR 12V)
+//                   COORDENA ACIONAMENTO LUZ PARA EFEITO FLUTUAÇÃO BATERIA (SISTEMA SOLAR 12V)
 //====================================================================================
 
-static void Mediador_Luz_Estacionamento_Efeito_Flutuacao_Bateria()
+static void Mediador_Acionamento_Luz_Acesso_Reservatorio_Efeito_Flutuacao_Bateria()
 {
     const auto voltagem = VOLTAGEM::atual();
-    const auto luzEstacionamento = LUZ_ESTACIONAMENTO::atual();
+    const auto luzAcessoReservatorio = LUZ_ACESSO::atual();
 
-        if (voltagem == VOLTAGEM::LEITURA::CARGA_COMPLETA)
+        if (voltagem == VOLTAGEM::LEITURA::MANTENDO_CARGA &&
+            luzAcessoReservatorio == LUZ_ACESSO::SITUACAO::DESLIGADO)
         {
-            if (luzEstacionamento != LUZ_ESTACIONAMENTO::SITUACAO::DESLIGADO)
-            {
-                LUZ_ESTACIONAMENTO::definir(LUZ_ESTACIONAMENTO::SITUACAO::DESLIGADO);
-            }
-        }
-        else
+            LUZ_ACESSO::definir(LUZ_ACESSO::SITUACAO::ACIONADO);
+        }         
+    }
+
+//====================================================================================
+//                   COORDENA DESLIGAMENTO LUZ PARA EFEITO FLUTUAÇÃO BATERIA (SISTEMA SOLAR 12V)
+//====================================================================================
+
+static void Mediador_Desligamento_Luz_Acesso_Reservatorio_Efeito_Flutuacao_Bateria()
+{
+    const auto voltagem = VOLTAGEM::atual();
+    const auto luzAcessoReservatorio = LUZ_ACESSO::atual();
+
+        if (voltagem == VOLTAGEM::LEITURA::CARGA_CONSUMIDA &&
+            luzAcessoReservatorio == LUZ_ACESSO::SITUACAO::ACIONADO)
         {
-            if (luzEstacionamento != LUZ_ESTACIONAMENTO::SITUACAO::TEMPORIZADO)
-            {
-                LUZ_ESTACIONAMENTO::definir(LUZ_ESTACIONAMENTO::SITUACAO::TEMPORIZADO);
-            }
-        }
+            LUZ_ACESSO::definir(LUZ_ACESSO::SITUACAO::DESLIGANDO);
+        }         
     }
 
 //====================================================================================
 //                   LOOP
 //====================================================================================
 
-void Mediador_Luz_Estacionamento_Atualiza()
+void Mediador_Luz_Acesso_Reservatorio_Atualiza()
 {
+    Mediador_Acionamento_Luz_Acesso_Reservatorio_Efeito_Flutuacao_Bateria();
 
+    Mediador_Desligamento_Luz_Acesso_Reservatorio_Efeito_Flutuacao_Bateria();
 }

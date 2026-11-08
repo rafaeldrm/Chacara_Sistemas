@@ -6,7 +6,7 @@
 #include "DEBUG_MODE.h"
 
 #include "Estados_Sistema_Eco_Hidro.h"
-#include "Estados_Eventos_Eco_Hidro.h"
+//#include "Estados_Eventos_Eco_Hidro.h"
 
 //====================================================================================
 //                   VARIÁVEIS INTERNAS
@@ -28,12 +28,14 @@ void Mediador_Voltagem_Inicializa()
 static void Mediador_Voltagem_Manter_Carga() //14.4V
 {
 
+    const auto casaTorre = CASA_TORRE::atual();
     const auto bateria = VOLTAGEM::atual();
 
-    if (bateria == VOLTAGEM::LEITURA::MANTENDO_CARGA) {
+    if (casaTorre == CASA_TORRE::ETAPAS::NORMAL && bateria == VOLTAGEM::LEITURA::CHEIA) {
 
         LUZ_ESTACIONAMENTO::definir(LUZ_ESTACIONAMENTO::SITUACAO::CONSUMINDO);
         LUZ_ACESSO::definir(LUZ_ACESSO::SITUACAO::CONSUMINDO);
+        VOLTAGEM::definir(VOLTAGEM::LEITURA::MANTENDO_CARGA);
     }
 }
 
@@ -54,6 +56,7 @@ static void Mediador_Voltagem_Consumo_Realizado() //14.2V
 
         LUZ_ESTACIONAMENTO::definir(LUZ_ESTACIONAMENTO::SITUACAO::DESLIGANDO);
         LUZ_ACESSO::definir(LUZ_ACESSO::SITUACAO::DESLIGANDO);
+        VOLTAGEM::definir(VOLTAGEM::LEITURA::IDEAL);
     }
 }
 

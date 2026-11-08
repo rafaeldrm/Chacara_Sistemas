@@ -15,7 +15,7 @@ void Controle_Luz_Estacionamento_Temporizado();
 
 void Controle_Luz_Estacionamento_Forcado();
 
-void Controle_Luz_Estacionamento_Desligado();
+void Controle_Luz_Estacionamento_Acionado();
 
 void Controle_Luz_Estacionamento_Desligando();
 

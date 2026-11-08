@@ -54,9 +54,7 @@ void Controle_Unidade_Potencia_Aguardando_Estabilizar()
       if (aguardandoCapacitores.Cronometro_Dispara_Uma_Vez(TEMPO_CAPACITOR_INVERSOR)) //@@ Cronometro.cpp
       
        {
-
             UNIDADE_POTENCIA::definir(UNIDADE_POTENCIA::ESTAGIOS::LIGADO);
-        
         }
 
 }

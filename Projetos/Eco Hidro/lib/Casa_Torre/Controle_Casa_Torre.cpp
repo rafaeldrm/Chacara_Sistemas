@@ -16,7 +16,7 @@
 //====================================================================================  
  
 // tempo de descida da água Torre -> Casa
-static constexpr uint32_t TEMPO_GRAVIDADE_TRANSFERENCIA_TORRE_CASA = TEMPO::HORAS(2) + TEMPO::MINUTOS(45); //(2UL * 60UL * 60UL * 1000UL) + (45UL * 60UL * 1000UL); // 2h45min //@@ Tempo.h
+static constexpr uint32_t TEMPO_GRAVIDADE_TRANSFERENCIA_TORRE_CASA = TEMPO::MINUTOS(2); //(2UL * 60UL * 60UL * 1000UL) + (45UL * 60UL * 1000UL); // 2h45min //@@ Tempo.h
 
 static CRONOMETRO::Temporizador transferenciaTorreCasa; //@@ Cronometro.h
 

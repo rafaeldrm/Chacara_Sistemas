@@ -27,7 +27,9 @@
 //o script incrementa +1 no valor toda vez que fizer o upload do projeto para o arduino, compilação normal não ocorre contagem
 //é tipo um hodometro de quantos uploads já foram feitos para aquele arduino específico
 //por script em python automático no plataformio (/scripts/contador_upload.py)
-static uint16_t HODOMETRO_BOOTLOADER = 94;  //número é atualizado automaticamente a cada upload, esse valor representa quantos bootloader o arduino recebeu.
+static uint16_t HODOMETRO_BOOTLOADER = 107;  //número é atualizado automaticamente a cada upload, esse valor representa quantos bootloader o arduino recebeu.
+
+uint32_t CICLO_LOOP = 0;
 
 //====================================================================================
 //                   SETUP
@@ -75,11 +77,12 @@ void setup()
 
 void loop() 
 {
-  LORA_LOOP();
+    
+    LORA_LOOP();
 
-   BOIAS_LOOP();
+    BOIAS_LOOP();
 
-   VOLTAGEM_LOOP();
+    VOLTAGEM_LOOP();
 
     CASA_TORRE_LOOP();
 
@@ -87,9 +90,9 @@ void loop()
 
 //   PROTECAO_BOMBA_CASA_LOOP();
    
-   LUZ_ESTACIONAMENTO_LOOP();
+    LUZ_ESTACIONAMENTO_LOOP();
 
-   LUZ_ACESSO_RESERVATORIO_LOOP();
+    LUZ_ACESSO_RESERVATORIO_LOOP();
 
 //PORTAO_LOOP();
 

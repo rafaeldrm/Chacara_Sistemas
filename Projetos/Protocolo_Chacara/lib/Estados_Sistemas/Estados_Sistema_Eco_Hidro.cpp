@@ -344,7 +344,7 @@ namespace VOLTAGEM
             case LEITURA::MANTENDO_CARGA:                             return F("MANTENDO_CARGA");    
             case LEITURA::CARGA_CONSUMIDA:                            return F("CARGA_CONSUMIDA");                     
             case LEITURA::CRITICO:                                    return F("CRITICO"); 
-            case LEITURA::CHEIO_PRIORIDADE_RESERVATORIO:              return F("CHEIO_PRIORIDADE_RESERVATORIO");                     
+            case LEITURA::CARGA_PRIORIDADE:              return F("CARGA_PRIORIDADE");                     
                       
             default:                return F("DESCONHECIDO");                      
         }                      

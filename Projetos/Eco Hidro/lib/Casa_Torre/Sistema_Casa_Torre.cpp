@@ -43,11 +43,10 @@
  
  void CASA_TORRE_LOOP()
 {
-
     Gerencia_Casa_Torre_Atualiza();
 
     Gerencia_Bomba_Casa_Atualiza();
 
     Notificacao_Casa_Torre_Bomba_Acao();
- 
+
 } 

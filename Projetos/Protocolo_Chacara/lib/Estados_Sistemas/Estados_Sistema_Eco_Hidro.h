@@ -201,7 +201,7 @@ enum class LEITURA : uint8_t
        MANTENDO_CARGA,   
        CARGA_CONSUMIDA,                   
        CRITICO,
-       CHEIO_PRIORIDADE_RESERVATORIO,                      
+       CARGA_PRIORIDADE,                      
  };                      
                       
     void definir(LEITURA novo);                      

@@ -76,7 +76,7 @@ static void Mediador_Reservatorio_Transferencia_Finalizada()
 static void Mediador_Reservatorio_Libera_Para_Novo_Ciclo()
 {
     if (RESERVATORIO::atual() == RESERVATORIO::TRANSFERENCIA::FINALIZADO
-    &&  CASA_TORRE::atual() != CASA_TORRE::ETAPAS::FINALIZADO)
+    &&  CASA_TORRE::atual() == CASA_TORRE::ETAPAS::FINALIZADO)
     {
         RESERVATORIO::definir(RESERVATORIO::TRANSFERENCIA::NORMAL);
     }

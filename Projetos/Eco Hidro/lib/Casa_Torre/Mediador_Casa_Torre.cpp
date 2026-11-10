@@ -65,9 +65,9 @@ static void Mediador_Casa_Torre_Primeiro_Ciclo()
 
     if (cicloInternoPronto || cicloExternoSolicitado) //Condição ou Eco Hidro ou Drimel System(LoRa)
     {
-        DESLIGAMENTO_BOMBA::definir(DESLIGAMENTO_BOMBA::MOTIVO::NENHUM); //resetando o registro anterior informado da proteção bomba.
+    //    DESLIGAMENTO_BOMBA::definir(DESLIGAMENTO_BOMBA::MOTIVO::NENHUM); //resetando o registro anterior informado da proteção bomba.
 
-        POTENCIA::definir(POTENCIA::SELECIONADO::BOMBA_CASA);            //PEDE a potência (quem executa é o Mediador_Unidade_Potencia)
+    //    POTENCIA::definir(POTENCIA::SELECIONADO::BOMBA_CASA);            //PEDE a potência (quem executa é o Mediador_Unidade_Potencia)
         BOMBA_CASA::definir(BOMBA_CASA::ESTAGIOS::LIBERADO);
 
         ORDENS_DRIMEL_SYSTEM::CASA_TORRE::definir(ORDENS_DRIMEL_SYSTEM::CASA_TORRE::ORDEM::NENHUM); //reseta "mensagem pedido Drimel System via LoRa"
@@ -91,9 +91,6 @@ static void Mediador_Casa_Torre_Segundo_Ciclo()
     const bool sistemaBloqueado =
         sistemaModo == SISTEMA_ECO_HIDRO::MODO::BLOQUEIO;
 
-    const bool potenciaLivre =
-        potencia == POTENCIA::SELECIONADO::REPOUSO;
-
     const bool meioCicloInternoPronto =
         casaTorre == CASA_TORRE::ETAPAS::SEGUNDO_CICLO_ENCHIMENTO_CAIXA
         && bombaCasa == BOMBA_CASA::ESTAGIOS::REPOUSO;
@@ -108,21 +105,34 @@ static void Mediador_Casa_Torre_Segundo_Ciclo()
             return; //Sistema Bloqueado: não aciona a bomba d' água.
         }
 
-    if (!potenciaLivre)
-        {
-            return; //Espera a vez.
-        }
-
 // -------------------
 
     if (meioCicloInternoPronto || meioCicloExternoSolicitado)
     {
-        DESLIGAMENTO_BOMBA::definir(DESLIGAMENTO_BOMBA::MOTIVO::NENHUM); //resetando o registro anterior informado da proteção bomba.
+    //    DESLIGAMENTO_BOMBA::definir(DESLIGAMENTO_BOMBA::MOTIVO::NENHUM); //resetando o registro anterior informado da proteção bomba.
 
-        POTENCIA::definir(POTENCIA::SELECIONADO::BOMBA_CASA);            //PEDE a potência
+    //    POTENCIA::definir(POTENCIA::SELECIONADO::BOMBA_CASA);            //PEDE a potência
         BOMBA_CASA::definir(BOMBA_CASA::ESTAGIOS::LIBERADO);
 
         ORDENS_DRIMEL_SYSTEM::CASA_TORRE::definir(ORDENS_DRIMEL_SYSTEM::CASA_TORRE::ORDEM::NENHUM);
+    }
+}
+
+//====================================================================================
+//                   COORDENA ACIONAMENTO DA BOMBA DA CASA
+//====================================================================================
+
+static void Mediador_Casa_Torre_Liga_Bomba()
+{
+    const auto potencia = POTENCIA::atual();
+    const auto unidadePotencia = UNIDADE_POTENCIA::atual();
+    const auto bombaCasa = BOMBA_CASA::atual();
+
+    if (potencia == POTENCIA::SELECIONADO::BOMBA_CASA &&
+        unidadePotencia == UNIDADE_POTENCIA::ESTAGIOS::LIGADO &&
+        bombaCasa == BOMBA_CASA::ESTAGIOS::AGUARDA_LIBERACAO)
+    {
+         BOMBA_CASA::definir(BOMBA_CASA::ESTAGIOS::LIGANDO_BOMBA);
     }
 }
 
@@ -155,9 +165,15 @@ static void Mediador_Casa_Torre_Desliga_Bomba()
 
 void Mediador_Casa_Torre_Atualiza()
 {
+        debugAviso("Mediador Casa Torre : Primeiro Ciclo");
         Mediador_Casa_Torre_Primeiro_Ciclo();
 
+        debugAviso("Mediador Casa Torre : Segundo Ciclo");
         Mediador_Casa_Torre_Segundo_Ciclo();
 
+        debugAviso("Mediador Casa Torre : Ligar Bomba");
+        Mediador_Casa_Torre_Liga_Bomba();
+
+        debugAviso("Mediador Casa Torre : Desligar Bomba");
         Mediador_Casa_Torre_Desliga_Bomba();
 }

@@ -10,6 +10,8 @@
 
 #include "Mediador_Casa_Torre.h"
 #include "Mediador_Reservatorio.h"
+#include "Mediador_Luz_Estacionamento.h"
+#include "Mediador_Luz_Acesso_Reservatorio.h"
 #include "Mediador_Voltagem.h"
 #include "Mediador_Unidade_Potencia.h"
 
@@ -32,6 +34,10 @@ void MEDIADOR_BOOT()
 
     Mediador_Voltagem_Inicializa();
 
+    Mediador_Luz_Estacionamento_Inicializa();
+
+    Mediador_Luz_Acesso_Reservatorio_Inicializa();
+
     Mediador_Unidade_Potencia_Inicializa();
 
     //--------------------------------------------------------------------------------
@@ -53,8 +59,12 @@ void MEDIADOR_LOOP()
 
     Mediador_Reservatorio_Atualiza();
 
-    // Voltagem em off por enquanto (era Inicializa() no loop, agora é Atualiza() comentado).
-    // Mediador_Voltagem_Atualiza();
+    Mediador_Voltagem_Atualiza();
 
-    Mediador_Unidade_Potencia_Atualiza();   // SEMPRE por último: lê os pedidos feitos acima.
+    Mediador_Luz_Acesso_Reservatorio_Atualiza();
+
+    Mediador_Luz_Estacionamento_Atualiza();
+
+    Mediador_Unidade_Potencia_Atualiza();
+
 }

@@ -11,25 +11,21 @@
                               
 struct estadosEventosEcoHidro                               
 {                                                    
-    ORDENS_DRIMEL_SYSTEM::CASA_TORRE::ORDEM ordemCasaTorre; // [VAR::ORDENS_DRIMEL_SYSTEM::CASA_TORRE]
-    ORDENS_DRIMEL_SYSTEM::LUZ_ACESSO::ORDEM ordemLuzAcesso; // [VAR::ORDENS_DRIMEL_SYSTEM::LUZ_ACESSO]
-    ORDENS_DRIMEL_SYSTEM::LUZ_ESTACIONAMENTO::ORDEM ordemLuzEstacionamento; // [VAR::ORDENS_DRIMEL_SYSTEM::LUZ_ESTACIONAMENTO]
-    // [STRUCT::BAT]                      
+    ORDENS_DRIMEL_SYSTEM::CASA_TORRE::ORDEM ordemCasaTorre;
+    ORDENS_DRIMEL_SYSTEM::LUZ_ACESSO::ORDEM ordemLuzAcesso;
+        ORDENS_DRIMEL_SYSTEM::LUZ_ESTACIONAMENTO::ORDEM ordemLuzEstacionamento;                     
 };                              
                               
 static estadosEventosEcoHidro estado =                               
 {                               
-    ORDENS_DRIMEL_SYSTEM::CASA_TORRE::ORDEM::NENHUM, // [INIT::ORDENS_DRIMEL_SYSTEM::CASA_TORRE]
-    ORDENS_DRIMEL_SYSTEM::LUZ_ACESSO::ORDEM::NENHUM,// [INIT::ORDENS_DRIMEL_SYSTEM::LUZ_ACESSO]
-    ORDENS_DRIMEL_SYSTEM::LUZ_ESTACIONAMENTO::ORDEM::NENHUM// [STATIC::VIRGULA]  // [INIT::ORDENS_DRIMEL_SYSTEM::LUZ_ESTACIONAMENTO]
-    // [STATIC::BAT]
+    ORDENS_DRIMEL_SYSTEM::CASA_TORRE::ORDEM::NENHUM,
+    ORDENS_DRIMEL_SYSTEM::LUZ_ACESSO::ORDEM::NENHUM,
+    ORDENS_DRIMEL_SYSTEM::LUZ_ESTACIONAMENTO::ORDEM::NENHUM,
 };                              
                               
 //====================================================================================                              
 //                   IMPLEMENTAÇÃO DOS NAMESPACES                              
 //====================================================================================                              
-
-// [INICIO::BAT::ORDENS_DRIMEL_SYSTEM::CASA_TORRE]   
    
 //====================================================================================   
 //                   ORDENS_DRIMEL_SYSTEM   
@@ -37,9 +33,6 @@ static estadosEventosEcoHidro estado =
    
 namespace ORDENS_DRIMEL_SYSTEM   
 {   
-
-//[INICIO::BAT::ORDENS_DRIMEL_SYSTEM::CASA_TORRE]
-
     namespace CASA_TORRE   
     {   
         void definir(ORDEM novo)   
@@ -69,10 +62,6 @@ namespace ORDENS_DRIMEL_SYSTEM
         }   
     }   
 
-//[FIM::BAT::ORDENS_DRIMEL_SYSTEM::CASA_TORRE]
-
-//[INICIO::BAT::ORDENS_DRIMEL_SYSTEM::LUZ_ACESSO]
-
      namespace LUZ_ACESSO   
     {   
         void definir(ORDEM novo)   
@@ -92,7 +81,8 @@ namespace ORDENS_DRIMEL_SYSTEM
             switch(a)   
             {   
                 case ORDEM::NENHUM:                                 return F("NENHUM");   
-                case ORDEM::TEMPORIZACAO:                           return F("TEMPORIZACAO");   
+                case ORDEM::TEMPORIZACAO:                           return F("TEMPORIZACAO");
+                case ORDEM::ACIONADO:                                return F("ACIONADO");          
                 case ORDEM::FORCADO:                                return F("FORCADO");   
                 case ORDEM::DESLIGA:                                return F("DESLIGA");   
    
@@ -100,11 +90,6 @@ namespace ORDENS_DRIMEL_SYSTEM
             }   
         }   
     }   
-
-//[FIM::BAT::ORDENS_DRIMEL_SYSTEM::LUZ_ACESSO]
-
-//[INICIO::BAT::ORDENS_DRIMEL_SYSTEM::LUZ_ESTACIONAMENTO]
-
 
      namespace LUZ_ESTACIONAMENTO   
     {   
@@ -125,7 +110,8 @@ namespace ORDENS_DRIMEL_SYSTEM
             switch(a)   
             {   
                 case ORDEM::NENHUM:                                 return F("NENHUM");   
-                case ORDEM::TEMPORIZACAO:                           return F("TEMPORIZACAO");   
+                case ORDEM::TEMPORIZACAO:                           return F("TEMPORIZACAO");
+                case ORDEM::ACIONADO:                               return F("ACIONADO");   
                 case ORDEM::FORCADO:                                return F("FORCADO");   
                 case ORDEM::DESLIGA:                                return F("DESLIGA");   
    
@@ -133,13 +119,4 @@ namespace ORDENS_DRIMEL_SYSTEM
             }   
         }   
     }   
-
-//[FIM::BAT::ORDENS_DRIMEL_SYSTEM::LUZ_ESTACIONAMENTO]
-
-//[PROXIMO::BAT::ORDENS_DRIMEL_SYSTEM]
-
 }   
-   
-// [FIM::BAT::ORDENS_DRIMEL_SYSTEM::CASA_TORRE]   
-
-// [INSERE::BAT::ESTADOS_EVENTOS_CPP_Eco_Hidro]  

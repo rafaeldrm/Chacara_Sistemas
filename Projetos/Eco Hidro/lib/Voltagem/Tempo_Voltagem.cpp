@@ -22,7 +22,7 @@ static CRONOMETRO::Temporizador tempoVoltagem;
 
 void Tempo_Voltagem_Inicializa()
 {
-    debugSetupDivisao(COR::AMARELO, "TEMPO VOLTAGEM INICIALIZANDO", COR::MAGENTA, "=", 45);
+    debugSetupDivisao(COR::AMARELO, "TEMPO VOLTAGEM INICIALIZANDO", COR::MAGENTA, "=", 0);
 
     tempoVoltagem.Cronometro_Iniciar();
 }

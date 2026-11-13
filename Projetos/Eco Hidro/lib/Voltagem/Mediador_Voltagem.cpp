@@ -18,7 +18,7 @@
 
 void Mediador_Voltagem_Inicializa()
 {
-    debugSetupDivisao(COR::AMARELO, "MEDIADOR VOLTAGEM INICIALIZANDO", COR::MAGENTA, "=", 45);
+    debugSetupDivisao(COR::AMARELO, "MEDIADOR VOLTAGEM INICIALIZANDO", COR::MAGENTA, "=", 0);
 }
 
 //==========================================================================================================
@@ -28,35 +28,48 @@ void Mediador_Voltagem_Inicializa()
 static void Mediador_Voltagem_Manter_Carga() //14.4V
 {
 
-    const auto casaTorre = CASA_TORRE::atual();
+    const auto potencia = POTENCIA::atual();
     const auto bateria = VOLTAGEM::atual();
 
-    if (casaTorre == CASA_TORRE::ETAPAS::NORMAL && bateria == VOLTAGEM::LEITURA::CHEIA) {
-
-        LUZ_ESTACIONAMENTO::definir(LUZ_ESTACIONAMENTO::SITUACAO::CONSUMINDO);
-        LUZ_ACESSO::definir(LUZ_ACESSO::SITUACAO::CONSUMINDO);
+    if (bateria == VOLTAGEM::LEITURA::CHEIA && 
+    (potencia == POTENCIA::SELECIONADO::REPOUSO || 
+     potencia == POTENCIA::SELECIONADO::DESLIGANDO))
+    {
         VOLTAGEM::definir(VOLTAGEM::LEITURA::MANTENDO_CARGA);
     }
 }
 
-//==============================================================================================
-//                   VOLTAGEM DE CONTROLE DA CARGA (CONSUMO REALIZADO) - DESLIGAMENTO DAS LUZES 
-//==============================================================================================
+//====================================================================================
+//                   CARGA PRIORIDADE (ACIONA PORTAO, BOMBA DA CASA, BOMBA RESERATÓRIO)
+//====================================================================================
 
-static void Mediador_Voltagem_Consumo_Realizado() //14.2V
+static void Mediador_Voltagem_Carga_Prioridade()
 {
-    const auto luzEstacionamento = LUZ_ESTACIONAMENTO::atual();
-    const auto luzAcesso = LUZ_ACESSO::atual();
-    const auto bateria = VOLTAGEM::atual();
+    const auto potencia = POTENCIA::atual();
 
-    if 
-        (bateria == VOLTAGEM::LEITURA::CARGA_CONSUMIDA
-        && (luzEstacionamento == LUZ_ESTACIONAMENTO::SITUACAO::CONSUMINDO
-        || luzAcesso == LUZ_ACESSO::SITUACAO::CONSUMINDO)) {
+    if (potencia == POTENCIA::SELECIONADO::BOMBA_CASA 
+     || potencia == POTENCIA::SELECIONADO::BOMBA_12V  
+     || potencia == POTENCIA::SELECIONADO::PORTAO)
+    {
+        VOLTAGEM::definir(VOLTAGEM::LEITURA::CARGA_PRIORIDADE);
+    }
+}
 
-        LUZ_ESTACIONAMENTO::definir(LUZ_ESTACIONAMENTO::SITUACAO::DESLIGANDO);
-        LUZ_ACESSO::definir(LUZ_ACESSO::SITUACAO::DESLIGANDO);
-        VOLTAGEM::definir(VOLTAGEM::LEITURA::IDEAL);
+//====================================================================================
+//                   VOLTAGEM SAINDO DE CARGA PRIORIDADE
+//====================================================================================
+
+static void Mediador_Voltagem_Retorna_Prioridade_Normal()
+{
+    const auto voltagem = VOLTAGEM::atual();
+    const auto potencia = POTENCIA::atual();
+
+    if (voltagem == VOLTAGEM::LEITURA::CARGA_PRIORIDADE)
+    {
+        if (potencia == POTENCIA::SELECIONADO::REPOUSO)
+        {
+            VOLTAGEM::definir(VOLTAGEM::LEITURA::NORMAL);
+        }
     }
 }
 
@@ -66,7 +79,9 @@ static void Mediador_Voltagem_Consumo_Realizado() //14.2V
 
 void Mediador_Voltagem_Atualiza()
 {
-    Mediador_Voltagem_Manter_Carga();
+    Mediador_Voltagem_Manter_Carga(); 
 
-    Mediador_Voltagem_Consumo_Realizado();
+    Mediador_Voltagem_Carga_Prioridade();
+
+    Mediador_Voltagem_Retorna_Prioridade_Normal();
 }

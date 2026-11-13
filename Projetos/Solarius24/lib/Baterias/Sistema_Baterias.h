@@ -5,6 +5,6 @@
 
 //-------------------------- FUNÇÕES PÚBLICAS -------------------------------//
 
- void SISTEMA_BATERIAS_BOOT();
+ void BATERIAS_BOOT();
 
- void SISTEMA_BATERIAS_LOOP();
+ void BATERIAS_LOOP();

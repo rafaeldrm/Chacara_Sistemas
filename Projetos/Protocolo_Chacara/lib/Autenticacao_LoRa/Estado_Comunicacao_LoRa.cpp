@@ -2,37 +2,37 @@
 
 namespace LORA
 {
-namespace AUTENTICACAO
+namespace SEGURANCA
 {
 
     void Estado_Comunicacao_LoRa::Resetar()
     {
-        estado = EstadoComunicacao::NAO_SINCRONIZADO;
+        estado = ESTADO_COMUNICACAO::NAO_SINCRONIZADO;
     }
 
-    EstadoComunicacao Estado_Comunicacao_LoRa::Obter() const
+    ESTADO_COMUNICACAO Estado_Comunicacao_LoRa::Obter() const
     {
         return estado;
     }
 
     void Estado_Comunicacao_LoRa::IniciarBoot()
     {
-        estado = EstadoComunicacao::AGUARDANDO_BOOT;
+        estado = ESTADO_COMUNICACAO::AGUARDANDO_BOOT;
     }
 
     void Estado_Comunicacao_LoRa::IniciarSincronizacao()
     {
-        estado = EstadoComunicacao::SINCRONIZANDO;
+        estado = ESTADO_COMUNICACAO::SINCRONIZANDO;
     }
 
     void Estado_Comunicacao_LoRa::TornarOperacional()
     {
-        estado = EstadoComunicacao::OPERACIONAL;
+        estado = ESTADO_COMUNICACAO::OPERACIONAL;
     }
 
     bool Estado_Comunicacao_LoRa::PodeTransmitirNormalmente() const
     {
-        return estado == EstadoComunicacao::OPERACIONAL;
+        return estado == ESTADO_COMUNICACAO::OPERACIONAL;
     }
 
 }

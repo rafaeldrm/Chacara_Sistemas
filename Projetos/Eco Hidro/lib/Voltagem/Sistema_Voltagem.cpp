@@ -22,7 +22,7 @@
 void VOLTAGEM_BOOT() 
 { 
     debugSetupArquivo();
-    debugSetupDivisao(COR::AMARELO, "SISTEMA VOLTAGEM INICIALIZANDO", COR::MAGENTA, "=", 45);
+    debugSetupDivisao(COR::AMARELO, "SISTEMA VOLTAGEM INICIALIZANDO", COR::MAGENTA, "=", 0);
 
     Driver_Sensor_Voltagem_Inicializa();
 

@@ -7,7 +7,7 @@
 
 namespace LORA
 {
-    namespace AUTENTICACAO
+    namespace SEGURANCA
     {
 
     constexpr uint8_t TAMANHO_CHAVE_LORA = 16;

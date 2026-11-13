@@ -79,7 +79,8 @@ namespace CASA_TORRE
             case ETAPAS::PRIMEIRO_CICLO_ENCHIMENTO_CAIXA:             return F("PRIMEIRO_CICLO_ENCHIMENTO_CAIXA");   
             case ETAPAS::AGUARDANDO_TRANSFERENCIA_GRAVIDADE:          return F("AGUARDANDO_TRANSFERENCIA_GRAVIDADE");   
             case ETAPAS::SEGUNDO_CICLO_ENCHIMENTO_CAIXA:              return F("SEGUNDO_CICLO_ENCHIMENTO_CAIXA");   
-            case ETAPAS::FINALIZADO:                                  return F("FINALIZADO");   
+            case ETAPAS::FINALIZADO:                                  return F("FINALIZADO");
+            case ETAPAS::LIBERADO_PARA_O_RESERVATORIO:                return F("LIBERADO_PARA_O_RESERVATORIO");   
     
             default:                return F("DESCONHECIDO");    
         }    

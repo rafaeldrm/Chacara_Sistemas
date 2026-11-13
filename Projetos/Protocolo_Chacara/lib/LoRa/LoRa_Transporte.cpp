@@ -19,7 +19,7 @@
 
 void LoRa_Transporte_Inicializa()
 {
-        debugSetupDivisao(COR::AMARELO, "LORA TRANSPORTE INICIALIZANDO", COR::MAGENTA, "=", 45);
+        debugSetupDivisao(COR::AMARELO, "LORA TRANSPORTE INICIALIZANDO", COR::MAGENTA, "=", 0);
 }
 
 //====================================================================================

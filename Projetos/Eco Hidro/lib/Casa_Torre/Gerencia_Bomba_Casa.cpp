@@ -18,7 +18,7 @@
  
 void Gerencia_Bomba_Casa_Inicializa()
 {
-        debugSetupDivisao(COR::AMARELO, "GERÊNCIA BOMBA CASA INICIALIZANDO", COR::MAGENTA, "=", 45);
+        debugSetupDivisao(COR::AMARELO, "GERÊNCIA BOMBA CASA INICIALIZANDO", COR::MAGENTA, "=", 0);
         BOMBA_CASA::definir(BOMBA_CASA::ESTAGIOS::REPOUSO);
 }
  

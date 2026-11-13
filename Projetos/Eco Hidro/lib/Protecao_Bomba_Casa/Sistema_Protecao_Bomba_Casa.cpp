@@ -27,7 +27,7 @@
 void PROTECAO_BOMBA_CASA_BOOT()
 {
         debugSetupArquivo();
-        debugSetupDivisao(COR::AMARELO, "SISTEMA PROTEÇÃO BOMBA CASA INICIALIZANDO", COR::MAGENTA, "=", 45);
+        debugSetupDivisao(COR::AMARELO, "SISTEMA PROTEÇÃO BOMBA CASA INICIALIZANDO", COR::MAGENTA, "=", 0);
         
     Driver_DHT11_Inicializa();
 

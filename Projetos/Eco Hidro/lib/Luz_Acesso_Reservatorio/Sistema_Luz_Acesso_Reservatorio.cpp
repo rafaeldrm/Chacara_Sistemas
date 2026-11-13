@@ -19,7 +19,7 @@
  void LUZ_ACESSO_RESERVATORIO_BOOT() 
 { 
     debugSetupArquivo();
-    debugSetupDivisao(COR::AMARELO,  "SISTEMA LUZ ACESSO RESERVATORIO INICIALIZANDO", COR::MAGENTA, "=", 45);
+    debugSetupDivisao(COR::AMARELO,  "SISTEMA LUZ ACESSO RESERVATORIO INICIALIZANDO", COR::MAGENTA, "=", 0);
     
     Controle_Luz_Acesso_Reservatorio_Inicializa();
 

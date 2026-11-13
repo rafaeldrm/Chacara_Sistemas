@@ -17,7 +17,7 @@
 
 void Driver_DS3231_Inicializa()
 {
-        debugSetupDivisao(COR::AMARELO, "DRIVER DS3231 INICIALIZANDO", COR::MAGENTA, "=", 45);
+        debugSetupDivisao(COR::AMARELO, "DRIVER DS3231 INICIALIZANDO", COR::MAGENTA, "=", 0);
 }
 
 //====================================================================================

@@ -26,7 +26,7 @@ static CRONOMETRO::Temporizador tempoLuzEstacionamento;
 
 void Controle_Luz_Estacionamento_Inicializa()
 {
-        debugSetupDivisao(COR::AMARELO, "CONTROLE LUZ ESTACIONAMENTO INICIALIZANDO", COR::MAGENTA, "=", 45);
+        debugSetupDivisao(COR::AMARELO, "CONTROLE LUZ ESTACIONAMENTO INICIALIZANDO", COR::MAGENTA, "=", 0);
 
         tempoLuzEstacionamento.Cronometro_Iniciar();
 }

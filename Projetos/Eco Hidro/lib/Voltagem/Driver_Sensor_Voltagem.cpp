@@ -21,7 +21,7 @@ static uint16_t leituraBruta = 0;
  
  void Driver_Sensor_Voltagem_Inicializa() 
 { 
-        debugSetupDivisao(COR::AMARELO, "DRIVER SENSOR VOLTAGEM INICIALIZANDO", COR::MAGENTA, "=", 45);
+        debugSetupDivisao(COR::AMARELO, "DRIVER SENSOR VOLTAGEM INICIALIZANDO", COR::MAGENTA, "=", 0);
 } 
  
 //====================================================================================  

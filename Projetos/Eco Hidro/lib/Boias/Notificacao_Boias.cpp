@@ -16,7 +16,6 @@
 //                   VARIÁVEIS INTERNAS
 //====================================================================================
 
-static bool casaMediaVaziaAnterior       = false;
 static bool caixaEstoqueCheioAnterior    = false;
 //static bool entradaMinimaVaziaAnterior   = false;
 //static bool entradaMaximaCheiaAnterior   = false;
@@ -30,7 +29,7 @@ static bool casaMediaVaziaAvisada = false;   // true = Drimel já foi avisado de
 void Notificacao_Boias_Inicializa()
 {
 
- debugSetupDivisao(COR::AMARELO, "NOTIFICAÇÃO BÓIAS INICIALIZANDO", COR::MAGENTA, "=", 45);
+ debugSetupDivisao(COR::AMARELO, "NOTIFICAÇÃO BÓIAS INICIALIZANDO", COR::MAGENTA, "=", 0);
 }
 //====================================================================================
 //                              CASA MEDIA 

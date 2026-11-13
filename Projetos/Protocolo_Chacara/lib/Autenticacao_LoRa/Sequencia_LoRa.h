@@ -4,12 +4,12 @@
 
 namespace LORA
 {
-namespace AUTENTICACAO
+namespace SEGURANCA
 {
 
     using Sequencia = uint32_t;
 
-    enum class ResultadoSequencia : uint8_t
+    enum class SEQUENCIA_RESULTADO : uint8_t
     {
         NOVA_MENSAGEM = 0,
         REPETICAO_INTERNA,   // cópia da mesma mensagem (as 3 transmissões)
@@ -30,7 +30,7 @@ namespace AUTENTICACAO
         Sequencia ProximaSaida();
         Sequencia UltimaSaida() const;
 
-        ResultadoSequencia ClassificarRecebida(Sequencia sequencia);
+        SEQUENCIA_RESULTADO ClassificarRecebida(Sequencia sequencia);
 
         Sequencia UltimaRecebida() const;
 

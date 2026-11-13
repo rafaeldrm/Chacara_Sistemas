@@ -23,7 +23,7 @@
 void setup()
  {
 
-    COMUNICACAO_SETUP(); //0_Arduino\Protocolo_Comunicacao_Arduino.h
+    COMUNICACAO_BOOT(); //0_Arduino\Protocolo_Comunicacao_Arduino.h
     DEBUG_MODE(); //Utilidades\DEBUG_MODE.h
     Reles_Setup(); //2_HAL\Modulo_Reles.h
     EEPROM_Inicializa(); //Utilidades\Memoria_Watchdog_EEPROM.h
@@ -82,7 +82,7 @@ RAM:   [=         ]  32.8% (used 2621 bytes from 8192 bytes)
 Flash: [=         ]   5.1% (used 12850 bytes from 253952 bytes)
 
 
-Versão 4.0 (em construção...)
+Versão 4.0 (em construção...) atualizado em Maio 2026
 tipos de arquivos: .h e .cpp
 quantidade de arquivos : 129	
 linhas de código : 4865

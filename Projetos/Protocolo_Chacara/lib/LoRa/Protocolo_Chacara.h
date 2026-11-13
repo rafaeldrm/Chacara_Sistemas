@@ -84,11 +84,12 @@ namespace LORA
     //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     //====================================================================================
 
-    namespace SOLARIUS24
+    namespace SOLARIUS24 //Versão antiga e desatualizada do protocolo. Não sendo utilizada atualmente
     {
 
         enum class CODIGO : uint8_t
         {
+           // Regras antigas de codificação:
 
             VOLTAGEM_SISTEMA = 1,
             VARIACAO_BATERIAS = 2,
@@ -175,11 +176,12 @@ namespace LORA
     //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     //====================================================================================
 
-    namespace GATE_DRIMEL
+    namespace GATE_DRIMEL //versão antiga do protocolo, não utilizada atualmente.
     {
 
         enum class CODIGO : uint8_t
         {
+            //Regras antigas de codificação:
 
             STATUS_POSICAO = 1,
             SENSOR_PRESENCA = 2,

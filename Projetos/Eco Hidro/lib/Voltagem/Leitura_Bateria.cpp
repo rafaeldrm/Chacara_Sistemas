@@ -42,7 +42,7 @@ static constexpr uint16_t TEMPO_AMOSTRA = TEMPO::SEGUNDOS(1);
  
  void Leitura_Bateria_Inicializa() 
 { 
-        debugSetupDivisao(COR::AMARELO, "LEITURA SENSOR VOLTAGEM INICIALIZANDO", COR::MAGENTA, "=", 45);
+        debugSetupDivisao(COR::AMARELO, "LEITURA SENSOR VOLTAGEM INICIALIZANDO", COR::MAGENTA, "=", 0);
         
         tempoLeitura.Cronometro_Iniciar();
 } 

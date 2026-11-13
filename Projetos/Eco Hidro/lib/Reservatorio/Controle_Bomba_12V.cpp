@@ -20,7 +20,7 @@
  
  void Controle_Bomba_12V_Inicializa() 
 { 
-        debugSetupDivisao(COR::AMARELO, "CONTROLE BOMBA 12V INICIALIZANDO", COR::MAGENTA, "=", 45);
+        debugSetupDivisao(COR::AMARELO, "CONTROLE BOMBA 12V INICIALIZANDO", COR::MAGENTA, "=", 0);
 } 
  
 //====================================================================================  

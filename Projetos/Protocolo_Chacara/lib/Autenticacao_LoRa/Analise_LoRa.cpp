@@ -11,11 +11,11 @@
 
 namespace LORA
 {
-namespace AUTENTICACAO
+namespace SEGURANCA
 {
 
     RegistroAnalise Analise_LoRa::Classificar(
-        ResultadoSequencia resultado,
+        SEQUENCIA_RESULTADO resultado,
         Sequencia sequencia) const
     {
         RegistroAnalise registro;
@@ -23,16 +23,16 @@ namespace AUTENTICACAO
 
         switch (resultado)
         {
-        case ResultadoSequencia::REPETICAO_INTERNA:
-            registro.evento = EventoAnalise::REPETICAO_INTERNA;
+        case SEQUENCIA_RESULTADO::REPETICAO_INTERNA:
+            registro.evento = ANALISE_EVENTO::REPETICAO_INTERNA;
             break;
 
-        case ResultadoSequencia::INFERIOR:
-            registro.evento = EventoAnalise::SEQUENCIA_INFERIOR;
+        case SEQUENCIA_RESULTADO::INFERIOR:
+            registro.evento = ANALISE_EVENTO::SEQUENCIA_INFERIOR;
             break;
 
         default:
-            registro.evento = EventoAnalise::NENHUM;
+            registro.evento = ANALISE_EVENTO::NENHUM;
             break;
         }
 

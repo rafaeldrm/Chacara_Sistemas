@@ -20,7 +20,7 @@
  
  void Controle_Bomba_Casa_Inicializa() 
 { 
-        debugSetupDivisao(COR::AMARELO, "CONTROLE BOMBA CASA INICIALIZANDO", COR::MAGENTA, "=", 45);       
+        debugSetupDivisao(COR::AMARELO, "CONTROLE BOMBA CASA INICIALIZANDO", COR::MAGENTA, "=", 0);       
 } 
  
 //====================================================================================  

@@ -23,13 +23,13 @@ void COMUNICACAO_BOOT()
         Serial.begin(115200);
 
         debugSetupArquivo();
-        debugSetupDivisao(COR::AMARELO, "SERIAL UART (TX / RX) ", COR::MAGENTA, "=", 45);
+        debugSetupDivisao(COR::AMARELO, "SERIAL UART (TX / RX) ", COR::MAGENTA, "=", 0);
         debugOk("Comunicação Serial Iniciada");
         debugSetupTexto("Baud de 115200 selecionado para melhor performance e estabilidade.", LINHA);
 
 //-------------------------- I²C BEGIN ---------------------------------------//
 
-    debugSetupDivisao(COR::AMARELO, "I2C (SDA / SCL)", COR::MAGENTA, "=", 45);    
+    debugSetupDivisao(COR::AMARELO, "I2C (SDA / SCL)", COR::MAGENTA, "=", 0);    
     Wire.begin();
     // Define o I²C em 400 kHz.
     // Usado para melhor desempenho com dispositivos compatíveis,
@@ -41,7 +41,7 @@ void COMUNICACAO_BOOT()
 
 //-------------------------- SPI BEGIN ---------------------------------------//
 
-    debugSetupDivisao(COR::AMARELO, "SPI (MOSI / MISO / SS / SCK)", COR::MAGENTA, "=", 45); 
+    debugSetupDivisao(COR::AMARELO, "SPI (MOSI / MISO / SS / SCK)", COR::MAGENTA, "=", 0); 
     SPI.begin();
     
      debugOk("SPI Comunicação Iniciada.");

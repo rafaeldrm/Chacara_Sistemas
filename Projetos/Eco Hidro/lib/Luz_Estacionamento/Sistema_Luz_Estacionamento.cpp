@@ -20,7 +20,7 @@
  void LUZ_ESTACIONAMENTO_BOOT() 
 { 
         debugSetupArquivo();
-        debugSetupDivisao(COR::AMARELO, "SISTEMA LUZ ESTACIONAMENTO INICIALIZANDO", COR::MAGENTA, "=", 45);
+        debugSetupDivisao(COR::AMARELO, "SISTEMA LUZ ESTACIONAMENTO INICIALIZANDO", COR::MAGENTA, "=", 0);
         
     Leitura_Botao_Inicializa();
 

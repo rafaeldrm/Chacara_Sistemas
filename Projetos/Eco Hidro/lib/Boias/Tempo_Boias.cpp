@@ -22,7 +22,7 @@ static CRONOMETRO::Temporizador boiasLeitura;
  
 void Tempo_Boias_Inicializa() 
 { 
-    debugSetupDivisao(COR::AMARELO, "TEMPO BOIAS INICIALIZANDO", COR::MAGENTA, "=", 45);
+    debugSetupDivisao(COR::AMARELO, "TEMPO BOIAS INICIALIZANDO", COR::MAGENTA, "=", 0);
       
     boiasLeitura.Cronometro_Iniciar();
 } 

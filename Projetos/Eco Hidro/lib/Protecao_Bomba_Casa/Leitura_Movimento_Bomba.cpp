@@ -23,7 +23,7 @@ static CRONOMETRO::Temporizador leituraHeliceMonitoramento;
 
 void Leitura_Movimento_Bomba_Inicializa()
 {
-        debugSetupDivisao(COR::AMARELO, "LEITURA MOVIMENTO BOMBA INICIALIZANDO", COR::MAGENTA, "=", 45);
+        debugSetupDivisao(COR::AMARELO, "LEITURA MOVIMENTO BOMBA INICIALIZANDO", COR::MAGENTA, "=", 0);
 }
 
 //====================================================================================

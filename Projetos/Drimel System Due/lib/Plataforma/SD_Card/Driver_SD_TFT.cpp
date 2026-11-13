@@ -15,7 +15,7 @@
 
 void Driver_SD_TFT_Inicializa()
 {
-        debugSetupDivisao(COR::AMARELO, "DRIVER SD TFT INICIALIZANDO", COR::MAGENTA, "=", 45);
+        debugSetupDivisao(COR::AMARELO, "DRIVER SD TFT INICIALIZANDO", COR::MAGENTA, "=", 0);
 }
 
 //====================================================================================

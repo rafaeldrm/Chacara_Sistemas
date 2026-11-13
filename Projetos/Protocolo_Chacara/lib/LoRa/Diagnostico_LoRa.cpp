@@ -61,5 +61,5 @@ namespace LORA
 
 void Diagnostico_LoRa_Inicializa()
 {
-        debugSetupDivisao(COR::AMARELO, "DIAGNOSTICO LORA INICIALIZANDO", COR::MAGENTA, "=", 45);
+        debugSetupDivisao(COR::AMARELO, "DIAGNOSTICO LORA INICIALIZANDO", COR::MAGENTA, "=", 0);
 }

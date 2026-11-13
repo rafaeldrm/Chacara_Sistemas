@@ -18,7 +18,7 @@
 
 void Notificacao_Tranco_Bomba_Inicializa()
 {
-        debugSetupDivisao(COR::AMARELO, "NOTIFICACAO TRANCO BOMBA INICIALIZANDO", COR::MAGENTA, "=", 45);
+        debugSetupDivisao(COR::AMARELO, "NOTIFICACAO TRANCO BOMBA INICIALIZANDO", COR::MAGENTA, "=", 0);
 }
 
 //====================================================================================

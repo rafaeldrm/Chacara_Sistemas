@@ -24,7 +24,7 @@
  void CASA_TORRE_BOOT()
 { 
     debugSetupArquivo();
-    debugSetupDivisao(COR::AMARELO, "SISTEMA CASA TORRE INICIALIZANDO", COR::MAGENTA, "=", 45);
+    debugSetupDivisao(COR::AMARELO, "SISTEMA CASA TORRE INICIALIZANDO", COR::MAGENTA, "=", 0);
 
     Gerencia_Casa_Torre_Inicializa();
  

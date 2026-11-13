@@ -23,7 +23,7 @@ static bool bombaCasaAnterior = false;
 
 void Notificacao_Casa_Torre_Inicializa()
 {
-        debugSetupDivisao(COR::AMARELO, "NOTIFICACAO CASA TORRE INICIALIZANDO", COR::MAGENTA, "=", 45);
+        debugSetupDivisao(COR::AMARELO, "NOTIFICACAO CASA TORRE INICIALIZANDO", COR::MAGENTA, "=", 0);
 }
 
 //====================================================================================

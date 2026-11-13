@@ -32,7 +32,7 @@
 //====================================================================================
 
 #define DEBUG_ON      1     // 1 = DEBUG ATIVO | 0 = DEBUG REMOVIDO, ARDUINO NEM SABE QUE EXISTE SERIAL E DELAYS
-#define DEBUG_BOOT    0     // 1 = DEBUG PESADÃO CHEIO DE FIRULA DELAYS, LENTÃO   | 0 = SETUP RODA DIRETÃO, SUAVE, RÁPIDÃO
+#define DEBUG_BOOT    1     // 1 = DEBUG PESADÃO CHEIO DE FIRULA DELAYS, LENTÃO   | 0 = SETUP RODA DIRETÃO, SUAVE, RÁPIDÃO
 #define DEBUG_SYSTEM  1     // 1 = DEBUG BÁSICO PARA O LOOP DO SISTEMA, CONFERÊNCIA DE ETAPAS, VARIÁVEIS  | 0 = LOOP LIMPO
 
 //====================================================================================

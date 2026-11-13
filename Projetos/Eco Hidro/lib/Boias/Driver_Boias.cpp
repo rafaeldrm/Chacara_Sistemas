@@ -39,7 +39,7 @@ static constexpr uint8_t pinosBoias[REGISTRO_BOIAS::TOTAL_BOIAS] = {
 
 void Driver_Boias_Inicializa() {
     
-    debugSetupDivisao(COR::AMARELO, "DRIVER BÓIAS INICIALIZANDO", COR::MAGENTA, "=", 45);
+    debugSetupDivisao(COR::AMARELO, "DRIVER BÓIAS INICIALIZANDO", COR::MAGENTA, "=", 0);
     
     for (uint8_t i = 0; i < REGISTRO_BOIAS::TOTAL_BOIAS; i++) {
         pinMode(pinosBoias[i], INPUT_PULLUP);

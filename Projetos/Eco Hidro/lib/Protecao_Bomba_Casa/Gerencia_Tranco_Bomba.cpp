@@ -18,7 +18,7 @@
 
 void Gerencia_Tranco_Bomba_Inicializa()
 {
-        debugSetupDivisao(COR::AMARELO, "GERENCIA TRANCO BOMBA INICIALIZANDO", COR::MAGENTA, "=", 45);
+        debugSetupDivisao(COR::AMARELO, "GERENCIA TRANCO BOMBA INICIALIZANDO", COR::MAGENTA, "=", 0);
         TRANCO_BOMBA::definir(TRANCO_BOMBA::ESTAGIOS::REPOUSO);
 }
 

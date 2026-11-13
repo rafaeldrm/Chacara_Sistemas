@@ -33,7 +33,7 @@ static constexpr uint8_t MINIMO_TRANSICOES = 4;
 
 void Controle_Tranco_Bomba_Inicializa()
 {
-        debugSetupDivisao(COR::AMARELO, "CONTROLE TRANCO BOMBA INICIALIZANDO", COR::MAGENTA, "=", 45);
+        debugSetupDivisao(COR::AMARELO, "CONTROLE TRANCO BOMBA INICIALIZANDO", COR::MAGENTA, "=", 0);
 }
 
 //====================================================================================

@@ -83,7 +83,7 @@ namespace
 
 void Mac_LoRa_Inicializa()
 {
-    debugSetupDivisao(COR::AMARELO, "MAC LORA INICIALIZANDO", COR::MAGENTA, "=", 45);
+    debugSetupDivisao(COR::AMARELO, "MAC LORA INICIALIZANDO", COR::MAGENTA, "=", 0);
 
     // Vetor oficial do SipHash-2-4: chave 00..0f, mensagem 00..0e
     uint8_t chave[16];
@@ -108,7 +108,7 @@ void Mac_LoRa_Inicializa()
 
 namespace LORA
 {
-namespace AUTENTICACAO
+namespace SEGURANCA
 {
 //====================================================================================
 //                   Gerar Mac

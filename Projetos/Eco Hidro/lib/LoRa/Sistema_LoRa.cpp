@@ -56,7 +56,7 @@ static void IniciarCamadas()
 void LORA_BOOT()
 {
     debugSetupArquivo();
-    debugSetupDivisao(COR::AMARELO, "SISTEMA LORA INICIALIZANDO", COR::MAGENTA, "=", 45);
+    debugSetupDivisao(COR::AMARELO, "SISTEMA LORA INICIALIZANDO", COR::MAGENTA, "=", 0);
 
     if (!Driver_LoRa_Inicializa())
     {

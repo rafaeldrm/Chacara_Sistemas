@@ -18,7 +18,7 @@
 
 void Mediador_Reservatorio_Inicializa()
 {
-        debugSetupDivisao(COR::AMARELO, "MEDIADOR RESERVATORIO INICIALIZANDO", COR::MAGENTA, "=", 45);
+        debugSetupDivisao(COR::AMARELO, "MEDIADOR RESERVATORIO INICIALIZANDO", COR::MAGENTA, "=", 0);
 }
 
 //====================================================================================

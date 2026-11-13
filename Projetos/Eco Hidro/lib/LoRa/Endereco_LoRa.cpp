@@ -15,9 +15,9 @@
 //                   VARIÁVEIS INTERNAS
 //====================================================================================
 
-using LORA::AUTENTICACAO::ResultadoAutenticacao;
+using LORA::SEGURANCA::AUTENTICACAO_RESULTADO;
 
-static LORA::AUTENTICACAO::Autenticacao_LoRa autenticacao;
+static LORA::SEGURANCA::Autenticacao_LoRa autenticacao;
 
 static bool bootPendente = false;       // pedido de BOOT montado e ainda sem resposta
 static LORA::Pacote pedidoBoot;         // guardado para reenviar com o MESMO nonce
@@ -28,12 +28,12 @@ static LORA::Pacote pedidoBoot;         // guardado para reenviar com o MESMO no
 
 void Endereco_LoRa_Inicializa()
 {
-    debugSetupDivisao(COR::AMARELO, "ENDERECO LORA INICIALIZANDO", COR::MAGENTA, "=", 45);
+    debugSetupDivisao(COR::AMARELO, "ENDERECO LORA INICIALIZANDO", COR::MAGENTA, "=", 0);
 
     debugVariavel("Endereço local: ", LORA::SistemaParaTexto((uint8_t)ENDERECO_LOCAL), NEGRITO, VERDE, AZUL);
     debugVariavel("Destino padrão: ", LORA::SistemaParaTexto((uint8_t)ENDERECO_DESTINO_PADRAO), NEGRITO, VERDE, AZUL);
 
-    autenticacao.Inicializar(LORA::AUTENTICACAO::ObterChave());
+    autenticacao.Inicializar(LORA::SEGURANCA::ObterChave());
 }
 //====================================================================================
 //                   BOOT
@@ -120,7 +120,7 @@ bool Endereco_LoRa_Receber(LORA::Pacote& pacote, bool* repetida)
     // Resposta do BOOT: consumida aqui mesmo, as camadas de cima nem veem
     if (recebido.codigo == (uint8_t)LORA::ESPECIAL::CODIGO::BOOT_RESPOSTA)
     {
-        if (autenticacao.ReceberRespostaBoot(recebido) == ResultadoAutenticacao::BOOT_ACEITO)
+        if (autenticacao.ReceberRespostaBoot(recebido) == AUTENTICACAO_RESULTADO::BOOT_ACEITO)
         {
             bootPendente = false;
             debugOk("Endereco_LoRa: BOOT aceito, sessão autenticada");
@@ -136,26 +136,26 @@ bool Endereco_LoRa_Receber(LORA::Pacote& pacote, bool* repetida)
     // Mensagem normal: passa pela Autenticação
     switch (autenticacao.Validar(recebido))
     {
-    case ResultadoAutenticacao::NOVA_MENSAGEM:
+    case AUTENTICACAO_RESULTADO::NOVA_MENSAGEM:
         pacote = recebido;
         debugOk("Endereco_LoRa: mensagem autenticada");
         return true;
 
-    case ResultadoAutenticacao::REPETICAO_INTERNA:
+    case AUTENTICACAO_RESULTADO::REPETICAO_INTERNA:
         if (repetida != nullptr)
             *repetida = true;
         debugAviso("Endereco_LoRa: cópia repetida ignorada");
         return false;
 
-    case ResultadoAutenticacao::MAC_INVALIDO:
+    case AUTENTICACAO_RESULTADO::MAC_INVALIDO:
         debugErro("Endereco_LoRa: MAC INVÁLIDO, pacote descartado");
         return false;
 
-    case ResultadoAutenticacao::SEQUENCIA_INFERIOR:
+    case AUTENTICACAO_RESULTADO::SEQUENCIA_INFERIOR:
         debugErro("Endereco_LoRa: sequência antiga, descartado");
         return false;
 
-    case ResultadoAutenticacao::NAO_SINCRONIZADO:
+    case AUTENTICACAO_RESULTADO::NAO_SINCRONIZADO:
         debugAviso("Endereco_LoRa: ainda sem sessão (aguardando BOOT), descartado");
         return false;
 

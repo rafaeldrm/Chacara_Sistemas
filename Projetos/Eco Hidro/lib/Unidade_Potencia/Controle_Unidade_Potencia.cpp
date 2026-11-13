@@ -25,7 +25,7 @@ static CRONOMETRO::Temporizador aguardandoCapacitores; //@@ Cronometro.h
 
 void Controle_Unidade_Potencia_Inicializa()
 {
-        debugSetupDivisao(COR::AMARELO, "CONTROLE UNIDADE POTENCIA INICIALIZANDO", COR::MAGENTA, "=", 45);
+        debugSetupDivisao(COR::AMARELO, "CONTROLE UNIDADE POTENCIA INICIALIZANDO", COR::MAGENTA, "=", 0);
 }
 
 //====================================================================================

@@ -114,7 +114,7 @@ static uint32_t Sorteio(uint32_t maximo)
 
 void Envio_Eventos_LoRa_Inicializa()
 {
-    debugSetupDivisao(COR::AMARELO, "ENVIO EVENTOS LORA INICIALIZANDO", COR::MAGENTA, "=", 45);
+    debugSetupDivisao(COR::AMARELO, "ENVIO EVENTOS LORA INICIALIZANDO", COR::MAGENTA, "=", 0);
 
     filaInicio = 0;
     filaTotal = 0;

@@ -17,7 +17,7 @@
 
 void Mediador_Luz_Estacionamento_Inicializa()
 {
-        debugSetupDivisao(COR::AMARELO, "MEDIADOR LUZ ESTACIONAMENTO INICIALIZANDO", COR::MAGENTA, "=", 45);
+        debugSetupDivisao(COR::AMARELO, "MEDIADOR LUZ ESTACIONAMENTO INICIALIZANDO", COR::MAGENTA, "=", 0);
 }
 
 //====================================================================================

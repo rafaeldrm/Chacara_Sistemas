@@ -19,7 +19,7 @@
  
 void Gerencia_Casa_Torre_Inicializa()
 {
-        debugSetupDivisao(COR::AMARELO, "GERÊNCIA CASA TORRE INICIALIZANDO", COR::MAGENTA, "=", 45);
+        debugSetupDivisao(COR::AMARELO, "GERÊNCIA CASA TORRE INICIALIZANDO", COR::MAGENTA, "=", 0);
         CASA_TORRE::definir(CASA_TORRE::ETAPAS::NORMAL);
 }
  
@@ -35,7 +35,7 @@ void Gerencia_Casa_Torre_Inicializa()
         //========================================================
         case CASA_TORRE::ETAPAS::NORMAL:
         
-        case CASA_TORRE::ETAPAS::FINALIZADO:
+        case CASA_TORRE::ETAPAS::LIBERADO_PARA_O_RESERVATORIO:
             
         Controle_Casa_Torre_Normal();
           
@@ -62,5 +62,14 @@ void Gerencia_Casa_Torre_Inicializa()
             Controle_Casa_Torre_Segundo_Ciclo_Enchimento_Caixa();
         
         break;
+
+        //========================================================
+
+        case CASA_TORRE::ETAPAS::FINALIZADO:
+        
+            Controle_Casa_Torre_Finalizado();
+        
+            break;
+            
     }
 }

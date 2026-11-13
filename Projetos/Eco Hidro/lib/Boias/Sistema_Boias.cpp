@@ -17,7 +17,7 @@
  void BOIAS_BOOT()
 { 
     debugSetupArquivo();
-    debugSetupDivisao(COR::AMARELO, "SISTEMA BOIAS", COR::MAGENTA, "=", 45);
+    debugSetupDivisao(COR::AMARELO, "SISTEMA BOIAS", COR::MAGENTA, "=", 0);
         
     Driver_Boias_Inicializa();
     

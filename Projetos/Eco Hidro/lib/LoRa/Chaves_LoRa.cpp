@@ -24,7 +24,7 @@ foreach ($nome in 'ECO_HIDRO','SOLARIUS24','GATE_DRIMEL','RESERVA') {
 
 namespace LORA
 {
-    namespace AUTENTICACAO
+    namespace SEGURANCA
     {
         namespace
         {

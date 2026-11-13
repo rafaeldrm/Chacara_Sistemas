@@ -31,7 +31,7 @@ static CRONOMETRO::Temporizador ultimaLeitura;
 
 void Leitura_Temperatura_Inicializa()
 {
-        debugSetupDivisao(COR::AMARELO, "LEITURA TEMPERATURA INICIALIZANDO", COR::MAGENTA, "=", 45);
+        debugSetupDivisao(COR::AMARELO, "LEITURA TEMPERATURA INICIALIZANDO", COR::MAGENTA, "=", 0);
         
         _dados = {
         .temperatura = 0,

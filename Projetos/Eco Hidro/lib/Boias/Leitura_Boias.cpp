@@ -20,7 +20,7 @@ static uint16_t mapaAtual = 0;
 
 void Leitura_Boias_Inicializa()
 { 
-    debugSetupDivisao(COR::AMARELO, "LEITURA BÓIAS INICIALIZANDO", COR::MAGENTA, "=", 45);
+    debugSetupDivisao(COR::AMARELO, "LEITURA BÓIAS INICIALIZANDO", COR::MAGENTA, "=", 0);
     
     mapaAtual = 0;
 }

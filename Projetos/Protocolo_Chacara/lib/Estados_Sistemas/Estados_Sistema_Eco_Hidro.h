@@ -19,7 +19,8 @@ enum class ETAPAS : uint8_t
        PRIMEIRO_CICLO_ENCHIMENTO_CAIXA,   
        AGUARDANDO_TRANSFERENCIA_GRAVIDADE,   
        SEGUNDO_CICLO_ENCHIMENTO_CAIXA,   
-       FINALIZADO,   
+       FINALIZADO,
+       LIBERADO_PARA_O_RESERVATORIO,   
  };    
     
     void definir(ETAPAS novo);    

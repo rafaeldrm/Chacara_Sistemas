@@ -4,10 +4,10 @@
 
 namespace LORA
 {
-namespace AUTENTICACAO
+namespace SEGURANCA
 {
 
-    enum class EstadoComunicacao : uint8_t
+    enum class ESTADO_COMUNICACAO : uint8_t
     {
         NAO_SINCRONIZADO = 0,
         AGUARDANDO_BOOT,
@@ -20,7 +20,7 @@ namespace AUTENTICACAO
     public:
         void Resetar();
 
-        EstadoComunicacao Obter() const;
+        ESTADO_COMUNICACAO Obter() const;
 
         void IniciarBoot();
         void IniciarSincronizacao();
@@ -29,7 +29,7 @@ namespace AUTENTICACAO
         bool PodeTransmitirNormalmente() const;
 
     private:
-        EstadoComunicacao estado = EstadoComunicacao::NAO_SINCRONIZADO;
+        ESTADO_COMUNICACAO estado = ESTADO_COMUNICACAO::NAO_SINCRONIZADO;
     };
 
 }

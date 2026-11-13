@@ -25,7 +25,7 @@ static struct {
 
 bool Driver_LoRa_Inicializa()
 {
-        debugSetupDivisao(COR::AMARELO, "DRIVER LORA INICIALIZANDO", COR::MAGENTA, "=", 45);
+        debugSetupDivisao(COR::AMARELO, "DRIVER LORA INICIALIZANDO", COR::MAGENTA, "=", 0);
         
     lora.ss   = pino(ARDUINO_CONEXAO::LORA::SS);
     lora.rst  = pino(ARDUINO_CONEXAO::LORA::RST);

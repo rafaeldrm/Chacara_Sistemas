@@ -16,7 +16,7 @@
 //====================================================================================  
  
 // tempo de descida da água Torre -> Casa
-static constexpr uint32_t TEMPO_GRAVIDADE_TRANSFERENCIA_TORRE_CASA = TEMPO::MINUTOS(2); //(2UL * 60UL * 60UL * 1000UL) + (45UL * 60UL * 1000UL); // 2h45min //@@ Tempo.h
+static constexpr uint32_t TEMPO_GRAVIDADE_TRANSFERENCIA_TORRE_CASA = TEMPO::HORAS(2) + TEMPO::MINUTOS(45); //(2UL * 60UL * 60UL * 1000UL) + (45UL * 60UL * 1000UL); // 2h45min //@@ Tempo.h
 
 static CRONOMETRO::Temporizador transferenciaTorreCasa; //@@ Cronometro.h
 
@@ -29,7 +29,7 @@ static bool torreMaximaCheia = false;
  
 void Controle_Casa_Torre_Inicializa()
 {
-        debugSetupDivisao(COR::AMARELO, "CONTROLE CASA TORRE INICIALIZANDO", COR::MAGENTA, "=", 45);
+        debugSetupDivisao(COR::AMARELO, "CONTROLE CASA TORRE INICIALIZANDO", COR::MAGENTA, "=", 0);
 }
 
 //====================================================================================
@@ -103,4 +103,14 @@ void Controle_Casa_Torre_Segundo_Ciclo_Enchimento_Caixa()
             {
                 CASA_TORRE::definir(CASA_TORRE::ETAPAS::FINALIZADO);
             }        
+}
+
+//====================================================================================
+//                   FINALIZADO
+//====================================================================================
+
+void Controle_Casa_Torre_Finalizado()
+{
+        transferenciaTorreCasa.Cronometro_Cancelar();
+        CASA_TORRE::definir(CASA_TORRE::ETAPAS::LIBERADO_PARA_O_RESERVATORIO);
 }

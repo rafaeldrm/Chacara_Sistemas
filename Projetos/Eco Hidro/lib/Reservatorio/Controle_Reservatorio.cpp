@@ -41,7 +41,7 @@ static void Controle_Reservatorio_Atualiza_Boias()
  
  void Controle_Reservatorio_Inicializa() 
 { 
-        debugSetupDivisao(COR::AMARELO, "CONTROLE RESERVATÓRIO INICIALIZANDO", COR::MAGENTA, "=", 45); 
+        debugSetupDivisao(COR::AMARELO, "CONTROLE RESERVATÓRIO INICIALIZANDO", COR::MAGENTA, "=", 0); 
 } 
  
 //====================================================================================  

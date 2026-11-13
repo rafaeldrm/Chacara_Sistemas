@@ -13,8 +13,8 @@
 //====================================================================================
 
 static constexpr uint8_t VOLTAGEM_CHEIA             = 144;  // 14.4 V  → entra em CHEIA
-static constexpr uint8_t VOLTAGEM_MANTENDO_CARGA    = 143;  // 14.3 V  → mantém / consome
-static constexpr uint8_t VOLTAGEM_CARGA_CONSUMIDA   = 142;  // 14.2 V  → consumo realizado
+static constexpr uint8_t VOLTAGEM_MANTENDO_CARGA    = 143;  // 14.3 V  → mantém / consome (ideia de flutuar bateria com as uzes acesas)
+static constexpr uint8_t VOLTAGEM_CARGA_CONSUMIDA   = 141;  // 14.1 V  → consumo realizado (aqui apaga as luzes)
 static constexpr uint8_t VOLTAGEM_IDEAL             = 130;  // 13.0 V
 static constexpr uint8_t VOLTAGEM_NORMAL            = 126;  // 12.6 V
 static constexpr uint8_t VOLTAGEM_CRITICO           = 121;  // 12.1 V
@@ -27,7 +27,7 @@ static uint8_t monitoraVoltagem = 0;
 
 void Controle_Voltagem_Inicializa()
 {
-        debugSetupDivisao(COR::AMARELO, "CONTROLE VOLTAGEM INICIALIZANDO", COR::MAGENTA, "=", 45);
+        debugSetupDivisao(COR::AMARELO, "CONTROLE VOLTAGEM INICIALIZANDO", COR::MAGENTA, "=", 0);
 }
 
 //====================================================================================
@@ -84,26 +84,21 @@ void Controle_Voltagem_Cheia()
     Controle_Voltagem_Atualiza();
 
     // Saída por queda de tensão é do Controle. Saída "para as luzes" é do Mediador.
-    if (monitoraVoltagem < VOLTAGEM_CHEIA)   // ← valor a definir
+    if (monitoraVoltagem <= VOLTAGEM_CHEIA)   // ← valor a definir
     {
         VOLTAGEM::definir(VOLTAGEM::LEITURA::IDEAL);
     }
 }
 
 //====================================================================================
-//                   VOLTAGEM MANTENDO CARGA
+//                   VOLTAGEM MANTENDO CARGA (CONSUMO)
 //====================================================================================
 
 void Controle_Voltagem_Mantendo_Carga()
 {
     Controle_Voltagem_Atualiza();
 
-    if (monitoraVoltagem >= VOLTAGEM_CHEIA)
-    {
-        // Subiu de novo → volta para CHEIA
-        VOLTAGEM::definir(VOLTAGEM::LEITURA::CHEIA);
-    }
-        else if (monitoraVoltagem <= VOLTAGEM_CARGA_CONSUMIDA)
+        if (monitoraVoltagem <= VOLTAGEM_CARGA_CONSUMIDA)
         {
             // Desceu o suficiente → consumo realizado
             VOLTAGEM::definir(VOLTAGEM::LEITURA::CARGA_CONSUMIDA);
@@ -111,7 +106,7 @@ void Controle_Voltagem_Mantendo_Carga()
 }
 
 //====================================================================================
-//                   VOLTAGEM CONSUMO REALIZADO
+//                   VOLTAGEM CONSUMO REALIZADO (CONSUMIDO)
 //====================================================================================
 
 void Controle_Voltagem_Carga_Consumida()

@@ -132,7 +132,7 @@ bool Estado_Bateria_DevePersistir(BATERIA::SITUACAO estado)
 void EEPROM_Inicializa()
 {
     debugSetupArquivo();
-    debugSetupDivisao(COR::AMARELO, "GERÊNCIA BOMBA CASA INICIALIZANDO", COR::MAGENTA, "=", 45);
+    debugSetupDivisao(COR::AMARELO, "GERÊNCIA BOMBA CASA INICIALIZANDO", COR::MAGENTA, "=", 0);
 
     uint8_t valorLido = EEPROM.read(ENDERECO_ESTADO_SISTEMA);
 

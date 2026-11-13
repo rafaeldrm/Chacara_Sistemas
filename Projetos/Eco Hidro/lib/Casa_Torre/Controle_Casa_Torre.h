@@ -16,3 +16,5 @@ void Controle_Casa_Torre_Primeiro_Ciclo_Enchimento_Caixa();
 void Controle_Casa_Torre_Aguardando_Transferencia_Gravidade();
 
 void Controle_Casa_Torre_Segundo_Ciclo_Enchimento_Caixa();
+
+void Controle_Casa_Torre_Finalizado();

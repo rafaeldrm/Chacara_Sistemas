@@ -13,7 +13,7 @@
 
 void Mediador_Unidade_Potencia_Inicializa()
 {
-        debugSetupDivisao(COR::AMARELO, "MEDIADOR UNIDADE POTENCIA INICIALIZANDO", COR::MAGENTA, "=", 45);
+        debugSetupDivisao(COR::AMARELO, "MEDIADOR UNIDADE POTENCIA INICIALIZANDO", COR::MAGENTA, "=", 0);
 }
 
 //====================================================================================

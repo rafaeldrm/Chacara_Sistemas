@@ -26,7 +26,7 @@
 void MEDIADOR_BOOT()
 {
     debugSetupArquivo();
-    debugSetupDivisao(COR::AMARELO, "MEDIADOR INICIALIZANDO", COR::MAGENTA, "=", 45);
+    debugSetupDivisao(COR::AMARELO, "MEDIADOR INICIALIZANDO", COR::MAGENTA, "=", 0);
 
     Mediador_Casa_Torre_Inicializa();
 

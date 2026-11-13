@@ -11,7 +11,7 @@
 
 namespace LORA
 {
-namespace AUTENTICACAO
+namespace SEGURANCA
 {
 
 //====================================================================================
@@ -70,21 +70,21 @@ Sequencia Sequencia_LoRa::UltimaSaida() const
 //                   Classificar Recebida
 //====================================================================================
     
-ResultadoSequencia Sequencia_LoRa::ClassificarRecebida(Sequencia sequencia)
+SEQUENCIA_RESULTADO Sequencia_LoRa::ClassificarRecebida(Sequencia sequencia)
 {
     if (!sincronizada)
-        return ResultadoSequencia::INFERIOR;   // não deveria chegar aqui; rejeita por segurança
+        return SEQUENCIA_RESULTADO::INFERIOR;   // não deveria chegar aqui; rejeita por segurança
 
     if (sequencia > ultima_recebida)
     {
         ultima_recebida = sequencia;
-        return ResultadoSequencia::NOVA_MENSAGEM;
+        return SEQUENCIA_RESULTADO::NOVA_MENSAGEM;
     }
 
     if (sequencia == ultima_recebida)
-        return ResultadoSequencia::REPETICAO_INTERNA;
+        return SEQUENCIA_RESULTADO::REPETICAO_INTERNA;
 
-    return ResultadoSequencia::INFERIOR;
+    return SEQUENCIA_RESULTADO::INFERIOR;
 }
 
 //====================================================================================

@@ -17,7 +17,7 @@
 //                   SETUP
 //====================================================================================
 
-void SISTEMA_BATERIAS_BOOT()
+void BATERIAS_BOOT()
 {
     debugSetupArquivo();
     debugSetupTexto("=== SISTEMA BATERIAS BOOT ===", NEGRITO | MAGENTA | LINHA);
@@ -46,7 +46,7 @@ void SISTEMA_BATERIAS_BOOT()
 //                   LOOP
 //====================================================================================
 
-void SISTEMA_BATERIAS_LOOP()
+void BATERIAS_LOOP()
 {
     // 1. Atualiza tempo
     Tempo_Baterias_Atualiza();

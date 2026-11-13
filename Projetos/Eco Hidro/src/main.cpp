@@ -27,7 +27,7 @@
 //o script incrementa +1 no valor toda vez que fizer o upload do projeto para o arduino, compilação normal não ocorre contagem
 //é tipo um hodometro de quantos uploads já foram feitos para aquele arduino específico
 //por script em python automático no plataformio (/scripts/contador_upload.py)
-static uint16_t HODOMETRO_BOOTLOADER = 107;  //número é atualizado automaticamente a cada upload, esse valor representa quantos bootloader o arduino recebeu.
+static uint16_t HODOMETRO_BOOTLOADER = 114;  //número é atualizado automaticamente a cada upload, esse valor representa quantos bootloader o arduino recebeu.
 
 uint32_t CICLO_LOOP = 0;
 
@@ -37,6 +37,7 @@ uint32_t CICLO_LOOP = 0;
 
 void setup()
  {
+
     COMUNICACAO_BOOT();
 
     DEBUG_MODE();
@@ -77,6 +78,9 @@ void setup()
 
 void loop() 
 {
+    delay(5000);
+    CICLO_LOOP = CICLO_LOOP + 1;
+    debugVariavel( "LOOP : ", CICLO_LOOP, NEGRITO, VERDE, AMARELO );
     
     LORA_LOOP();
 

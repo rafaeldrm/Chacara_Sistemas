@@ -23,7 +23,7 @@ static bool bombaReservatorioAnterior = false;
 
 void Notificacao_Reservatorio_Inicializa()
 {
-        debugSetupDivisao(COR::AMARELO, "NOTIFICACAO RESERVATORIO INICIALIZANDO", COR::MAGENTA, "=", 45);
+        debugSetupDivisao(COR::AMARELO, "NOTIFICACAO RESERVATORIO INICIALIZANDO", COR::MAGENTA, "=", 0);
 }
 
 //====================================================================================

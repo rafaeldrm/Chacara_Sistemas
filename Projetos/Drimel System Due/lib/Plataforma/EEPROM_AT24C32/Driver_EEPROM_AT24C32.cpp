@@ -15,7 +15,7 @@
 
 void Driver_EEPROM_AT24C32_Inicializa()
 {
-        debugSetupDivisao(COR::AMARELO, "DRIVER EEPROM AT24C32 INICIALIZANDO", COR::MAGENTA, "=", 45);
+        debugSetupDivisao(COR::AMARELO, "DRIVER EEPROM AT24C32 INICIALIZANDO", COR::MAGENTA, "=", 0);
 }
 
 //====================================================================================

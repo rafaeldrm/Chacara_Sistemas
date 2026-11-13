@@ -12,15 +12,13 @@
 //                   VARIÁVEIS INTERNAS
 //====================================================================================
 
-
-
 //====================================================================================
 //                   SETUP
 //====================================================================================
 
 void Gerencia_Luz_Acesso_Reservatorio_Inicializa()
 {
-        debugSetupDivisao(COR::AMARELO, "GERÊNCIA LUZ ACESSO RESERVATÓRIO INICIALIZANDO", COR::MAGENTA, "=", 45);
+        debugSetupDivisao(COR::AMARELO, "GERÊNCIA LUZ ACESSO RESERVATÓRIO INICIALIZANDO", COR::MAGENTA, "=", 0);
         LUZ_ACESSO::definir(LUZ_ACESSO::SITUACAO::TEMPORIZADO);
 }
 
@@ -77,4 +75,3 @@ void Gerencia_Luz_Acesso_Reservatorio_Atualiza()
     }
 
 }
-

@@ -6,7 +6,7 @@
 
 namespace LORA
 {
-namespace AUTENTICACAO
+namespace SEGURANCA
 {
 
     // Calcula e valida o MAC (SipHash-2-4, implementação própria e portável).

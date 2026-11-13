@@ -8,10 +8,10 @@
 
 namespace LORA
 {
-namespace AUTENTICACAO
+namespace SEGURANCA
 {
 
-    enum class EventoAnalise : uint8_t
+    enum class ANALISE_EVENTO : uint8_t
     {
         NENHUM = 0,
         REPETICAO_INTERNA,
@@ -22,14 +22,14 @@ namespace AUTENTICACAO
 
     struct RegistroAnalise
     {
-        EventoAnalise evento = EventoAnalise::NENHUM;
+        ANALISE_EVENTO evento = ANALISE_EVENTO::NENHUM;
         Sequencia sequencia = 0;
     };
 
     class Analise_LoRa
     {
     public:
-        RegistroAnalise Classificar(ResultadoSequencia resultado, Sequencia sequencia) const;
+        RegistroAnalise Classificar(SEQUENCIA_RESULTADO resultado, Sequencia sequencia) const;
 
     };
 

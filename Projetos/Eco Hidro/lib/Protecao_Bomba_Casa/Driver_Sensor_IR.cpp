@@ -21,7 +21,7 @@ static const uint8_t pinoEN  = pino(ARDUINO_CONEXAO::SENSOR::IR_EN);
 
 void Driver_Sensor_IR_Inicializa()
 {
-            debugSetupDivisao(COR::AMARELO, "DRIVER SENSOR IR INICIALIZANDO", COR::MAGENTA, "=", 45);
+            debugSetupDivisao(COR::AMARELO, "DRIVER SENSOR IR INICIALIZANDO", COR::MAGENTA, "=", 0);
             
     pinMode(pinoOUT, INPUT); 
     pinMode(pinoEN, OUTPUT); 

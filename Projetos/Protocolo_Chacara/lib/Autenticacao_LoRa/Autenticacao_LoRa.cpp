@@ -11,7 +11,7 @@
 
 void Autenticacao_LoRa_Inicializa()
 {
-        debugSetupDivisao(COR::AMARELO, "AUTENTICACAO LORA INICIALIZANDO", COR::MAGENTA, "=", 45);
+        debugSetupDivisao(COR::AMARELO, "AUTENTICACAO LORA INICIALIZANDO", COR::MAGENTA, "=", 0);
 }
 
 //====================================================================================
@@ -20,7 +20,7 @@ void Autenticacao_LoRa_Inicializa()
 
 namespace LORA
 {
-namespace AUTENTICACAO
+namespace SEGURANCA
 {
 
     namespace
@@ -74,24 +74,24 @@ namespace AUTENTICACAO
 
 
 
-    ResultadoAutenticacao Autenticacao_LoRa::ReceberRespostaBoot(const Pacote& resposta)
+    AUTENTICACAO_RESULTADO Autenticacao_LoRa::ReceberRespostaBoot(const Pacote& resposta)
     {
-        if (estado.Obter() != EstadoComunicacao::SINCRONIZANDO)
-            return ResultadoAutenticacao::BOOT_INVALIDO;
+        if (estado.Obter() != ESTADO_COMUNICACAO::SINCRONIZANDO)
+            return AUTENTICACAO_RESULTADO::BOOT_INVALIDO;
 
         if (resposta.codigo != (uint8_t)ESPECIAL::CODIGO::BOOT_RESPOSTA)
-            return ResultadoAutenticacao::BOOT_INVALIDO;
+            return AUTENTICACAO_RESULTADO::BOOT_INVALIDO;
 
         uint8_t buffer[TAMANHO_ASSINADO + 4];
         MontarBufferBoot(resposta, nonce_boot, buffer);
 
         if (!mac.Validar(buffer, sizeof(buffer), chave, resposta.mac))
-            return ResultadoAutenticacao::MAC_INVALIDO;
+            return AUTENTICACAO_RESULTADO::MAC_INVALIDO;
 
         sequencia.Sincronizar(resposta.getSequencia());
         estado.TornarOperacional();
 
-        return ResultadoAutenticacao::BOOT_ACEITO;
+        return AUTENTICACAO_RESULTADO::BOOT_ACEITO;
     }
 
 //====================================================================================
@@ -105,13 +105,13 @@ namespace AUTENTICACAO
 
 
 
-    ResultadoAutenticacao Autenticacao_LoRa::ReceberPedidoBoot(const Pacote& pedido, Pacote& resposta)
+    AUTENTICACAO_RESULTADO Autenticacao_LoRa::ReceberPedidoBoot(const Pacote& pedido, Pacote& resposta)
     {
         if (pedido.codigo != (uint8_t)ESPECIAL::CODIGO::BOOT)
-            return ResultadoAutenticacao::BOOT_INVALIDO;
+            return AUTENTICACAO_RESULTADO::BOOT_INVALIDO;
 
         if (!mac.Validar((const uint8_t*)&pedido, TAMANHO_ASSINADO, chave, pedido.mac))
-            return ResultadoAutenticacao::MAC_INVALIDO;
+            return AUTENTICACAO_RESULTADO::MAC_INVALIDO;
 
         const uint32_t nonce = pedido.getSequencia();
 
@@ -142,7 +142,7 @@ namespace AUTENTICACAO
         MontarBufferBoot(resposta, nonce, buffer);
         mac.Gerar(buffer, sizeof(buffer), chave, resposta.mac);
 
-        return ResultadoAutenticacao::BOOT_ACEITO;
+        return AUTENTICACAO_RESULTADO::BOOT_ACEITO;
     }
 
 //====================================================================================
@@ -156,7 +156,7 @@ namespace AUTENTICACAO
 
 
 
-    EstadoComunicacao Autenticacao_LoRa::ObterEstado() const
+    ESTADO_COMUNICACAO Autenticacao_LoRa::ObterEstado() const
     {
         return estado.Obter();
     }
@@ -179,24 +179,24 @@ namespace AUTENTICACAO
 //                   VALIDAR
 //====================================================================================
 
-    ResultadoAutenticacao Autenticacao_LoRa::Validar(const Pacote& p, RegistroAnalise* registro)
+    AUTENTICACAO_RESULTADO Autenticacao_LoRa::Validar(const Pacote& p, RegistroAnalise* registro)
     {
         if (!estado.PodeTransmitirNormalmente())
-            return ResultadoAutenticacao::NAO_SINCRONIZADO;
+            return AUTENTICACAO_RESULTADO::NAO_SINCRONIZADO;
 
         if (!mac.Validar((const uint8_t*)&p, TAMANHO_ASSINADO, chave, p.mac))
-            return ResultadoAutenticacao::MAC_INVALIDO;
+            return AUTENTICACAO_RESULTADO::MAC_INVALIDO;
 
-        const ResultadoSequencia resultado = sequencia.ClassificarRecebida(p.getSequencia());
+        const SEQUENCIA_RESULTADO resultado = sequencia.ClassificarRecebida(p.getSequencia());
 
         if (registro != nullptr)
             *registro = analise.Classificar(resultado, p.getSequencia());
 
         switch (resultado)
         {
-        case ResultadoSequencia::NOVA_MENSAGEM:     return ResultadoAutenticacao::NOVA_MENSAGEM;
-        case ResultadoSequencia::REPETICAO_INTERNA: return ResultadoAutenticacao::REPETICAO_INTERNA;
-        default:                                    return ResultadoAutenticacao::SEQUENCIA_INFERIOR;
+        case SEQUENCIA_RESULTADO::NOVA_MENSAGEM:     return AUTENTICACAO_RESULTADO::NOVA_MENSAGEM;
+        case SEQUENCIA_RESULTADO::REPETICAO_INTERNA: return AUTENTICACAO_RESULTADO::REPETICAO_INTERNA;
+        default:                                    return AUTENTICACAO_RESULTADO::SEQUENCIA_INFERIOR;
         }
     }
 

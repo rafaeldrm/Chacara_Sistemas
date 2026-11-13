@@ -19,7 +19,7 @@
 void UNIDADE_POTENCIA_BOOT()
 {
 		debugSetupArquivo();
-		debugSetupDivisao(COR::AMARELO, "SISTEMA UNIDADE POTENCIA INICIALIZANDO", COR::MAGENTA, "=", 45);
+		debugSetupDivisao(COR::AMARELO, "SISTEMA UNIDADE POTENCIA INICIALIZANDO", COR::MAGENTA, "=", 0);
 	
 	Gerencia_Unidade_Potencia_Inicializa();
 

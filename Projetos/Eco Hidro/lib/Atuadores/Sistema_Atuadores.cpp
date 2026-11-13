@@ -23,7 +23,7 @@ void ATUADORES_BOOT()
 {
 
     debugSetupArquivo();
-    debugSetupDivisao(COR::AMARELO,  "SISTEMA ATUADORES INICIALIZANDO", COR::MAGENTA, "=", 45);
+    debugSetupDivisao(COR::AMARELO,  "SISTEMA ATUADORES INICIALIZANDO", COR::MAGENTA, "=", 0);
     
     Modulo_Reles_Inicializa();
 

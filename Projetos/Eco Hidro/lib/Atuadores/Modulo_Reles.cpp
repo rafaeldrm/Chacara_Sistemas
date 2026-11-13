@@ -127,7 +127,7 @@ void Modulo_Rele::Alternar() {
 
 void Modulo_Reles_Inicializa() {
 
-    debugSetupDivisao(COR::AMARELO, "MÓDULO RELES INICIALIZANDO", COR::MAGENTA, "=", 45); 
+    debugSetupDivisao(COR::AMARELO, "MÓDULO RELES INICIALIZANDO", COR::MAGENTA, "=", 0); 
        
     debugLoopTexto("Iniciando Relé ARMA_RELES_12V : ", AMARELO);
     RELE_ARMA_RELES_12V.Inicializa();

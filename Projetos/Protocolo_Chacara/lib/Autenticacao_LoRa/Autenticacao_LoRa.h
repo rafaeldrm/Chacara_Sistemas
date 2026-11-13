@@ -11,10 +11,10 @@
 
 namespace LORA
 {
-namespace AUTENTICACAO
+namespace SEGURANCA
 {
 
-    enum class ResultadoAutenticacao : uint8_t
+    enum class AUTENTICACAO_RESULTADO : uint8_t
     {
         NOVA_MENSAGEM = 0,      // aceita: pode processar
         REPETICAO_INTERNA,      // cópia da mesma mensagem: ignorar
@@ -32,18 +32,18 @@ namespace AUTENTICACAO
 
         // ---- BOOT: lado do SISTEMA (Eco Hidro, Solarius24, Gate Drimel...)
         void MontarPedidoBoot(Pacote& pedido, SISTEMA destino, SISTEMA remetente, uint32_t nonce);
-        ResultadoAutenticacao ReceberRespostaBoot(const Pacote& resposta);
+        AUTENTICACAO_RESULTADO ReceberRespostaBoot(const Pacote& resposta);
 
         // ---- BOOT: lado do DRIMEL SYSTEM
         void IniciarBoot();
-        ResultadoAutenticacao ReceberPedidoBoot(const Pacote& pedido, Pacote& resposta);
+        AUTENTICACAO_RESULTADO ReceberPedidoBoot(const Pacote& pedido, Pacote& resposta);
 
         // ---- Operação normal (os dois lados)
         bool EstaOperacional() const;
-        EstadoComunicacao ObterEstado() const;
+        ESTADO_COMUNICACAO ObterEstado() const;
 
         bool Assinar(Pacote& p);
-        ResultadoAutenticacao Validar(const Pacote& p, RegistroAnalise* registro = nullptr);
+        AUTENTICACAO_RESULTADO Validar(const Pacote& p, RegistroAnalise* registro = nullptr);
 
     private:
         Chave chave = {};

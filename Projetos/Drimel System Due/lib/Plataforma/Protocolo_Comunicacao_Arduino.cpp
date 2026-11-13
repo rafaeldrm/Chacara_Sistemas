@@ -20,7 +20,7 @@ void COMUNICACAO_BOOT()
         Serial.begin(115200);
 
         debugSetupArquivo();
-        debugSetupDivisao(COR::AMARELO,  "SERIAL UART (TX / RX) ", COR::MAGENTA, "=", 45);
+        debugSetupDivisao(COR::AMARELO,  "SERIAL UART (TX / RX) ", COR::MAGENTA, "=", 0);
         debugOk("Comunicação Serial Iniciado");
         debugSetupTexto("Baud de 115200 selecionado para melhor performance e estabilidade.", LINHA);
 

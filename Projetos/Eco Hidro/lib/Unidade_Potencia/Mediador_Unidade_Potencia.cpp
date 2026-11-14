@@ -25,37 +25,34 @@ static void Mediador_Unidade_Potencia_Aparelho_Aguardando_Liberacao()
     const auto bombaCasa = BOMBA_CASA::atual();
     const auto bombaReservatorio = BOMBA_12V::atual();
     // const auto portao = PORTAO::atual(); //não tem FSM ainda.
-    const auto potencia = POTENCIA::atual();
+    const auto unidadePotencia = UNIDADE_POTENCIA::atual();
     
 
     //============ BOMBA CASA ==========================
 
     if (bombaCasa == BOMBA_CASA::ESTAGIOS::AGUARDA_LIBERACAO
-        && potencia == POTENCIA::SELECIONADO::REPOUSO)
+        && unidadePotencia == UNIDADE_POTENCIA::ESTAGIOS::REPOUSO)
     {
-        POTENCIA::definir(POTENCIA::SELECIONADO::BOMBA_CASA);
         UNIDADE_POTENCIA::definir(UNIDADE_POTENCIA::ESTAGIOS::ACIONAMENTO_RELES);
-        VOLTAGEM::definir(VOLTAGEM::LEITURA::CARGA_PRIORIDADE);
     }
 
     //============ BOMBA 12V ==========================
 
-    if (bombaReservatorio == BOMBA_12V::ESTAGIOS::AGUARDA_LIBERACAO
-        && potencia == POTENCIA::SELECIONADO::REPOUSO
-        && bombaCasa == BOMBA_CASA::ESTAGIOS::REPOUSO) //bomba casa trava especial (prioridade)
+      if (bombaReservatorio == BOMBA_12V::ESTAGIOS::AGUARDA_LIBERACAO
+        && unidadePotencia == UNIDADE_POTENCIA::ESTAGIOS::REPOUSO)
     {
-        POTENCIA::definir(POTENCIA::SELECIONADO::BOMBA_12V);
         UNIDADE_POTENCIA::definir(UNIDADE_POTENCIA::ESTAGIOS::ACIONAMENTO_RELES);
+        
     }
 
     //============ PORTÃO ==========================
 /*
-    if (PORTAO::atual() == PORTAO::ESTAGIOS::AGUARDA_LIBERACAO
-        && potencia == POTENCIA::SELECIONADO::REPOUSO)
+      if (portao == PORTAO_ELETRONICO::ESTAGIOS::AGUARDA_LIBERACAO
+        && unidadePotencia == UNIDADE_POTENCIA::ESTAGIOS::REPOUSO)
     {
-        POTENCIA::definir(POTENCIA::SELECIONADO::PORTAO);
         UNIDADE_POTENCIA::definir(UNIDADE_POTENCIA::ESTAGIOS::ACIONAMENTO_RELES);
     }
+
         */
 }
 
@@ -76,8 +73,7 @@ static void Mediador_Unidade_Potencia_Desligando()
         && bombaCasa == BOMBA_CASA::ESTAGIOS::REPOUSO
         && potencia == POTENCIA::SELECIONADO::BOMBA_CASA)
     {
-        POTENCIA::definir(POTENCIA::SELECIONADO::REPOUSO);
-        UNIDADE_POTENCIA::definir(UNIDADE_POTENCIA::ESTAGIOS::DESLIGANDO);
+            UNIDADE_POTENCIA::definir(UNIDADE_POTENCIA::ESTAGIOS::DESLIGANDO);
     }
 
     // ============= BOMBA 12V ==========================
@@ -85,7 +81,6 @@ static void Mediador_Unidade_Potencia_Desligando()
         && bombaReservatorio == BOMBA_12V::ESTAGIOS::REPOUSO
         && potencia == POTENCIA::SELECIONADO::BOMBA_12V)
     {
-        POTENCIA::definir(POTENCIA::SELECIONADO::REPOUSO);
         UNIDADE_POTENCIA::definir(UNIDADE_POTENCIA::ESTAGIOS::DESLIGANDO);
     }
 
@@ -94,7 +89,6 @@ static void Mediador_Unidade_Potencia_Desligando()
         && portao == PORTAO::ESTAGIOS::REPOUSO
         && potencia == POTENCIA::SELECIONADO::PORTAO)
     {
-        POTENCIA::definir(POTENCIA::SELECIONADO::REPOUSO);
         UNIDADE_POTENCIA::definir(UNIDADE_POTENCIA::ESTAGIOS::DESLIGANDO);
     }
     */

@@ -69,7 +69,7 @@ static void Mediador_Luz_Estacionamento_Desligamento()
 {
     const auto potencia = POTENCIA::atual();
     const auto luzEstacionamento = LUZ_ESTACIONAMENTO::atual();
-    const auto ordemLuzAcesso = ORDENS_DRIMEL_SYSTEM::LUZ_ESTACIONAMENTO::atual();
+    const auto ordemLuzEstacionamento = ORDENS_DRIMEL_SYSTEM::LUZ_ESTACIONAMENTO::atual();
     const auto voltagem = VOLTAGEM::atual();
 
     //========= VOLTAGEM CRÍTICO =================================================================
@@ -82,9 +82,9 @@ static void Mediador_Luz_Estacionamento_Desligamento()
 
     }
 
-    //====== ORDEM DRIMEL SYSTEM DESLIGAMENTO LUZ ACESSO AO RESERVATÓRIO =========================
+    //====== ORDEM DRIMEL SYSTEM DESLIGAMENTO LUZ ESTACIONAMENTO =========================
 
-    if (ordemLuzAcesso == ORDENS_DRIMEL_SYSTEM::LUZ_ESTACIONAMENTO::ORDEM::DESLIGA)
+    if (ordemLuzEstacionamento == ORDENS_DRIMEL_SYSTEM::LUZ_ESTACIONAMENTO::ORDEM::DESLIGA)
     {
     
         LUZ_ESTACIONAMENTO::definir(LUZ_ESTACIONAMENTO::SITUACAO::DESLIGANDO);
@@ -92,7 +92,7 @@ static void Mediador_Luz_Estacionamento_Desligamento()
 
     }
 
-    //======== DESLIGAMENTO DA LUZ DE ACESSO AO RESERVATÓRIO VOLTAGEM BAIXA ======================
+    //======== DESLIGAMENTO DA LUZ ESTACIONAMENTO VOLTAGEM BAIXA ======================
 
     if (voltagem == VOLTAGEM::LEITURA::CRITICO &&
         (luzEstacionamento == LUZ_ESTACIONAMENTO::SITUACAO::ACIONADO
@@ -119,14 +119,14 @@ static void Mediador_Luz_Estacionamento_Desligamento()
     }
 
 //====================================================================================
-//                   LUZ ACESSORESERVATÓRIO - ACIONAMENTO PELO DRIMEL SYSTEM
+//                   LUZ ESTACIONAMENTO - ACIONAMENTO PELO DRIMEL SYSTEM
 //====================================================================================
 
 static void Mediador_Luz_Estacionamento_Acionamento_Drimel_System()
 {
-    const auto ordemLuzAcesso = ORDENS_DRIMEL_SYSTEM::LUZ_ESTACIONAMENTO::atual();
+    const auto ordemLuzEstacionamento = ORDENS_DRIMEL_SYSTEM::LUZ_ESTACIONAMENTO::atual();
 
-    if (ordemLuzAcesso == ORDENS_DRIMEL_SYSTEM::LUZ_ESTACIONAMENTO::ORDEM::ACIONADO)
+    if (ordemLuzEstacionamento == ORDENS_DRIMEL_SYSTEM::LUZ_ESTACIONAMENTO::ORDEM::ACIONADO)
     {
 
         LUZ_ESTACIONAMENTO::definir(LUZ_ESTACIONAMENTO::SITUACAO::ACIONADO);

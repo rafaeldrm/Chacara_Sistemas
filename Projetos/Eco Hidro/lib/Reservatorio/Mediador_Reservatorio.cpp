@@ -47,7 +47,6 @@ static void Mediador_Reservatorio_Prepara_Transferencia_Agua()
     const auto casaTorre = CASA_TORRE::atual();
     const auto bateria = VOLTAGEM::atual();
     const auto reservatorio = RESERVATORIO::atual();
-    const auto bomba12V = BOMBA_12V::atual();
     const auto sistemaModo = SISTEMA_ECO_HIDRO::atual();
     const auto potencia = POTENCIA::atual();
 
@@ -67,6 +66,22 @@ static void Mediador_Reservatorio_Prepara_Transferencia_Agua()
     {
         RESERVATORIO::definir(RESERVATORIO::TRANSFERENCIA::LIBERADO);
         BOMBA_12V::definir(BOMBA_12V::ESTAGIOS::LIBERADO);
+    }
+}
+
+//====================================================================================
+//                   COORDENA ACIONAMENTO BOMBA RESERVATÓRIO
+//====================================================================================
+
+static void Mediador_Reservatorio_Aciona_Bomba_12V()
+{
+    const auto bombaReservatorio = BOMBA_12V::atual();
+    const auto reservatorio = RESERVATORIO::atual();
+
+    if (reservatorio == RESERVATORIO::TRANSFERENCIA::LIBERADO
+    && bombaReservatorio == BOMBA_12V::ESTAGIOS::AGUARDA_LIBERACAO)
+    {
+        BOMBA_12V::definir(BOMBA_12V::ESTAGIOS::LIGANDO_BOMBA);
     }
 }
 
@@ -115,6 +130,8 @@ void Mediador_Reservatorio_Atualiza()
     Mediador_Reservatorio_Prepara_Transferencia_Agua();
 
     Mediador_Reservatorio_Transferencia_Finalizada();
+
+    Mediador_Reservatorio_Aciona_Bomba_12V();
 
     Mediador_Reservatorio_Libera_Para_Novo_Ciclo();   // sempre depois do desliga
 }

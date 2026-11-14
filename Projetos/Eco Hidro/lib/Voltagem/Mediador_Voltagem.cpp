@@ -59,7 +59,7 @@ static void Mediador_Voltagem_Carga_Prioridade()
 //                   VOLTAGEM SAINDO DE CARGA PRIORIDADE
 //====================================================================================
 
-static void Mediador_Voltagem_Retorna_Prioridade_Normal()
+static void Mediador_Voltagem_Retorna_Normal()
 {
     const auto voltagem = VOLTAGEM::atual();
     const auto potencia = POTENCIA::atual();
@@ -83,5 +83,5 @@ void Mediador_Voltagem_Atualiza()
 
     Mediador_Voltagem_Carga_Prioridade();
 
-    Mediador_Voltagem_Retorna_Prioridade_Normal();
+    Mediador_Voltagem_Retorna_Normal();
 }

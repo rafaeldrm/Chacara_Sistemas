@@ -144,7 +144,8 @@ namespace LUZ_ESTACIONAMENTO
 enum class SITUACAO : uint8_t                        
  {                        
        DESLIGADO,   
-       DESLIGANDO,                     
+       DESLIGANDO,
+       INICIANDO_TEMPORIZACAO,                     
        TEMPORIZADO,                        
        FORCADO,   
        CONSUMINDO,
@@ -171,7 +172,8 @@ namespace LUZ_ACESSO
 enum class SITUACAO : uint8_t                    
  {                    
        DESLIGADO,   
-       DESLIGANDO,                   
+       DESLIGANDO,
+       INICIANDO_TEMPORIZACAO,                  
        TEMPORIZADO,   
        FORCADO,   
        CONSUMINDO,

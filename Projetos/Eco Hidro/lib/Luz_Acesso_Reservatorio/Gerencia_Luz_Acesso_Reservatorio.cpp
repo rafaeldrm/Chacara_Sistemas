@@ -45,6 +45,13 @@ void Gerencia_Luz_Acesso_Reservatorio_Atualiza()
         
     break;
 
+    //==========================================================
+    case LUZ_ACESSO::SITUACAO::INICIANDO_TEMPORIZACAO:
+
+        Controle_Luz_Acesso_Reservatorio_Iniciando_Temporizacao();
+
+    break;
+
     //========================================================
     case LUZ_ACESSO::SITUACAO::TEMPORIZADO:
 
@@ -59,12 +66,15 @@ void Gerencia_Luz_Acesso_Reservatorio_Atualiza()
 
     break;
 
-        //========================================================
+    //========================================================
+
     case LUZ_ACESSO::SITUACAO::CONSUMINDO:
 
         Controle_Luz_Acesso_Reservatorio_Consumindo();
 
     break;
+
+    //========================================================
 
     case LUZ_ACESSO::SITUACAO::ACIONADO:
 

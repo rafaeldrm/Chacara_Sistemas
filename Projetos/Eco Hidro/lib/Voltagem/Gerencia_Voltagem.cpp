@@ -79,6 +79,14 @@
 
 //============================================================================
 
+        case VOLTAGEM::LEITURA::CARGA_PRIORIDADE:
+
+        // não tem função
+        
+        break;
+
+//============================================================================
+
         default:
 
             VOLTAGEM::definir(VOLTAGEM::LEITURA::NORMAL);

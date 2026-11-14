@@ -12,13 +12,15 @@
 struct estadosEventosEcoHidro                               
 {                                                    
     ORDENS_DRIMEL_SYSTEM::CASA_TORRE::ORDEM ordemCasaTorre;
+    ORDENS_DRIMEL_SYSTEM::RESERVATORIO::ORDEM ordemReservatorio;
     ORDENS_DRIMEL_SYSTEM::LUZ_ACESSO::ORDEM ordemLuzAcesso;
-        ORDENS_DRIMEL_SYSTEM::LUZ_ESTACIONAMENTO::ORDEM ordemLuzEstacionamento;                     
+    ORDENS_DRIMEL_SYSTEM::LUZ_ESTACIONAMENTO::ORDEM ordemLuzEstacionamento;                     
 };                              
                               
 static estadosEventosEcoHidro estado =                               
 {                               
     ORDENS_DRIMEL_SYSTEM::CASA_TORRE::ORDEM::NENHUM,
+    ORDENS_DRIMEL_SYSTEM::RESERVATORIO::ORDEM::NENHUM,
     ORDENS_DRIMEL_SYSTEM::LUZ_ACESSO::ORDEM::NENHUM,
     ORDENS_DRIMEL_SYSTEM::LUZ_ESTACIONAMENTO::ORDEM::NENHUM,
 };                              
@@ -33,6 +35,11 @@ static estadosEventosEcoHidro estado =
    
 namespace ORDENS_DRIMEL_SYSTEM   
 {   
+
+    //====================================================================================
+    //                   CASA TORRE
+    //====================================================================================
+    
     namespace CASA_TORRE   
     {   
         void definir(ORDEM novo)   
@@ -62,6 +69,42 @@ namespace ORDENS_DRIMEL_SYSTEM
         }   
     }   
 
+    //====================================================================================
+    //                   RESERVATÓRIO
+    //====================================================================================
+    
+     namespace RESERVATORIO
+     {
+             void definir(ORDEM novo)   
+        {   
+            if (estado.ordemReservatorio == novo) return;   
+            estado.ordemReservatorio = novo;   
+            debugVariavel("ORDEM ordemReservatorio : ", texto(novo), LINHA, VERDE, AMARELO);   
+        }   
+   
+        ORDEM atual()   
+        {   
+            return estado.ordemReservatorio;   
+        }   
+   
+        const __FlashStringHelper* texto(ORDEM a)   
+        {   
+            switch(a)   
+            {   
+                case ORDEM::NENHUM:                                 return F("NENHUM");   
+                case ORDEM::TRANSFERENCIA_ENTRE_RESERVATORIOS:      return F("TRANSFERENCIA_ENNTRE_RESERVATORIOS");
+                case ORDEM::BLOQUEIA:                               return F("BLOQUEIA");   
+                case ORDEM::DESLIGA:                                return F("DESLIGA");   
+   
+                default:                return F("DESCONHECIDO");   
+            }   
+        }   
+    }   
+
+    //====================================================================================
+    //                   LUZ ACESSO AO RESERVATÓRIO
+    //====================================================================================
+    
      namespace LUZ_ACESSO   
     {   
         void definir(ORDEM novo)   
@@ -91,6 +134,10 @@ namespace ORDENS_DRIMEL_SYSTEM
         }   
     }   
 
+    //====================================================================================
+    //                   LUZ ESTACIONAMENTO
+    //====================================================================================
+    
      namespace LUZ_ESTACIONAMENTO   
     {   
         void definir(ORDEM novo)   

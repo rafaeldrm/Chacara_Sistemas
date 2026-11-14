@@ -11,6 +11,8 @@ void Controle_Luz_Estacionamento_Inicializa();
  
 void Controle_Luz_Estacionamento_Atualiza(); 
 
+void Controle_Luz_Estacionamento_Iniciando_Temporizacao();
+
 void Controle_Luz_Estacionamento_Temporizado();
 
 void Controle_Luz_Estacionamento_Forcado();

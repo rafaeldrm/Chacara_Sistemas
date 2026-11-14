@@ -10,6 +10,7 @@
 #include "Controle_Bomba_Casa.h"
 #include "Gerencia_Bomba_Casa.h"
 #include "Notificacao_Casa_Torre.h"
+#include "Ordem_LoRa_Casa_Torre.h"
 
 //====================================================================================  
 //                   VARIÁVEIS INTERNAS  
@@ -26,6 +27,8 @@
     debugSetupArquivo();
     debugSetupDivisao(COR::AMARELO, "SISTEMA CASA TORRE INICIALIZANDO", COR::MAGENTA, "=", 0);
 
+    Ordem_LoRa_Casa_Torre_Inicializa();
+        
     Gerencia_Casa_Torre_Inicializa();
  
     Controle_Casa_Torre_Inicializa();
@@ -43,6 +46,8 @@
  
  void CASA_TORRE_LOOP()
 {
+    Ordem_LoRa_Casa_Torre_Atualiza();
+
     Gerencia_Casa_Torre_Atualiza();
 
     Gerencia_Bomba_Casa_Atualiza();

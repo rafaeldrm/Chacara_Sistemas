@@ -47,6 +47,13 @@ void Gerencia_Luz_Estacionamento_Atualiza()
         
     break;
 
+    //===========================================================
+    case LUZ_ESTACIONAMENTO::SITUACAO::INICIANDO_TEMPORIZACAO:
+
+        Controle_Luz_Estacionamento_Iniciando_Temporizacao();
+
+    break;
+
     //========================================================
     case LUZ_ESTACIONAMENTO::SITUACAO::TEMPORIZADO:
 

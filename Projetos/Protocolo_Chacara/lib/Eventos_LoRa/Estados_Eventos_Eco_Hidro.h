@@ -14,6 +14,10 @@
 namespace ORDENS_DRIMEL_SYSTEM   
 {   
 
+      //====================================================================================
+      //                   CASA TORRE
+      //====================================================================================
+
       namespace CASA_TORRE   
       {   
             enum class ORDEM : uint8_t   
@@ -31,6 +35,30 @@ namespace ORDENS_DRIMEL_SYSTEM
          
       }
 
+      //====================================================================================
+      //                   RESERVATÓRIO
+      //====================================================================================
+      
+      namespace RESERVATORIO
+      {
+            enum class ORDEM : uint8_t
+            {
+                  NENHUM,
+                  TRANSFERENCIA_ENTRE_RESERVATORIOS,
+                  BLOQUEIA,
+                  DESLIGA,
+            };
+
+      void definir(ORDEM novo);
+      ORDEM atual();
+      const __FlashStringHelper* texto(ORDEM s);
+
+      }
+
+      //====================================================================================
+      //                   LUZ ACESSO RESERVATÓRIO
+      //====================================================================================
+      
       namespace LUZ_ACESSO   
       {   
             enum class ORDEM : uint8_t   
@@ -48,6 +76,10 @@ namespace ORDENS_DRIMEL_SYSTEM
          
       } 
 
+      //====================================================================================
+      //                   LUZ ESTACIONAMENTO
+      //====================================================================================
+      
       namespace LUZ_ESTACIONAMENTO  
       {   
             enum class ORDEM : uint8_t   

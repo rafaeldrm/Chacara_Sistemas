@@ -9,6 +9,8 @@
  
 void Controle_Luz_Acesso_Reservatorio_Inicializa();
 
+void Controle_Luz_Acesso_Reservatorio_Iniciando_Temporizacao();
+
 void Controle_Luz_Acesso_Reservatorio_Temporizado();
 
 void Controle_Luz_Acesso_Reservatorio_Forcado();

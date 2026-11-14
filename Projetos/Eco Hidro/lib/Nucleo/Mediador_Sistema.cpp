@@ -6,7 +6,6 @@
 #include "DEBUG_MODE.h"
 
 #include "Estados_Sistema_Eco_Hidro.h"
-#include "Estados_Eventos_Eco_Hidro.h"
 
 #include "Mediador_Casa_Torre.h"
 #include "Mediador_Reservatorio.h"
@@ -14,6 +13,7 @@
 #include "Mediador_Luz_Acesso_Reservatorio.h"
 #include "Mediador_Voltagem.h"
 #include "Mediador_Unidade_Potencia.h"
+#include "Mediador_Potencia.h"
 
 //====================================================================================
 //                   VARIÁVEIS INTERNAS
@@ -39,6 +39,8 @@ void MEDIADOR_BOOT()
     Mediador_Luz_Acesso_Reservatorio_Inicializa();
 
     Mediador_Unidade_Potencia_Inicializa();
+
+    Mediador_Potencia_Inicializa();
 
     //--------------------------------------------------------------------------------
     //  ESTADOS INICIAIS
@@ -67,4 +69,5 @@ void MEDIADOR_LOOP()
 
     Mediador_Unidade_Potencia_Atualiza();
 
+    Mediador_Potencia_Atualiza();
 }

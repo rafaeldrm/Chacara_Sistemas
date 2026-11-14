@@ -84,7 +84,7 @@ void Controle_Voltagem_Cheia()
     Controle_Voltagem_Atualiza();
 
     // Saída por queda de tensão é do Controle. Saída "para as luzes" é do Mediador.
-    if (monitoraVoltagem <= VOLTAGEM_CHEIA)   // ← valor a definir
+    if (monitoraVoltagem <= VOLTAGEM_IDEAL)   // ← valor a definir
     {
         VOLTAGEM::definir(VOLTAGEM::LEITURA::IDEAL);
     }

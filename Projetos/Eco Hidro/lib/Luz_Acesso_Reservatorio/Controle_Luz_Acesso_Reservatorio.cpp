@@ -26,8 +26,21 @@ static CRONOMETRO::Temporizador tempoLuzAcessoReservatorio;
 void Controle_Luz_Acesso_Reservatorio_Inicializa()
 {
         debugSetupDivisao(COR::AMARELO, "CONTROLE LUZ ACESSO RESERVATÓRIO INICIALIZANDO", COR::MAGENTA, "=", 0);
-    
-        tempoLuzAcessoReservatorio.Cronometro_Iniciar();
+
+        LUZ_ACESSO::definir(LUZ_ACESSO::SITUACAO::INICIANDO_TEMPORIZACAO);
+}
+
+//====================================================================================
+//                   INICIA TEMPORIZAÇÃO DA LUZ
+//====================================================================================
+
+void Controle_Luz_Acesso_Reservatorio_Iniciando_Temporizacao()
+{
+
+    tempoLuzAcessoReservatorio.Cronometro_Iniciar();
+
+    LUZ_ACESSO::definir(LUZ_ACESSO::SITUACAO::TEMPORIZADO);
+
 }
 
 //====================================================================================

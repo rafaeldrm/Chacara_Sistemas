@@ -264,7 +264,8 @@ namespace LUZ_ESTACIONAMENTO
         switch(a)                        
         {                        
             case SITUACAO::DESLIGADO:                                 return F("DESLIGADO");     
-            case SITUACAO::DESLIGANDO:                                return F("DESLIGANDO");                     
+            case SITUACAO::DESLIGANDO:                                return F("DESLIGANDO");
+            case SITUACAO::INICIANDO_TEMPORIZACAO:                    return F("INICIANDO_TEMPORIZACAO");                     
             case SITUACAO::TEMPORIZADO:                               return F("TEMPORIZADO");                        
             case SITUACAO::FORCADO:                                   return F("FORCADO");   
             case SITUACAO::CONSUMINDO:                                return F("CONSUMINDO");
@@ -302,7 +303,8 @@ namespace LUZ_ACESSO
         switch(a)                    
         {                    
             case SITUACAO::DESLIGADO:                                 return F("DESLIGADO");     
-            case SITUACAO::DESLIGANDO:                                return F("DESLIGANDO");                 
+            case SITUACAO::DESLIGANDO:                                return F("DESLIGANDO");
+            case SITUACAO::INICIANDO_TEMPORIZACAO:                    return F("INICIANDO_TEMPORIZACAO");                 
             case SITUACAO::TEMPORIZADO:                               return F("TEMPORIZADO");   
             case SITUACAO::FORCADO:                                   return F("FORCADO");   
             case SITUACAO::CONSUMINDO:                                return F("CONSUMINDO");

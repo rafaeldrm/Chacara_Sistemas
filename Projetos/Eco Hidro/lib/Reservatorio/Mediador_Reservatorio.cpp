@@ -22,10 +22,27 @@ void Mediador_Reservatorio_Inicializa()
 }
 
 //====================================================================================
+//                   ORDEM DRIMEL SYSTEM - TRANSFERÊNCIA DE ÁGUA ENTRE RESERVATÓRIOS
+//====================================================================================
+
+static void Mediador_Reservatorio_Ordem_Transferencia_Reservatorios()
+{
+
+    const auto ordemReservatorio = ORDENS_DRIMEL_SYSTEM::RESERVATORIO::atual();
+
+    if (ordemReservatorio == ORDENS_DRIMEL_SYSTEM::RESERVATORIO::ORDEM::TRANSFERENCIA_ENTRE_RESERVATORIOS)
+    {
+        RESERVATORIO::definir(RESERVATORIO::TRANSFERENCIA::LIBERADO);
+        BOMBA_12V::definir(BOMBA_12V::ESTAGIOS::LIBERADO);
+        ORDENS_DRIMEL_SYSTEM::RESERVATORIO::definir(ORDENS_DRIMEL_SYSTEM::RESERVATORIO::ORDEM::NENHUM);
+    }
+}
+
+//====================================================================================
 //                   TRANSFERÊNCIA DE ÁGUA ENTRE OS RESERVATÓRIO 1 e o 2
 //====================================================================================
 
-static void Mediador_Reservatorio_Transferencia_Entre_Reservatorios()
+static void Mediador_Reservatorio_Prepara_Transferencia_Agua()
 {
     const auto casaTorre = CASA_TORRE::atual();
     const auto bateria = VOLTAGEM::atual();
@@ -34,18 +51,21 @@ static void Mediador_Reservatorio_Transferencia_Entre_Reservatorios()
     const auto sistemaModo = SISTEMA_ECO_HIDRO::atual();
     const auto potencia = POTENCIA::atual();
 
-// -------------------
+// ============ SISTEMA BLOQUEADO ===================================
 
-    if (casaTorre == CASA_TORRE::ETAPAS::FINALIZADO
+    if (sistemaModo == SISTEMA_ECO_HIDRO::MODO::BLOQUEIO)
+    {
+        return;
+    }
+
+    //========= CASA TORRE FINALIZADO, VOLTAGEM CHEIA ================
+
+    if (casaTorre == CASA_TORRE::ETAPAS::LIBERADO_PARA_O_RESERVATORIO
     && reservatorio == RESERVATORIO::TRANSFERENCIA::NORMAL
-    && bomba12V == BOMBA_12V::ESTAGIOS::REPOUSO //trava segurança evita acesso repentino nesse if.
     && potencia == POTENCIA::SELECIONADO::REPOUSO
-    && bateria == VOLTAGEM::LEITURA::CHEIA
-    && sistemaModo != SISTEMA_ECO_HIDRO::MODO::BLOQUEIO)   //se for bloqueio do sistema logo nunca acessará essa parte do if.
+    && bateria == VOLTAGEM::LEITURA::CHEIA) 
     {
         RESERVATORIO::definir(RESERVATORIO::TRANSFERENCIA::LIBERADO);
-
-        POTENCIA::definir(POTENCIA::SELECIONADO::BOMBA_12V);  //PEDE a potência (quem executa é o Mediador_Unidade_Potencia)
         BOMBA_12V::definir(BOMBA_12V::ESTAGIOS::LIBERADO);
     }
 }
@@ -56,11 +76,13 @@ static void Mediador_Reservatorio_Transferencia_Entre_Reservatorios()
 
 static void Mediador_Reservatorio_Transferencia_Finalizada()
 {
-    if (RESERVATORIO::atual() != RESERVATORIO::TRANSFERENCIA::FINALIZADO)
-        return;
-
+    const auto reservatorio = RESERVATORIO::atual();
     const auto bomba12V = BOMBA_12V::atual();
 
+    if (reservatorio != RESERVATORIO::TRANSFERENCIA::FINALIZADO)
+        return;
+
+        
     // Só manda desligar uma vez: se já está parada ou desligando, não mexe.
     if (bomba12V != BOMBA_12V::ESTAGIOS::REPOUSO
     &&  bomba12V != BOMBA_12V::ESTAGIOS::DESLIGANDO_BOMBA)
@@ -88,7 +110,9 @@ static void Mediador_Reservatorio_Libera_Para_Novo_Ciclo()
 
 void Mediador_Reservatorio_Atualiza()
 {
-    Mediador_Reservatorio_Transferencia_Entre_Reservatorios();
+    Mediador_Reservatorio_Ordem_Transferencia_Reservatorios();
+
+    Mediador_Reservatorio_Prepara_Transferencia_Agua();
 
     Mediador_Reservatorio_Transferencia_Finalizada();
 

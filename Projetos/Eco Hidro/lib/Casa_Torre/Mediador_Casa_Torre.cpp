@@ -12,7 +12,6 @@
 //                   VARIÁVEIS INTERNAS
 //====================================================================================
 
-
 //====================================================================================
 //                   SETUP
 //====================================================================================
@@ -28,6 +27,7 @@ void Mediador_Casa_Torre_Inicializa()
 
 static void Mediador_Casa_Torre_Ordem_Ciclo_Completo()
 {
+
     const auto ordemCasaTorre = ORDENS_DRIMEL_SYSTEM::CASA_TORRE::atual();
 
     if (ordemCasaTorre == ORDENS_DRIMEL_SYSTEM::CASA_TORRE::ORDEM::CICLO_COMPLETO)

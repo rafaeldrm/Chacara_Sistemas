@@ -27,8 +27,6 @@ static CRONOMETRO::Temporizador tempoLuzEstacionamento;
 void Controle_Luz_Estacionamento_Inicializa()
 {
         debugSetupDivisao(COR::AMARELO, "CONTROLE LUZ ESTACIONAMENTO INICIALIZANDO", COR::MAGENTA, "=", 0);
-
-        LUZ_ESTACIONAMENTO::definir(LUZ_ESTACIONAMENTO::SITUACAO::INICIANDO_TEMPORIZACAO);
 }
 
 //====================================================================================

@@ -29,8 +29,9 @@ static void Mediador_Potencia_Casa_Torre_Ativamento()
     const auto potencia = POTENCIA::atual();
     const auto bombaCasa = BOMBA_CASA::atual();
 
-    if (potencia == POTENCIA::SELECIONADO::REPOUSO &&
-       bombaCasa == BOMBA_CASA::ESTAGIOS::AGUARDA_LIBERACAO)
+    if (bombaCasa == BOMBA_CASA::ESTAGIOS::AGUARDA_LIBERACAO
+    && (potencia == POTENCIA::SELECIONADO::BOMBA_12V
+    || potencia == POTENCIA::SELECIONADO::REPOUSO))
         {
             POTENCIA::definir(POTENCIA::SELECIONADO::BOMBA_CASA);
         }
@@ -59,10 +60,10 @@ static void Mediador_Potencia_Reservatorio_Ativamento()
 static void Mediador_Potencia_Portao_Ativamento()
 {
     const auto potencia = POTENCIA::atual();
-    const auto portao =  PORTAO_ELETRONICO::atual();
+    const auto portao =  PORTAO::atual();
 
     if (potencia == POTENCIA::SELECIONADO::REPOUSO &&
-        portao == PORTAO_ELETRONICO::ESTAGIOS::AGUARDA_LIBERACAO)
+        portao == PORTAO::ESTAGIOS::AGUARDA_LIBERACAO)
         {
             POTENCIA::definir(POTENCIA::SELECIONADO::PORTAO);
         }
@@ -78,7 +79,7 @@ static void Mediador_Potencia_Desligamento()
     const auto potencia = POTENCIA::atual();
     const auto bombaCasa = BOMBA_CASA::atual();
     const auto bomba12V = BOMBA_12V::atual();
-    const auto portao = PORTAO_ELETRONICO::atual();
+    const auto portao = PORTAO::atual();
 
 //=========== BOMBA CASA ACIONA ==============================
 
@@ -98,7 +99,7 @@ static void Mediador_Potencia_Desligamento()
 
 //============= PORTÃO ACIONA =================================
 
-    if (portao == PORTAO_ELETRONICO::ESTAGIOS::REPOUSO &&
+    if (portao == PORTAO::ESTAGIOS::REPOUSO &&
     potencia == POTENCIA::SELECIONADO::PORTAO)
         {
             POTENCIA::definir(POTENCIA::SELECIONADO::DESLIGANDO);

@@ -39,7 +39,6 @@
 void BOIAS_LOOP()
 {
     if (Tempo_Boias_Processa()) {
-        debugLoopTexto("BOIAS_LOOP, rodando funções internas", LINHA);
 
        Leitura_Boias_Atualiza();
 

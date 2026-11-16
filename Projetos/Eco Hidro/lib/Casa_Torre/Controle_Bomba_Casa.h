@@ -13,4 +13,6 @@ void Controle_Bomba_Casa_Liberado();
 
 void Controle_Bomba_Casa_Ligando_Bomba();
 
-void Controle_Bomba_Casa_Desligando_Bomba(); 
+void Controle_Bomba_Casa_Desligando_Bomba();
+
+void Controle_Bomba_Casa_Bloqueio();

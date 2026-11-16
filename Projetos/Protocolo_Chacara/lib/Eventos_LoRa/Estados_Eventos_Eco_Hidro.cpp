@@ -14,7 +14,8 @@ struct estadosEventosEcoHidro
     ORDENS_DRIMEL_SYSTEM::CASA_TORRE::ORDEM ordemCasaTorre;
     ORDENS_DRIMEL_SYSTEM::RESERVATORIO::ORDEM ordemReservatorio;
     ORDENS_DRIMEL_SYSTEM::LUZ_ACESSO::ORDEM ordemLuzAcesso;
-    ORDENS_DRIMEL_SYSTEM::LUZ_ESTACIONAMENTO::ORDEM ordemLuzEstacionamento;                     
+    ORDENS_DRIMEL_SYSTEM::LUZ_ESTACIONAMENTO::ORDEM ordemLuzEstacionamento;
+    ORDENS_DRIMEL_SYSTEM::UNIDADE_POTENCIA::ORDEM ordemUnidadePotencia;                    
 };                              
                               
 static estadosEventosEcoHidro estado =                               
@@ -23,6 +24,7 @@ static estadosEventosEcoHidro estado =
     ORDENS_DRIMEL_SYSTEM::RESERVATORIO::ORDEM::NENHUM,
     ORDENS_DRIMEL_SYSTEM::LUZ_ACESSO::ORDEM::NENHUM,
     ORDENS_DRIMEL_SYSTEM::LUZ_ESTACIONAMENTO::ORDEM::NENHUM,
+    ORDENS_DRIMEL_SYSTEM::UNIDADE_POTENCIA::ORDEM::NENHUM,
 };                              
                               
 //====================================================================================                              
@@ -62,7 +64,8 @@ namespace ORDENS_DRIMEL_SYSTEM
                 case ORDEM::CICLO_COMPLETO:                         return F("CICLO_COMPLETO");   
                 case ORDEM::MEIO_CICLO:                             return F("MEIO_CICLO");   
                 case ORDEM::BLOQUEIA:                               return F("BLOQUEIA");   
-                case ORDEM::DESLIGA:                                return F("DESLIGA");   
+                case ORDEM::DESLIGA:                                return F("DESLIGA");
+                case ORDEM::NORMAL:                                 return F("NORMAL");  
    
                 default:                return F("DESCONHECIDO");   
             }   
@@ -165,5 +168,36 @@ namespace ORDENS_DRIMEL_SYSTEM
                 default:                return F("DESCONHECIDO");   
             }   
         }   
-    }   
+    }  
+    
+    //====================================================================================
+    //                   UNIDADE POTENCIA
+    //====================================================================================
+    
+         namespace UNIDADE_POTENCIA   
+    {   
+        void definir(ORDEM novo)   
+        {   
+            if (estado.ordemUnidadePotencia == novo) return;   
+            estado.ordemUnidadePotencia = novo;   
+            debugVariavel("ORDEM ordemUnidadePotencia : ", texto(novo), LINHA, VERDE, AMARELO);   
+        }   
+   
+        ORDEM atual()   
+        {   
+            return estado.ordemUnidadePotencia;   
+        }   
+   
+        const __FlashStringHelper* texto(ORDEM a)   
+        {   
+            switch(a)   
+            {   
+                case ORDEM::NENHUM:                                 return F("NENHUM");   
+                case ORDEM::ACIONA:                                 return F("ACIONA");    
+                case ORDEM::DESLIGA:                                return F("DESLIGA");   
+   
+                default:                return F("DESCONHECIDO");   
+            }   
+        }   
+    }  
 }   

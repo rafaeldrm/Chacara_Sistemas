@@ -36,7 +36,8 @@ void Controle_Voltagem_Inicializa()
 
 void Controle_Voltagem_Atualiza()
 {
-    monitoraVoltagem  = Leitura_Bateria_Entrega();
+   // monitoraVoltagem  = Leitura_Bateria_Entrega();
+   monitoraVoltagem = 144;
 }
 
 //====================================================================================

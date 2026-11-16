@@ -21,8 +21,67 @@ void Mediador_Luz_Acesso_Reservatorio_Inicializa()
         debugSetupDivisao(COR::AMARELO, "MEDIADOR LUZ ACESSO RESERVATORIO INICIALIZANDO", COR::MAGENTA, "=", 0);
 }
 
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+//                      ORDEM DRIMEL SYSTEM
+
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
 //====================================================================================
-//                   COORDENA ACIONAMENTO LUZ PARA EFEITO FLUTUAÇÃO BATERIA (SISTEMA SOLAR 12V)
+//                   ACIONA LUZ
+//====================================================================================
+
+static void Mediador_Luz_Acesso_Reservatorio_Ordem_Aciona()
+{
+
+    const auto ordemLuzReservatorio = ORDENS_DRIMEL_SYSTEM::LUZ_ACESSO::atual();
+
+    if (ordemLuzReservatorio == ORDENS_DRIMEL_SYSTEM::LUZ_ACESSO::ORDEM::ACIONADO)
+    {
+        LUZ_ACESSO::definir(LUZ_ACESSO::SITUACAO::ACIONADO);
+        ORDENS_DRIMEL_SYSTEM::LUZ_ACESSO::definir(ORDENS_DRIMEL_SYSTEM::LUZ_ACESSO::ORDEM::NENHUM);
+    }
+}
+
+//====================================================================================
+//                   TEMPORIZA LUZ
+//====================================================================================
+
+static void Mediador_Luz_Acesso_Reservatorio_Temporizacao()
+{
+
+    const auto ordemLuzReservatorio = ORDENS_DRIMEL_SYSTEM::LUZ_ACESSO::atual();
+
+    if (ordemLuzReservatorio == ORDENS_DRIMEL_SYSTEM::LUZ_ACESSO::ORDEM::TEMPORIZACAO)
+    {
+        LUZ_ACESSO::definir(LUZ_ACESSO::SITUACAO::INICIANDO_TEMPORIZACAO);
+        ORDENS_DRIMEL_SYSTEM::LUZ_ACESSO::definir(ORDENS_DRIMEL_SYSTEM::LUZ_ACESSO::ORDEM::NENHUM);
+    }
+}
+
+//====================================================================================
+//                   DESLIGA LUZ
+//====================================================================================
+
+static void Mediador_Luz_Acesso_Reservatorio_Desliga()
+{
+    const auto ordemLuzReservatorio = ORDENS_DRIMEL_SYSTEM::LUZ_ACESSO::atual();
+
+    if (ordemLuzReservatorio == ORDENS_DRIMEL_SYSTEM::LUZ_ACESSO::ORDEM::DESLIGA)
+    {
+        LUZ_ACESSO::definir(LUZ_ACESSO::SITUACAO::DESLIGANDO);
+        ORDENS_DRIMEL_SYSTEM::LUZ_ACESSO::definir(ORDENS_DRIMEL_SYSTEM::LUZ_ACESSO::ORDEM::NENHUM);
+    }
+}
+
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+//                      LUZ ACESSO RESERVATÓRIO
+
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+//====================================================================================
+//                   ACIONAMENTO LUZ PARA EFEITO FLUTUAÇÃO BATERIA (SISTEMA SOLAR 12V)
 //====================================================================================
 
 static void Mediador_Luz_Acesso_Reservatorio_Acionamento_Flutuacao_Bateria()
@@ -35,14 +94,12 @@ static void Mediador_Luz_Acesso_Reservatorio_Acionamento_Flutuacao_Bateria()
         if (voltagem == VOLTAGEM::LEITURA::MANTENDO_CARGA &&          //condição principal
             luzAcessoReservatorio == LUZ_ACESSO::SITUACAO::DESLIGADO) //sinal de trava pra evitar ser executado constantemente
         {
-
             LUZ_ACESSO::definir(LUZ_ACESSO::SITUACAO::ACIONADO);
-
         }         
     }
 
 //====================================================================================
-//                   COORDENA DESLIGAMENTO LUZ PARA EFEITO FLUTUAÇÃO BATERIA (SISTEMA SOLAR 12V)
+//                   DESLIGAMENTO LUZ PARA EFEITO FLUTUAÇÃO BATERIA (SISTEMA SOLAR 12V)
 //====================================================================================
 
 static void Mediador_Luz_Acesso_Reservatorio_Desligamento_Flutuacao_Bateria()
@@ -55,21 +112,24 @@ static void Mediador_Luz_Acesso_Reservatorio_Desligamento_Flutuacao_Bateria()
         if (voltagem == VOLTAGEM::LEITURA::CARGA_CONSUMIDA &&       
             luzAcessoReservatorio == LUZ_ACESSO::SITUACAO::ACIONADO)
         {
-
             LUZ_ACESSO::definir(LUZ_ACESSO::SITUACAO::DESLIGANDO);
-
         }         
     }
 
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+//                      MOTIVOS EXTERNOS LUZ ACESSO RESERVATÓRIO
+
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
 //====================================================================================
-//                   COORDENA DESLIGAMENTO LUZ (POTENCIA, VOLTAGEM, ORDEM DRIMEL SYSTEM)
+//                    DESLIGAMENTO LUZ (POTENCIA, VOLTAGEM, ORDEM DRIMEL SYSTEM)
 //====================================================================================
 
 static void Mediador_Luz_Acesso_Reservatorio_Desligamento()
 {
     const auto potencia = POTENCIA::atual();
     const auto luzAcessoReservatorio = LUZ_ACESSO::atual();
-    const auto ordemLuzAcesso = ORDENS_DRIMEL_SYSTEM::LUZ_ACESSO::atual();
     const auto voltagem = VOLTAGEM::atual();
 
     //========= VOLTAGEM CRÍTICO =================================================================
@@ -77,19 +137,7 @@ static void Mediador_Luz_Acesso_Reservatorio_Desligamento()
     if (voltagem == VOLTAGEM::LEITURA::CRITICO &&
         luzAcessoReservatorio == LUZ_ACESSO::SITUACAO::ACIONADO)
     {
-
         LUZ_ACESSO::definir(LUZ_ACESSO::SITUACAO::DESLIGANDO);
-
-    }
-
-    //====== ORDEM DRIMEL SYSTEM DESLIGAMENTO LUZ ACESSO AO RESERVATÓRIO =========================
-
-    if (ordemLuzAcesso == ORDENS_DRIMEL_SYSTEM::LUZ_ACESSO::ORDEM::DESLIGA)
-    {
-    
-        LUZ_ACESSO::definir(LUZ_ACESSO::SITUACAO::DESLIGANDO);
-        ORDENS_DRIMEL_SYSTEM::LUZ_ACESSO::definir(ORDENS_DRIMEL_SYSTEM::LUZ_ACESSO::ORDEM::NENHUM);
-
     }
 
     //======== DESLIGAMENTO DA LUZ DE ACESSO AO RESERVATÓRIO VOLTAGEM BAIXA ======================
@@ -100,9 +148,7 @@ static void Mediador_Luz_Acesso_Reservatorio_Desligamento()
         || luzAcessoReservatorio == LUZ_ACESSO::SITUACAO::FORCADO
         || luzAcessoReservatorio == LUZ_ACESSO::SITUACAO::TEMPORIZADO))
     {
-
         LUZ_ACESSO::definir(LUZ_ACESSO::SITUACAO::DESLIGANDO);
-
     }
 
     //=========== DESLIGAMENTO POR CONTA DE APARELHO PESADO QUE VAI FUNCIONAR ===================
@@ -112,63 +158,27 @@ static void Mediador_Luz_Acesso_Reservatorio_Desligamento()
             || potencia == POTENCIA::SELECIONADO::BOMBA_12V
             || potencia == POTENCIA::SELECIONADO::PORTAO))
         {
-
             LUZ_ACESSO::definir(LUZ_ACESSO::SITUACAO::DESLIGANDO);
-            
         }         
     }
 
-//====================================================================================
-//                   LUZ ACESSORESERVATÓRIO - ACIONAMENTO PELO DRIMEL SYSTEM
-//====================================================================================
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
-static void Mediador_Luz_Acesso_Reservatorio_Acionamento_Drimel_System()
-{
-    const auto ordemLuzAcesso = ORDENS_DRIMEL_SYSTEM::LUZ_ACESSO::atual();
-
-    if (ordemLuzAcesso == ORDENS_DRIMEL_SYSTEM::LUZ_ACESSO::ORDEM::ACIONADO)
-    {
-
-        LUZ_ACESSO::definir(LUZ_ACESSO::SITUACAO::ACIONADO);
-        ORDENS_DRIMEL_SYSTEM::LUZ_ACESSO::definir(ORDENS_DRIMEL_SYSTEM::LUZ_ACESSO::ORDEM::NENHUM);
-
-    }
-
-}
-    
-    
-//====================================================================================
-//                   LUZ ACESSO RESERVATORIO - FORÇADO PELO DRIMEL SYSTEM
-//====================================================================================
-
- static void Mediador_Luz_Acesso_Reservatorio_Acionamento_Forcado_Drimel_System()
-{
-    const auto ordemLuzAcesso = ORDENS_DRIMEL_SYSTEM::LUZ_ACESSO::atual();
-
-    //===============================
-
-        if (ordemLuzAcesso == ORDENS_DRIMEL_SYSTEM::LUZ_ACESSO::ORDEM::FORCADO)
-        {
-
-            LUZ_ACESSO::definir(LUZ_ACESSO::SITUACAO::FORCADO);
-            ORDENS_DRIMEL_SYSTEM::LUZ_ACESSO::definir(ORDENS_DRIMEL_SYSTEM::LUZ_ACESSO::ORDEM::NENHUM);
-
-        }         
-    }      
-    
 //====================================================================================
 //                   LOOP
 //====================================================================================
 
 void Mediador_Luz_Acesso_Reservatorio_Atualiza()
 {
+    Mediador_Luz_Acesso_Reservatorio_Ordem_Aciona();
+
+    Mediador_Luz_Acesso_Reservatorio_Temporizacao();
+
+    Mediador_Luz_Acesso_Reservatorio_Desliga();
+
     Mediador_Luz_Acesso_Reservatorio_Acionamento_Flutuacao_Bateria();
 
     Mediador_Luz_Acesso_Reservatorio_Desligamento_Flutuacao_Bateria();
     
     Mediador_Luz_Acesso_Reservatorio_Desligamento();
-
-    Mediador_Luz_Acesso_Reservatorio_Acionamento_Drimel_System();
-
-    Mediador_Luz_Acesso_Reservatorio_Acionamento_Forcado_Drimel_System();
 }

@@ -21,7 +21,7 @@ struct estadosSistemaEcoHidro
         LUZ_ACESSO::SITUACAO luzReservatorio; // [VAR::LUZ_ACESSO]                   
         VOLTAGEM::LEITURA bateria; // [VAR::VOLTAGEM]                      
         DESLIGAMENTO_BOMBA::MOTIVO motivoBomba; // [VAR::DESLIGAMENTO_BOMBA]         
-        PORTAO_ELETRONICO::ESTAGIOS portao; // [VAR::PORTAO_ELETRONICO]                                    
+        PORTAO::ESTAGIOS portao; // [VAR::PORTAO_ELETRONICO]                                    
         UNIDADE_POTENCIA::ESTAGIOS unidadePotencia; // [VAR::UNIDADE_POTENCIA]   
         POTENCIA::SELECIONADO potenciaSelecionado; // [VAR::POTENCIA]                      
         TRANCO_BOMBA::ESTAGIOS trancoBomba; // [VAR::TRANCO_BOMBA]
@@ -40,7 +40,7 @@ static estadosSistemaEcoHidro estado =
     LUZ_ACESSO::SITUACAO::DESLIGADO, // [INIT::LUZ_ACESSO]                   
     VOLTAGEM::LEITURA::NORMAL, // [INIT::VOLTAGEM]                      
     DESLIGAMENTO_BOMBA::MOTIVO::NENHUM, // [INIT::DESLIGAMENTO_BOMBA]         
-    PORTAO_ELETRONICO::ESTAGIOS::REPOUSO, // [INIT::PORTAO_ELETRONICO]                
+    PORTAO::ESTAGIOS::REPOUSO, // [INIT::PORTAO_ELETRONICO]                
     UNIDADE_POTENCIA::ESTAGIOS::REPOUSO,// [INIT::UNIDADE_POTENCIA]   
     POTENCIA::SELECIONADO::REPOUSO, // [INIT::POTENCIA]                         
     TRANCO_BOMBA::ESTAGIOS::REPOUSO// [STATIC::VIRGULA]  // [INIT::TRANCO_BOMBA]  
@@ -80,7 +80,8 @@ namespace CASA_TORRE
             case ETAPAS::AGUARDANDO_TRANSFERENCIA_GRAVIDADE:          return F("AGUARDANDO_TRANSFERENCIA_GRAVIDADE");   
             case ETAPAS::SEGUNDO_CICLO_ENCHIMENTO_CAIXA:              return F("SEGUNDO_CICLO_ENCHIMENTO_CAIXA");   
             case ETAPAS::FINALIZADO:                                  return F("FINALIZADO");
-            case ETAPAS::LIBERADO_PARA_O_RESERVATORIO:                return F("LIBERADO_PARA_O_RESERVATORIO");   
+            case ETAPAS::LIBERADO_PARA_O_RESERVATORIO:                return F("LIBERADO_PARA_O_RESERVATORIO");
+            case ETAPAS::BLOQUEIO:                                    return F("BLOQUEIO");   
     
             default:                return F("DESCONHECIDO");    
         }    
@@ -118,7 +119,9 @@ namespace BOMBA_CASA
             case ESTAGIOS::AGUARDA_LIBERACAO:                         return F("AGUARDA_LIBERACAO");     
             case ESTAGIOS::LIGANDO_BOMBA:                             return F("LIGANDO_BOMBA");     
             case ESTAGIOS::BOMBA_LIGADA:                              return F("BOMBA_LIGADA");     
-            case ESTAGIOS::DESLIGANDO_BOMBA:                          return F("DESLIGANDO_BOMBA");       
+            case ESTAGIOS::DESLIGANDO_BOMBA:                          return F("DESLIGANDO_BOMBA");
+            case ESTAGIOS::BLOQUEIO:                                  return F("BLOQUEIO");
+            case ESTAGIOS::BLOQUEADO:                                 return F("BLOQUEADO");      
       
             default:                return F("DESCONHECIDO");      
         }      
@@ -405,7 +408,7 @@ namespace DESLIGAMENTO_BOMBA
 //                   PORTAO_ELETRONICO                    
 //====================================================================================                    
                     
-namespace PORTAO_ELETRONICO                    
+namespace PORTAO                    
 {                    
     void definir(ESTAGIOS novo)                     
     {                    
@@ -426,8 +429,8 @@ namespace PORTAO_ELETRONICO
             case ESTAGIOS::REPOUSO:                                   return F("REPOUSO");                    
             case ESTAGIOS::LIBERADO:                                  return F("LIBERADO");                    
             case ESTAGIOS::AGUARDA_LIBERACAO:                         return F("AGUARDA_LIBERACAO");                    
+            case ESTAGIOS::LIGANDO_PORTAO:                            return F("LIGANDO_PORTAO");
             case ESTAGIOS::PORTAO_LIGADO:                             return F("PORTAO_LIGADO");
-            case ESTAGIOS::PORTAO_ATIVADO:                            return F("PORTAO_ATIVADO");
             case ESTAGIOS::DESLIGANDO_PORTAO:                         return F("DESLIGANDO_PORTAO");                    
                     
             default:                return F("DESCONHECIDO");                    

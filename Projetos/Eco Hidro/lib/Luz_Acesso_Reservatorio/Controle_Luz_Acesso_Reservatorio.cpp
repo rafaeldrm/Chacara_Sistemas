@@ -15,7 +15,7 @@
 //                   VARIÁVEIS INTERNAS
 //====================================================================================
 
-static constexpr uint32_t TEMPO_LUZ_LIGADA = TEMPO::MINUTOS(20);
+static constexpr uint32_t TEMPO_LUZ_LIGADA = TEMPO::MINUTOS(3);
 
 static CRONOMETRO::Temporizador tempoLuzAcessoReservatorio;
 
@@ -26,8 +26,6 @@ static CRONOMETRO::Temporizador tempoLuzAcessoReservatorio;
 void Controle_Luz_Acesso_Reservatorio_Inicializa()
 {
         debugSetupDivisao(COR::AMARELO, "CONTROLE LUZ ACESSO RESERVATÓRIO INICIALIZANDO", COR::MAGENTA, "=", 0);
-
-        LUZ_ACESSO::definir(LUZ_ACESSO::SITUACAO::INICIANDO_TEMPORIZACAO);
 }
 
 //====================================================================================
@@ -54,10 +52,8 @@ void Controle_Luz_Acesso_Reservatorio_Temporizado()
 
     if (tempoLuzAcessoReservatorio.Cronometro_Dispara_Uma_Vez(TEMPO_LUZ_LIGADA))
     {
-        tempoLuzAcessoReservatorio.Cronometro_Iniciar();
         LUZ_ACESSO::definir(LUZ_ACESSO::SITUACAO::DESLIGANDO);
         debugLoopTexto(" : RELE LUZ ACESSO RESERVATORIO ", NEGRITO | LINHA);
-
     }
 
 }

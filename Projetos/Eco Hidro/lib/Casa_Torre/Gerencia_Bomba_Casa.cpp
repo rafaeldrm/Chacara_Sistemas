@@ -69,6 +69,18 @@ void Gerencia_Bomba_Casa_Inicializa()
       Controle_Bomba_Casa_Desligando_Bomba();
 
     break;
+
+    //========================================================
+    case BOMBA_CASA::ESTAGIOS::BLOQUEIO:
+
+      Controle_Bomba_Casa_Bloqueio();
+
+    break;
+
+    //========================================================
+    case BOMBA_CASA::ESTAGIOS::BLOQUEADO:
+
+    break;
     
     }
 }

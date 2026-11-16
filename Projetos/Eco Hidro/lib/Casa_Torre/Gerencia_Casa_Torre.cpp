@@ -70,6 +70,14 @@ void Gerencia_Casa_Torre_Inicializa()
             Controle_Casa_Torre_Finalizado();
         
             break;
+
+        //=======================================================
+
+        case CASA_TORRE::ETAPAS::BLOQUEIO:
+
+            //ainda sem motivos de fazer algo
+            
+        break;
             
     }
 }

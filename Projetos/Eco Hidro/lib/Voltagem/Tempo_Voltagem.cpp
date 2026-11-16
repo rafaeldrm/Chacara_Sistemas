@@ -12,7 +12,7 @@
 //                   VARIÁVEIS INTERNAS
 //====================================================================================
 
-static constexpr uint32_t TEMPO_CONFIRMACAO = TEMPO::MINUTOS(1);
+static constexpr uint32_t TEMPO_CONFIRMACAO = TEMPO::SEGUNDOS(10);
 
 static CRONOMETRO::Temporizador tempoVoltagem;
 

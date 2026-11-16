@@ -21,13 +21,18 @@ void Mediador_Reservatorio_Inicializa()
         debugSetupDivisao(COR::AMARELO, "MEDIADOR RESERVATORIO INICIALIZANDO", COR::MAGENTA, "=", 0);
 }
 
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+//                      ORDEM DRIMEL
+
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
 //====================================================================================
-//                   ORDEM DRIMEL SYSTEM - TRANSFERÊNCIA DE ÁGUA ENTRE RESERVATÓRIOS
+//                   TRANSFERÊNCIA DE ÁGUA ENTRE RESERVATÓRIOS 1 E 2
 //====================================================================================
 
-static void Mediador_Reservatorio_Ordem_Transferencia_Reservatorios()
+static void Mediador_Reservatorio_Ordem_Transferencia()
 {
-
     const auto ordemReservatorio = ORDENS_DRIMEL_SYSTEM::RESERVATORIO::atual();
 
     if (ordemReservatorio == ORDENS_DRIMEL_SYSTEM::RESERVATORIO::ORDEM::TRANSFERENCIA_ENTRE_RESERVATORIOS)
@@ -37,6 +42,12 @@ static void Mediador_Reservatorio_Ordem_Transferencia_Reservatorios()
         ORDENS_DRIMEL_SYSTEM::RESERVATORIO::definir(ORDENS_DRIMEL_SYSTEM::RESERVATORIO::ORDEM::NENHUM);
     }
 }
+
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+//                      RESERVATÓRIO
+
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 //====================================================================================
 //                   TRANSFERÊNCIA DE ÁGUA ENTRE OS RESERVATÓRIO 1 e o 2
@@ -52,9 +63,10 @@ static void Mediador_Reservatorio_Prepara_Transferencia_Agua()
 
 // ============ SISTEMA BLOQUEADO ===================================
 
-    if (sistemaModo == SISTEMA_ECO_HIDRO::MODO::BLOQUEIO)
+    if (sistemaModo == SISTEMA_ECO_HIDRO::MODO::BLOQUEIO
+    || potencia == POTENCIA::SELECIONADO::PORTAO)
     {
-        return;
+        return; //Sistema Blqueado, ou Portão sendo Utilizado: não aciona o restante
     }
 
     //========= CASA TORRE FINALIZADO, VOLTAGEM CHEIA ================
@@ -76,10 +88,13 @@ static void Mediador_Reservatorio_Prepara_Transferencia_Agua()
 static void Mediador_Reservatorio_Aciona_Bomba_12V()
 {
     const auto bombaReservatorio = BOMBA_12V::atual();
-    const auto reservatorio = RESERVATORIO::atual();
+    const auto potencia = POTENCIA::atual();
+    const auto unidadePotencia = UNIDADE_POTENCIA::atual();
 
-    if (reservatorio == RESERVATORIO::TRANSFERENCIA::LIBERADO
-    && bombaReservatorio == BOMBA_12V::ESTAGIOS::AGUARDA_LIBERACAO)
+    
+    if (potencia == POTENCIA::SELECIONADO::BOMBA_12V
+        && unidadePotencia == UNIDADE_POTENCIA::ESTAGIOS::LIGADO
+        && bombaReservatorio == BOMBA_12V::ESTAGIOS::AGUARDA_LIBERACAO)
     {
         BOMBA_12V::definir(BOMBA_12V::ESTAGIOS::LIGANDO_BOMBA);
     }
@@ -91,8 +106,15 @@ static void Mediador_Reservatorio_Aciona_Bomba_12V()
 
 static void Mediador_Reservatorio_Transferencia_Finalizada()
 {
-    const auto reservatorio = RESERVATORIO::atual();
+    const auto bombaCasa = BOMBA_CASA::atual();
     const auto bomba12V = BOMBA_12V::atual();
+    const auto reservatorio = RESERVATORIO::atual();
+
+    if (bomba12V == BOMBA_12V::ESTAGIOS::BOMBA_LIGADA
+    && bombaCasa == BOMBA_CASA::ESTAGIOS::AGUARDA_LIBERACAO)
+    {
+        BOMBA_12V::definir(BOMBA_12V::ESTAGIOS::DESLIGANDO_BOMBA);
+    }
 
     if (reservatorio != RESERVATORIO::TRANSFERENCIA::FINALIZADO)
         return;
@@ -106,14 +128,24 @@ static void Mediador_Reservatorio_Transferencia_Finalizada()
     }
 }
 
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+//                      RESERVATÓRIO - CASA TORRE
+
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
 //====================================================================================
-//                   RESERVATÓRIO ESQUECE O FINALIZADO QUANDO A CASA TORRE RECOMEÇA
+//                   RESETANDO POSICIONAMENTO DO RESERVATÓRIO
 //====================================================================================
 
-static void Mediador_Reservatorio_Libera_Para_Novo_Ciclo()
+static void Mediador_Reservatorio_Intervencao_Casa_Torre()
 {
-    if (RESERVATORIO::atual() == RESERVATORIO::TRANSFERENCIA::FINALIZADO
-    &&  CASA_TORRE::atual() == CASA_TORRE::ETAPAS::FINALIZADO)
+    const auto reservatorio = RESERVATORIO::atual();
+    const auto casaTorre = CASA_TORRE::atual();
+
+    if (casaTorre == CASA_TORRE::ETAPAS::NORMAL
+        && (reservatorio == RESERVATORIO::TRANSFERENCIA::FINALIZADO
+        || reservatorio == RESERVATORIO::TRANSFERENCIA::SO_MAIS_UM_POUQUINHO))
     {
         RESERVATORIO::definir(RESERVATORIO::TRANSFERENCIA::NORMAL);
     }
@@ -125,13 +157,13 @@ static void Mediador_Reservatorio_Libera_Para_Novo_Ciclo()
 
 void Mediador_Reservatorio_Atualiza()
 {
-    Mediador_Reservatorio_Ordem_Transferencia_Reservatorios();
+//    Mediador_Reservatorio_Ordem_Transferencia_Reservatorios();
 
     Mediador_Reservatorio_Prepara_Transferencia_Agua();
 
-    Mediador_Reservatorio_Transferencia_Finalizada();
-
     Mediador_Reservatorio_Aciona_Bomba_12V();
 
-    Mediador_Reservatorio_Libera_Para_Novo_Ciclo();   // sempre depois do desliga
+    Mediador_Reservatorio_Transferencia_Finalizada();
+
+    Mediador_Reservatorio_Intervencao_Casa_Torre();
 }

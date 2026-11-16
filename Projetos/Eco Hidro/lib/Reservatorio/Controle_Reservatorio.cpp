@@ -16,7 +16,7 @@
 //                   VARIÁVEIS INTERNAS  
 //====================================================================================  
 
-static constexpr uint32_t TEMPO_ENCHIMENTO_EXTRA_RESERVATORIO = TEMPO::MINUTOS(2); // 1 hora, mas pode ser ajustado depois dependendo do tempo que demora pra encher o reservatório (ou seja, o tempo que demora pra passar um pouco do excedente da máxima do reservatório 1 pra
+static constexpr uint32_t TEMPO_ENCHIMENTO_EXTRA_RESERVATORIO = TEMPO::SEGUNDOS(30); // 1 hora, mas pode ser ajustado depois dependendo do tempo que demora pra encher o reservatório (ou seja, o tempo que demora pra passar um pouco do excedente da máxima do reservatório 1 pra
 
  static CRONOMETRO::Temporizador enchimentoExcedente;
 

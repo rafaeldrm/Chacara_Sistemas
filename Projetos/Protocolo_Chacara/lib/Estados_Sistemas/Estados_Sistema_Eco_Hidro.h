@@ -20,7 +20,8 @@ enum class ETAPAS : uint8_t
        AGUARDANDO_TRANSFERENCIA_GRAVIDADE,   
        SEGUNDO_CICLO_ENCHIMENTO_CAIXA,   
        FINALIZADO,
-       LIBERADO_PARA_O_RESERVATORIO,   
+       LIBERADO_PARA_O_RESERVATORIO,
+       BLOQUEIO,   
  };    
     
     void definir(ETAPAS novo);    
@@ -46,7 +47,9 @@ enum class ESTAGIOS : uint8_t
       AGUARDA_LIBERACAO,       
       LIGANDO_BOMBA,        
       BOMBA_LIGADA,        
-      DESLIGANDO_BOMBA,      
+      DESLIGANDO_BOMBA,
+      BLOQUEIO,
+      BLOQUEADO,      
  };      
       
     void definir(ESTAGIOS novo);      
@@ -252,16 +255,16 @@ enum class MOTIVO : uint8_t
 //                   PORTAO_ELETRONICO                    
 //====================================================================================                    
                     
-namespace PORTAO_ELETRONICO                    
+namespace PORTAO                    
 {                    
 enum class ESTAGIOS : uint8_t                    
  {                    
       REPOUSO,        
       LIBERADO,        
       AGUARDA_LIBERACAO,       
+      LIGANDO_PORTAO,        
       PORTAO_LIGADO,        
-      PORTAO_ATIVADO,        
-      DESLIGANDO_PORTAO,                     
+      DESLIGANDO_PORTAO,
  };                    
                     
     void definir(ESTAGIOS novo);                    

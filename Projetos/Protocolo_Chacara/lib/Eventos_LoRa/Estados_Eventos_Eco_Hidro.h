@@ -26,7 +26,8 @@ namespace ORDENS_DRIMEL_SYSTEM
             CICLO_COMPLETO,   
             MEIO_CICLO,   
             BLOQUEIA,   
-            DESLIGA,   
+            DESLIGA,
+            NORMAL,
       };   
          
       void definir(ORDEM novo);   
@@ -89,6 +90,25 @@ namespace ORDENS_DRIMEL_SYSTEM
             ACIONADO,   
             FORCADO,   
             DESLIGA,    
+      };   
+         
+      void definir(ORDEM novo);   
+      ORDEM atual();   
+      const __FlashStringHelper* texto(ORDEM s);   
+         
+      }  
+
+       //====================================================================================
+      //                   UNIDADE POTENCIA
+      //====================================================================================
+      
+      namespace UNIDADE_POTENCIA 
+      {   
+            enum class ORDEM : uint8_t   
+      {   
+            NENHUM,   
+            ACIONA,
+            DESLIGA,       
       };   
          
       void definir(ORDEM novo);   

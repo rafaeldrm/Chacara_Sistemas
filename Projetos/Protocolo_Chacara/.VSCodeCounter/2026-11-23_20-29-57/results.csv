@@ -1,0 +1,90 @@
+"filename", "language", "Python", "Ini", "C++", "Batch", "Markdown", "comment", "blank", "total"
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\GERADOR ARQUIVOS\Gerador_Estados\ATUALIZA_ARQUIVOS.bat", "Batch", 0, 0, 0, 144, 0, 36, 90, 270
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\GERADOR ARQUIVOS\Gerador_Estados\Bibliotecas\ESCRITOR_ESCOPO.bat", "Batch", 0, 0, 0, 57, 0, 64, 46, 167
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\GERADOR ARQUIVOS\Gerador_Estados\Bibliotecas\FORMATA_CONTEXTO.bat", "Batch", 0, 0, 0, 31, 0, 36, 14, 81
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\GERADOR ARQUIVOS\Gerador_Estados\Bibliotecas\FSM_CONTEXTO.bat", "Batch", 0, 0, 0, 116, 0, 52, 72, 240
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\GERADOR ARQUIVOS\Gerador_Estados\Bibliotecas\GERADOR_ID.bat", "Batch", 0, 0, 0, 56, 0, 7, 13, 76
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\GERADOR ARQUIVOS\Gerador_Estados\Bibliotecas\GERENCIADOR_ESCOPO.bat", "Batch", 0, 0, 0, 173, 0, 53, 88, 314
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\GERADOR ARQUIVOS\Gerador_Estados\Bibliotecas\LEITOR_ESCOPO.bat", "Batch", 0, 0, 0, 67, 0, 50, 41, 158
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\GERADOR ARQUIVOS\Gerador_Estados\CADASTRAR_ARQUIVOS.bat", "Batch", 0, 0, 0, 177, 0, 25, 86, 288
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\GERADOR ARQUIVOS\Gerador_Estados\CONSTRUTOR_ESTADOS_SISTEMA.bat", "Batch", 0, 0, 0, 335, 0, 56, 116, 507
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\GERADOR ARQUIVOS\Gerador_Estados\CRIAR_FSM.bat", "Batch", 0, 0, 0, 60, 0, 6, 17, 83
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\GERADOR ARQUIVOS\Gerador_Estados\EDITAR_FSM.bat", "Batch", 0, 0, 0, 254, 0, 81, 74, 409
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\GERADOR ARQUIVOS\Gerador_Estados\Estados\Eco_Hidro\FSM_SIMPLES\CASA_TORRE.md", "Markdown", 0, 0, 0, 0, 40, 0, 1, 41
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\GERADOR ARQUIVOS\Gerador_Estados\Estados\Testes\FSM_SIMPLES\FIGURINHA.md", "Markdown", 0, 0, 0, 0, 39, 0, 1, 40
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\GERADOR ARQUIVOS\Gerador_Estados\Estados\Testes\FSM_SIMPLES\GROK.md", "Markdown", 0, 0, 0, 0, 41, 0, 1, 42
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\GERADOR ARQUIVOS\Gerador_Estados\Estados\Testes\FSM_SIMPLES\OPENAI.md", "Markdown", 0, 0, 0, 0, 40, 0, 1, 41
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\GERADOR ARQUIVOS\Gerador_Estados\Estados\Testes\FSM_SIMPLES\TESTANDO.md", "Markdown", 0, 0, 0, 0, 40, 0, 1, 41
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\GERADOR ARQUIVOS\Gerador_Estados\Estados\Testes\FSM_SUBCATEGORIA\TESTE_PAI-IRMAO.md", "Markdown", 0, 0, 0, 0, 41, 0, 1, 42
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\GERADOR ARQUIVOS\Gerador_Estados\Estados\Testes\FSM_SUBCATEGORIA\TESTE_PAI-TESTE_FILHO.md", "Markdown", 0, 0, 0, 0, 41, 0, 1, 42
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\GERADOR ARQUIVOS\Gerador_Estados\FSM.bat", "Batch", 0, 0, 0, 61, 0, 9, 11, 81
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\GERADOR ARQUIVOS\Gerador_Estados\FSM_SIMPLES.bat", "Batch", 0, 0, 0, 280, 0, 40, 58, 378
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\GERADOR ARQUIVOS\Gerador_Estados\FSM_SUBCATEGORIA.bat", "Batch", 0, 0, 0, 374, 0, 54, 75, 503
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\GERADOR ARQUIVOS\Gerador_Estados\GERADOR_BASE.bat", "Batch", 0, 0, 0, 107, 0, 18, 21, 146
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\GERADOR ARQUIVOS\Gerador_Estados\Templates\Escopo.md", "Markdown", 0, 0, 0, 0, 32, 0, 30, 62
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\GERADOR ARQUIVOS\Gerador_Estados\Templates\Estrutura_Arquivos.md", "Markdown", 0, 0, 0, 0, 33, 0, 18, 51
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\GERADOR ARQUIVOS\Gerador_Estados\Templates\Estrutura_Controle.md", "Markdown", 0, 0, 0, 0, 35, 0, 20, 55
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\GERADOR ARQUIVOS\Gerador_Estados\Templates\Estrutura_Estados.md", "Markdown", 0, 0, 0, 0, 49, 0, 17, 66
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\GERADOR ARQUIVOS\Gerador_Estados\Templates\Estrutura_FSM_Subcategoria.md", "Markdown", 0, 0, 0, 0, 26, 0, 16, 42
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\GERADOR ARQUIVOS\Gerador_Estados\Templates\Estrutura_Gerencia.md", "Markdown", 0, 0, 0, 0, 44, 0, 31, 75
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\GERADOR ARQUIVOS\Nomenclatura\NOMENCLATURA.bat", "Batch", 0, 0, 0, 221, 0, 39, 45, 305
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\GERADOR ARQUIVOS\Outros Geradores\Driver_Gerador.bat", "Batch", 0, 0, 0, 95, 0, 11, 20, 126
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\GERADOR ARQUIVOS\Outros Geradores\GERADOR_ESTADOS.bat", "Batch", 0, 0, 0, 215, 0, 15, 38, 268
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\GERADOR ARQUIVOS\Outros Geradores\GERADOR_INCLUDE.bat", "Batch", 0, 0, 0, 101, 0, 30, 51, 182
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\GERADOR ARQUIVOS\Outros Geradores\GERADOR_SISTEMA.bat", "Batch", 0, 0, 0, 98, 0, 31, 51, 180
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\GERADOR ARQUIVOS\Outros Geradores\GERADOR_VARIAVEIS.bat", "Batch", 0, 0, 0, 221, 0, 39, 72, 332
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\GERADOR ARQUIVOS\Outros Geradores\IF_ELSE.bat", "Batch", 0, 0, 0, 125, 0, 19, 25, 169
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\GERADOR ARQUIVOS\Outros Geradores\MAIN.bat", "Batch", 0, 0, 0, 78, 0, 12, 14, 104
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\GERADOR ARQUIVOS\Outros Geradores\TRATA_TEMPO.bat", "Batch", 0, 0, 0, 58, 0, 13, 15, 86
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\GERADOR ARQUIVOS\Outros Geradores\arquivos.bat", "Batch", 0, 0, 0, 108, 0, 5, 9, 122
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\GERADOR ARQUIVOS\Outros Geradores\backup original.bat", "Batch", 0, 0, 0, 189, 0, 29, 54, 272
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\GERADOR ARQUIVOS\Outros Geradores\camada_estrutura_driver.txt", "C++", 0, 0, 30, 0, 0, 21, 28, 79
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\GERADOR ARQUIVOS\Outros Geradores\camada_estrutura_gerencia.txt", "C++", 0, 0, 18, 0, 0, 14, 23, 55
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\GERADOR ARQUIVOS\Outros Geradores\camada_estrutura_leitura.txt", "C++", 0, 0, 29, 0, 0, 22, 30, 81
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\GERADOR ARQUIVOS\Outros Geradores\camada_estrutura_sistema.txt", "C++", 0, 0, 17, 0, 0, 14, 21, 52
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\lib\Autenticacao_LoRa\Analise_LoRa.cpp", "C++", 0, 0, 28, 0, 0, 6, 9, 43
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\lib\Autenticacao_LoRa\Analise_LoRa.h", "C++", 0, 0, 27, 0, 0, 4, 10, 41
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\lib\Autenticacao_LoRa\Autenticacao_LoRa.cpp", "C++", 0, 0, 118, 0, 0, 33, 53, 204
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\lib\Autenticacao_LoRa\Autenticacao_LoRa.h", "C++", 0, 0, 48, 0, 0, 3, 14, 65
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\lib\Autenticacao_LoRa\Estado_Comunicacao_LoRa.cpp", "C++", 0, 0, 31, 0, 0, 0, 8, 39
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\lib\Autenticacao_LoRa\Estado_Comunicacao_LoRa.h", "C++", 0, 0, 27, 0, 0, 0, 9, 36
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\lib\Autenticacao_LoRa\Lembrete_de_Logica.md", "Markdown", 0, 0, 0, 0, 29, 0, 9, 38
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\lib\Autenticacao_LoRa\Mac_LoRa.cpp", "C++", 0, 0, 106, 0, 0, 23, 32, 161
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\lib\Autenticacao_LoRa\Mac_LoRa.h", "C++", 0, 0, 25, 0, 0, 2, 7, 34
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\lib\Autenticacao_LoRa\Sequencia_LoRa.cpp", "C++", 0, 0, 51, 0, 0, 27, 22, 100
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\lib\Autenticacao_LoRa\Sequencia_LoRa.h", "C++", 0, 0, 30, 0, 0, 2, 12, 44
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\lib\Eco_Hidro\Contrato_Boias_Chacara.h", "C++", 0, 0, 20, 0, 0, 11, 8, 39
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\lib\Estados_Sistemas\Estados_Sistema_Eco_Hidro.cpp", "C++", 0, 0, 658, 0, 0, 156, 204, 1018
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\lib\Estados_Sistemas\Estados_Sistema_Eco_Hidro.h", "C++", 0, 0, 267, 0, 0, 83, 98, 448
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\lib\Estados_Sistemas\Estados_Sistema_Solarius24.cpp", "C++", 0, 0, 120, 0, 0, 15, 28, 163
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\lib\Estados_Sistemas\Estados_Sistema_Solarius24.h", "C++", 0, 0, 66, 0, 0, 13, 13, 92
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\lib\Eventos_LoRa\Estados_Eventos_Eco_Hidro.cpp", "C++", 0, 0, 144, 0, 0, 27, 32, 203
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\lib\Eventos_LoRa\Estados_Eventos_Eco_Hidro.h", "C++", 0, 0, 73, 0, 0, 21, 25, 119
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\lib\LoRa\Diagnostico_LoRa.cpp", "C++", 0, 0, 39, 0, 0, 12, 14, 65
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\lib\LoRa\Diagnostico_LoRa.h", "C++", 0, 0, 16, 0, 0, 2, 6, 24
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\lib\LoRa\Driver_LoRa.cpp", "C++", 0, 0, 64, 0, 0, 26, 40, 130
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\lib\LoRa\Driver_LoRa.h", "C++", 0, 0, 6, 0, 0, 4, 8, 18
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\lib\LoRa\Envio_Eventos_LoRa.cpp", "C++", 0, 0, 122, 0, 0, 31, 70, 223
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\lib\LoRa\Envio_Eventos_LoRa.h", "C++", 0, 0, 18, 0, 0, 3, 8, 29
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\lib\LoRa\LoRa_Transporte.cpp", "C++", 0, 0, 56, 0, 0, 16, 36, 108
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\lib\LoRa\LoRa_Transporte.h", "C++", 0, 0, 6, 0, 0, 3, 7, 16
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\lib\LoRa\Protocolo_Chacara.h", "C++", 0, 0, 313, 0, 0, 115, 79, 507
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\lib\Matematica\Raiz_Inteira.cpp", "C++", 0, 0, 24, 0, 0, 17, 9, 50
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\lib\Matematica\Raiz_Inteira.h", "C++", 0, 0, 3, 0, 0, 3, 1, 7
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\lib\Utilitario\Cronometro.h", "C++", 0, 0, 51, 0, 0, 26, 16, 93
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\lib\Utilitario\DEBUG_MODE.cpp", "C++", 0, 0, 44, 0, 0, 23, 17, 84
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\lib\Utilitario\DEBUG_MODE.h", "C++", 0, 0, 217, 0, 0, 65, 59, 341
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\lib\Utilitario\Monitor_Latencia.cpp", "C++", 0, 0, 71, 0, 0, 36, 35, 142
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\lib\Utilitario\Monitor_Latencia.h", "C++", 0, 0, 7, 0, 0, 4, 5, 16
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\lib\Utilitario\Monitora_RAM.cpp", "C++", 0, 0, 11, 0, 0, 9, 7, 27
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\lib\Utilitario\Monitora_RAM.h", "C++", 0, 0, 51, 0, 0, 10, 34, 95
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\lib\Utilitario\Mudou_Estado.h", "C++", 0, 0, 12, 0, 0, 30, 7, 49
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\lib\Utilitario\Rastreador_Trocas.h", "C++", 0, 0, 49, 0, 0, 61, 13, 123
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\lib\Utilitario\Tempo.h", "C++", 0, 0, 25, 0, 0, 7, 11, 43
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\lista_arquivos_sistemas.bat", "Batch", 0, 0, 0, 12, 0, 2, 8, 22
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\lista_sistema.txt", "C++", 0, 0, 22, 0, 0, 0, 1, 23
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\platformio.ini", "Ini", 0, 9, 0, 0, 0, 9, 1, 19
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\scripts\contador_upload.py", "Python", 22, 0, 0, 0, 0, 0, 8, 30
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\src\main.cpp", "C++", 0, 0, 6, 0, 0, 0, 7, 13
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Protocolo_Chacara\test\Gera_Chaves.ino", "C++", 0, 0, 35, 0, 0, 9, 11, 55
+"Total", "-", 22, 9, 3201, 3813, 530, 1850, 2568, 11993

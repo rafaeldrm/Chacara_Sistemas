@@ -1,0 +1,20 @@
+"filename", "language", "C++", "Markdown", "JSON", "comment", "blank", "total"
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Eco Hidro\.VSCodeCounter\2026-11-23_14-53-58\details.md", "Markdown", 0, 150, 0, 0, 6, 156
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Eco Hidro\.VSCodeCounter\2026-11-23_14-53-58\diff-details.md", "Markdown", 0, 9, 0, 0, 6, 15
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Eco Hidro\.VSCodeCounter\2026-11-23_14-53-58\diff.md", "Markdown", 0, 12, 0, 0, 7, 19
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Eco Hidro\.VSCodeCounter\2026-11-23_14-53-58\diff.txt", "C++", 19, 0, 0, 0, 3, 22
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Eco Hidro\.VSCodeCounter\2026-11-23_14-53-58\results.json", "JSON", 0, 0, 1, 0, 0, 1
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Eco Hidro\.VSCodeCounter\2026-11-23_14-53-58\results.md", "Markdown", 0, 35, 0, 0, 7, 42
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Eco Hidro\.VSCodeCounter\2026-11-23_14-53-58\results.txt", "C++", 183, 0, 0, 0, 3, 186
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Eco Hidro\lib\Casa_Torre\Mediador_Bomba_Casa.cpp", "C++", 102, 0, 0, 33, 45, 180
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Eco Hidro\lib\Casa_Torre\Mediador_Casa_Torre.cpp", "C++", -81, 0, 0, -55, -41, -177
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Eco Hidro\lib\Casa_Torre\Ordem_LoRa_Casa_Torre.cpp", "C++", 44, 0, 0, 12, 16, 72
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Eco Hidro\lib\Nucleo\Coordenador_Operacional.cpp", "C++", -28, 0, 0, -18, -16, -62
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Eco Hidro\lib\Nucleo\Coordenador_Operacional.h", "C++", -4, 0, 0, -4, -7, -15
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Eco Hidro\lib\Nucleo\Mediador_Sistema.cpp", "C++", 3, 0, 0, 0, 2, 5
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Eco Hidro\lib\Protecao_Bomba_Casa\Giro_Preventivo_Bomba_Casa\Mediador_Giro_Preventivo_Bomba_Casa.cpp", "C++", 1, 0, 0, 0, 0, 1
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Eco Hidro\lib\Unidade_Potencia\Mediador_Unidade_Potencia.cpp", "C++", -20, 0, 0, -12, -15, -47
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Eco Hidro\lib\Unidade_Potencia\Ordem_LoRa_Unidade_Potencia.cpp", "C++", 31, 0, 0, 18, 15, 64
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Eco Hidro\lib\Unidade_Potencia\Ordem_LoRa_Unidade_Potencia.h", "C++", 4, 0, 0, 4, 7, 15
+"c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Eco Hidro\lib\Unidade_Potencia\Sistema_Unidade_Potencia.cpp", "C++", 3, 0, 0, 0, 2, 5
+"Total", "-", 257, 206, 1, -22, 40, 482

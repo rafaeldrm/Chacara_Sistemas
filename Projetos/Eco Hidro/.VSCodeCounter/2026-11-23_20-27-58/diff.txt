@@ -1,0 +1,52 @@
+Date : 2026-11-23 20:27:58
+Directory : c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Eco Hidro
+Total : 18 files,  464 codes, -22 comments, 40 blanks, all 482 lines
+
+Languages
++----------+------------+------------+------------+------------+------------+
+| language | files      | code       | comment    | blank      | total      |
++----------+------------+------------+------------+------------+------------+
+| C++      |         13 |        257 |        -22 |         14 |        249 |
+| Markdown |          4 |        206 |          0 |         26 |        232 |
+| JSON     |          1 |          1 |          0 |          0 |          1 |
++----------+------------+------------+------------+------------+------------+
+
+Directories
++----------------------------------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                                                                     | files      | code       | comment    | blank      | total      |
++----------------------------------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                                                                        |         18 |        464 |        -22 |         40 |        482 |
+| .VSCodeCounter                                                                                                                                           |          7 |        409 |          0 |         32 |        441 |
+| .VSCodeCounter\2026-11-23_14-53-58                                                                                                                       |          7 |        409 |          0 |         32 |        441 |
+| lib                                                                                                                                                      |         11 |         55 |        -22 |          8 |         41 |
+| lib\Casa_Torre                                                                                                                                           |          3 |         65 |        -10 |         20 |         75 |
+| lib\Nucleo                                                                                                                                               |          3 |        -29 |        -22 |        -21 |        -72 |
+| lib\Protecao_Bomba_Casa                                                                                                                                  |          1 |          1 |          0 |          0 |          1 |
+| lib\Protecao_Bomba_Casa\Giro_Preventivo_Bomba_Casa                                                                                                       |          1 |          1 |          0 |          0 |          1 |
+| lib\Unidade_Potencia                                                                                                                                     |          4 |         18 |         10 |          9 |         37 |
++----------------------------------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++----------------------------------------------------------------------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| filename                                                                                                                                                 | language | code       | comment    | blank      | total      |
++----------------------------------------------------------------------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Eco Hidro\.VSCodeCounter\2026-11-23_14-53-58\details.md                                              | Markdown |        150 |          0 |          6 |        156 |
+| c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Eco Hidro\.VSCodeCounter\2026-11-23_14-53-58\diff-details.md                                         | Markdown |          9 |          0 |          6 |         15 |
+| c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Eco Hidro\.VSCodeCounter\2026-11-23_14-53-58\diff.md                                                 | Markdown |         12 |          0 |          7 |         19 |
+| c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Eco Hidro\.VSCodeCounter\2026-11-23_14-53-58\diff.txt                                                | C++      |         19 |          0 |          3 |         22 |
+| c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Eco Hidro\.VSCodeCounter\2026-11-23_14-53-58\results.json                                            | JSON     |          1 |          0 |          0 |          1 |
+| c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Eco Hidro\.VSCodeCounter\2026-11-23_14-53-58\results.md                                              | Markdown |         35 |          0 |          7 |         42 |
+| c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Eco Hidro\.VSCodeCounter\2026-11-23_14-53-58\results.txt                                             | C++      |        183 |          0 |          3 |        186 |
+| c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Eco Hidro\lib\Casa_Torre\Mediador_Bomba_Casa.cpp                                                     | C++      |        102 |         33 |         45 |        180 |
+| c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Eco Hidro\lib\Casa_Torre\Mediador_Casa_Torre.cpp                                                     | C++      |        -81 |        -55 |        -41 |       -177 |
+| c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Eco Hidro\lib\Casa_Torre\Ordem_LoRa_Casa_Torre.cpp                                                   | C++      |         44 |         12 |         16 |         72 |
+| c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Eco Hidro\lib\Nucleo\Coordenador_Operacional.cpp                                                     | C++      |        -28 |        -18 |        -16 |        -62 |
+| c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Eco Hidro\lib\Nucleo\Coordenador_Operacional.h                                                       | C++      |         -4 |         -4 |         -7 |        -15 |
+| c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Eco Hidro\lib\Nucleo\Mediador_Sistema.cpp                                                            | C++      |          3 |          0 |          2 |          5 |
+| c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Eco Hidro\lib\Protecao_Bomba_Casa\Giro_Preventivo_Bomba_Casa\Mediador_Giro_Preventivo_Bomba_Casa.cpp | C++      |          1 |          0 |          0 |          1 |
+| c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Eco Hidro\lib\Unidade_Potencia\Mediador_Unidade_Potencia.cpp                                         | C++      |        -20 |        -12 |        -15 |        -47 |
+| c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Eco Hidro\lib\Unidade_Potencia\Ordem_LoRa_Unidade_Potencia.cpp                                       | C++      |         31 |         18 |         15 |         64 |
+| c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Eco Hidro\lib\Unidade_Potencia\Ordem_LoRa_Unidade_Potencia.h                                         | C++      |          4 |          4 |          7 |         15 |
+| c:\Users\Rafaeldrm\Desktop\ARDUINO_CHACARA_SISTEMAS\Eco Hidro\lib\Unidade_Potencia\Sistema_Unidade_Potencia.cpp                                          | C++      |          3 |          0 |          2 |          5 |
+| Total                                                                                                                                                    |          |        464 |        -22 |         40 |        482 |
++----------------------------------------------------------------------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+

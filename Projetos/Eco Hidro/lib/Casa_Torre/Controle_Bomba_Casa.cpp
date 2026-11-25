@@ -1,0 +1,72 @@
+//====================================================================================  
+//                   DEPENDÊNCIAS  
+//====================================================================================  
+ 
+#include "Controle_Bomba_Casa.h" 
+#include "DEBUG_MODE.h"
+
+#include "Estados_Sistema_Eco_Hidro.h"
+#include "Atuadores/Modulo_Reles.h"
+ 
+//====================================================================================  
+//                   VARIÁVEIS INTERNAS  
+//====================================================================================  
+
+//====================================================================================  
+//                   SETUP  
+//====================================================================================  
+ 
+ void Controle_Bomba_Casa_Inicializa() 
+{ 
+        debugSetupDivisao(COR::AMARELO, "CONTROLE BOMBA CASA INICIALIZANDO", COR::MAGENTA, "=", 0);       
+} 
+ 
+//====================================================================================  
+//                   LIBERADO
+//====================================================================================  
+ 
+ void Controle_Bomba_Casa_Liberado() 
+{ 
+            BOMBA_CASA::definir(BOMBA_CASA::ESTADO::AGUARDA_LIBERACAO);
+ 
+} 
+
+//====================================================================================
+//                   LIGANDO BOMBA
+//====================================================================================
+
+void Controle_Bomba_Casa_Ligando_Bomba()
+{
+
+        RELE_BOMBA_CASA.Ligar(); //@@ Modulo_Reles.cpp
+
+        BOMBA_CASA::definir(BOMBA_CASA::ESTADO::BOMBA_LIGADA);
+
+}
+
+//====================================================================================
+//                   DESLIGANDO BOMBA
+//====================================================================================
+
+ void Controle_Bomba_Casa_Desligando_Bomba() 
+{
+
+        RELE_BOMBA_CASA.Desligar(); //@@ Modulo_Reles.cpp
+
+        BOMBA_CASA::definir(BOMBA_CASA::ESTADO::REPOUSO);
+
+}
+
+//====================================================================================
+//                   BLOQUEIO BOMBA
+//====================================================================================
+
+void Controle_Bomba_Casa_Bloqueio()
+{
+
+        RELE_BOMBA_CASA.Desligar();
+
+        BOMBA_CASA::definir(BOMBA_CASA::ESTADO::BLOQUEADO);
+
+}
+

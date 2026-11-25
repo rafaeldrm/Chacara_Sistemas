@@ -1,0 +1,85 @@
+//====================================================================================  
+//                   DEPENDÊNCIAS  
+//====================================================================================  
+ 
+#include "Gerencia_Bomba_Casa.h" 
+#include "DEBUG_MODE.h" 
+
+#include "Controle_Bomba_Casa.h"
+#include "Estados_Sistema_Eco_Hidro.h"
+ 
+//====================================================================================  
+//                   VARIÁVEIS INTERNAS  
+//====================================================================================  
+ 
+//====================================================================================  
+//                   SETUP  
+//====================================================================================  
+ 
+void Gerencia_Bomba_Casa_Inicializa()
+{
+        debugSetupDivisao(COR::AMARELO, "GERÊNCIA BOMBA CASA INICIALIZANDO", COR::MAGENTA, "=", 0);
+        BOMBA_CASA::definir(BOMBA_CASA::ESTADO::REPOUSO);
+}
+ 
+//====================================================================================  
+//                   LOOP  
+//====================================================================================  
+ 
+ void Gerencia_Bomba_Casa_Atualiza() 
+{ 
+    switch (BOMBA_CASA::atual())
+    {
+
+    //========================================================
+    case BOMBA_CASA::ESTADO::REPOUSO:
+        // não faz nada
+    break;
+
+    //========================================================
+    case BOMBA_CASA::ESTADO::LIBERADO:
+
+        Controle_Bomba_Casa_Liberado();     
+
+    break;
+
+    //========================================================
+    case BOMBA_CASA::ESTADO::AGUARDA_LIBERACAO:
+
+      //Apenas o Mediador fará a alteração.
+
+    break;
+
+    //========================================================
+    case BOMBA_CASA::ESTADO::LIGANDO_BOMBA:
+
+      Controle_Bomba_Casa_Ligando_Bomba();
+
+    break;
+
+    //========================================================
+    case BOMBA_CASA::ESTADO::BOMBA_LIGADA:
+        //apenas fica aqui quieto, funcionando até alguém tirar ele daqui.
+    break;
+
+    //========================================================
+    case BOMBA_CASA::ESTADO::DESLIGANDO_BOMBA:
+
+      Controle_Bomba_Casa_Desligando_Bomba();
+
+    break;
+
+    //========================================================
+    case BOMBA_CASA::ESTADO::BLOQUEIO:
+
+      Controle_Bomba_Casa_Bloqueio();
+
+    break;
+
+    //========================================================
+    case BOMBA_CASA::ESTADO::BLOQUEADO:
+
+    break;
+    
+    }
+}
